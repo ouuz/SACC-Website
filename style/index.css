@@ -1,0 +1,38 @@
+*{
+  margin: 0;
+  padding: 0
+}
+.container{
+  width: 99vw;
+  height: 100vh;
+  display: flex
+}
+
+.containerRightBottom{
+  display: flex;
+  height: 50vh;
+}
+.LogoPage{
+  width: 50vw;
+  height: 100vh;
+  background: red;
+  transition: all .5s ease-in-out;
+  transform-origin:0 100%;
+}
+.GroupPage{
+  width: 50vw;
+  height: 50vh;
+  background: yellow;
+  transform-origin:0 100%;
+  transition: all .5s ease-in-out;
+}
+.TeamPage{
+  width: 25vw;
+  background: green;
+  transform-origin:0 100%
+}
+.ContactPage{
+  width: 25vw;
+  background: pink;
+  transform-origin:0 100%
+}
