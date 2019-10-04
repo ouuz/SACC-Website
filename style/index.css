@@ -1,38 +1,249 @@
-*{
+* {
   margin: 0;
   padding: 0
 }
-.container{
-  width: 99vw;
-  height: 100vh;
-  display: flex
+
+body {
+  background-image: url('../img/59966d4f-3159-4c14-8993-c633f7f08d20_0.png')
 }
 
-.containerRightBottom{
-  display: flex;
-  height: 50vh;
-}
-.LogoPage{
-  width: 50vw;
+/* #c9ecdd */
+
+.team {
   height: 100vh;
-  background: red;
+  display: flex;
+  overflow: hidden;
+}
+
+.teamLeft {
+  width: 40%;
+  position: relative;
+}
+
+.teamRight {
+  width: 60%;
+  cursor: pointer;
+}
+
+.teamRight {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 80%;
+  margin: auto;
+
+}
+
+.group {
+  width: 35%;
+  height: 25%;
+}
+
+.groupImgBox {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.groupImgBox img {
+  z-index: 2;
+}
+
+.groupComic {
+  width: 50%;
   transition: all .5s ease-in-out;
-  transform-origin:0 100%;
 }
-.GroupPage{
-  width: 50vw;
-  height: 50vh;
-  background: yellow;
-  transform-origin:0 100%;
+
+.groupText {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -50% 0;
+  z-index: 1;
+  padding: 20px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.groupLogo {
+  width: 20%;
+  height: 30%;
+  margin: auto 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.teamLeftLogo {
+  width: 200px;
+  background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: bounce 3s 1;
+  box-shadow: 6px 4px 20px 2px #46393963;
+}
+
+@keyframes bounce {
+  0% {
+    top: 0%;
+    left: 0%;
+  }
+
+  30% {
+    top: 90%;
+    left: 10%;
+    transform: rotate(90deg);
+  }
+
+  50% {
+    top: 40%;
+    left: 20%;
+    transform: rotate(180deg);
+  }
+
+  80% {
+    top: 70%;
+    left: 30%;
+    transform: rotate(270deg);
+  }
+
+  100% {
+    top: 37%;
+    left: 37%;
+    transform: rotate(360deg);
+  }
+}
+
+
+/* presidium */
+
+.presidium {
+  width: 70%;
+  margin: auto;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.presidiumTop {
+  height: 10%;
+}
+
+.presidiumBottom {
+  height: 90%;
+  display: flex;
+  width: 200%;
   transition: all .5s ease-in-out;
 }
-.TeamPage{
-  width: 25vw;
-  background: green;
-  transform-origin:0 100%
+
+.successivePresidium {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 90%;
 }
-.ContactPage{
-  width: 25vw;
-  background: pink;
-  transform-origin:0 100%
+
+.PresidiumPortrait>img {
+  width: 70%;
+  /* border-radius: 50%; */
+  box-shadow: 2px 2px 2px 2px #e2e2e2;
+}
+
+.Presidium {
+  background: #edeaeb78;
+  padding: 1.5% 0;
+  flex: 1 1 16%;
+  margin: 0 4%;
+  box-shadow: 5px 4px 14px 0px #e2e2e2;
+}
+
+.PresidiumContent {
+  display: flex;
+  align-items: center;
+  margin-left: -10%;
+  transition: all 3s ease-in-out;
+}
+
+.PresidiumPortrait {
+  flex-basis: 40%;
+}
+
+.PresidiumTeam {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  line-height: 2;
+  font-size: 16px;
+}
+
+.signature {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 180px;
+  transition: all .3s ease-in-out;
+  height: 50px;
+}
+
+.signature:hover {
+  height: 320px;
+  white-space: pre-wrap;
+}
+
+.logoBox {
+  flex: 1 1 1%;
+  text-align: center;
+  font-size: 3.5rem;
+  padding: 2% 5%;
+  position: relative;
+  margin: 0 5%;
+}
+
+/* contact */
+.contact{
+  height: 100vh;
+}
+.form-top {
+  position: absolute;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  width: 100%;
+  left: 0px;
+}
+.contact img{
+  opacity: 0;
+  width: 100px;
+  transition: all 0.5s ease-in-out
+}
+
+@keyframes competionIn{
+  0%{
+    height: 300px;
+    opacity: 0;
+    transform: translateY(0)
+  }
+  100%{
+    height: 250px;
+    opacity: 1;
+    transform: translateY(15vh)
+  }
+}
+
+@keyframes competionOut{
+  0%{
+    height: 250px;
+    opacity: 1;
+    transform: translateY(15vh)
+  }
+  100%{
+    height: 300px;
+    opacity: 0;
+    transform: translateY(0)
+  }
 }
