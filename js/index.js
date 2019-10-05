@@ -5,6 +5,7 @@ const teamImgToText = () => {
 
   function slideIn(e) {
     e.target.classList.contains('groupImgBox') ? slide() : '';
+
     function slide() {
       $($(e.target).children().get(0)).css('transform', 'translateX(-200%)')
       $($(e.target).children().get(1)).css('transform', 'translateX(-200%)')
@@ -30,7 +31,9 @@ const teamImgToText = () => {
 
 
 const presidiumDrag = () => {
-  $('.presidiumBottom').bind("selectstart",function(){return false;});  
+  $('.presidiumBottom').bind("selectstart", function () {
+    return false;
+  });
 
   let list = document.querySelector('.presidiumBottom'),
     then, now;
@@ -41,22 +44,35 @@ const presidiumDrag = () => {
     then = e.offsetX;
   }
 
-  function dragUp(e){
+  function dragUp(e) {
     now = e.offsetX;
-    (now - then < 50) && (now - then < 0)?
-    $('.presidiumBottom').css('transform','translateX(-50%)')
-    :
-    $('.presidiumBottom').css('transform','translateX(0)')
+    (now - then < 50) && (now - then < 0) ?
+    $('.presidiumBottom').css('transform', 'translateX(-50%)'):
+      $('.presidiumBottom').css('transform', 'translateX(0)')
   }
 }
 
-$('.competionName').mouseover(()=>{
-    $('.competionName').next().css('animation','competionIn 1s 1 forwards')
-})
+const competionShow = () => {
+  let list = document.querySelector('.activity');
+  list.addEventListener('mouseover', slideIn);
+  list.addEventListener('mouseout', slideOut);
 
-$('.competionName').mouseout(()=>{
-    $('.competionName').next().css('animation','competionOut 1s 1 forwards')
-})
+  function slideIn(e) {
+    e.target.classList.contains('competionName') ? slide() : '';
+    function slide() {
+      $(e.target).next().css('animation', 'competionIn 1s 1 forwards')
+    }
+  }
+
+  function slideOut(e) {
+    e.target.classList.contains('competionName') ? slide() : '';
+    function slide() {
+      $(e.target).next().css('animation','competionOut 1s 1 forwards')
+    }
+  }
+}
+
 
 teamImgToText()
 presidiumDrag()
+competionShow()
