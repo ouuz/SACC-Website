@@ -3,12 +3,16 @@
   padding: 0
 }
 
+body {
+  background: #e7a6a6;
+}
+
 /* #c9ecdd */
 
 .team {
   height: 100vh;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .teamLeft {
@@ -152,11 +156,11 @@
 }
 
 .Presidium {
-  background: #edeaeb78;
+  background: #edeaeb24;
   padding: 1.5% 0;
   flex: 1 1 16%;
   margin: 0 4%;
-  box-shadow: 5px 4px 14px 0px #e2e2e2;
+  box-shadow: 5px 4px 14px 0px #a08a8a;
   position: relative;
 }
 
@@ -264,14 +268,15 @@
 .competionName {
   text-align: center;
   height: 40%;
-  -webkit-text-stroke: 2px #a29391;
-  -webkit-text-fill-color: #ffd89f;
+  -webkit-text-stroke: 2px #895847de;
+  -webkit-text-fill-color: #fffbdd;
   font-size: 2.9rem;
   font-family: STXingkai;
   transform: skew(-20deg);
   transition: all .5s ease-in-out;
 }
-.competionName>span{
+
+.competionName>span {
   opacity: 0.5;
   transition: all .1s ease-in-out;
   animation: wordShake 1s infinite;
@@ -326,14 +331,43 @@
   }
 }
 
-@keyframes wordShake{
-  0%{
+@keyframes wordShake {
+  0% {
     transform: rotate(0deg)
   }
-  50%{
+
+  50% {
     transform: rotate(3deg)
   }
-  100%{
+
+  100% {
     transform: rotate(0deg)
   }
+}
+
+
+/* project */
+.project {
+  height: 50vh;
+  display: flex;
+  justify-content: space-around
+}
+
+.projectContent {
+  flex-basis: 25%;
+  background: url('../img/666.png') no-repeat;
+  overflow: hidden;
+}
+
+.projectImgBox {
+  width: 85%;
+  margin-left: 10%;
+  margin-top: 22%;
+  max-height: 45%;
+  overflow: hidden;
+}
+
+.projectImgBox img {
+  width: 100%;
+  transition: all 3s ease-in-out;
 }

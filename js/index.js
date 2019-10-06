@@ -129,7 +129,31 @@ const activityShow = () => {
   }
 }
 
+const projectSlideShow = () => {
+  let list = document.querySelector('.project');
+  list.addEventListener('mouseover', slideUp);
+  list.addEventListener('mouseout', slideDown);
+
+  function slideUp(e) {
+    $(e.target).attr('class') == 'projectImg' ? up() : '';
+
+    function up() {
+      $(e.target).css('transform',`translateY(${$(e.target).parent().height() - $(e.target).height()}px)`)
+    }
+
+  }
+
+  function slideDown(e) {
+    $(e.target).attr('class') == 'projectImg' ? down() : '';
+
+    function down() {
+      $(e.target).css('transform','translateY(0)')
+    }
+
+  }
+}
 
 teamImgToText()
 presidiumDrag()
 activityShow()
+projectSlideShow()
