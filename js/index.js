@@ -138,7 +138,7 @@ const projectSlideShow = () => {
     $(e.target).attr('class') == 'projectImg' ? up() : '';
 
     function up() {
-      $(e.target).css('transform',`translateY(${$(e.target).parent().height() - $(e.target).height()}px)`)
+      $(e.target).css('transform',`translateY(${$(e.target).parent().parent().height() - $(e.target).height()}px)`)
     }
 
   }
