@@ -29,7 +29,6 @@ const teamImgToText = () => {
   }
 }
 
-
 const presidiumDrag = () => {
   $('.presidiumBottom').bind("selectstart", function () {
     return false;
@@ -52,22 +51,80 @@ const presidiumDrag = () => {
   }
 }
 
-const competionShow = () => {
+const activityShow = () => {
   let list = document.querySelector('.activity');
   list.addEventListener('mouseover', slideIn);
   list.addEventListener('mouseout', slideOut);
 
   function slideIn(e) {
-    e.target.classList.contains('competionName') ? slide() : '';
-    function slide() {
-      $(e.target).next().css('animation', 'competionIn 1s 1 forwards')
+    $(e.target).attr('class') == 'competionName Odd' ||
+      $(e.target).attr('class') == 'pale' ? slideOdd() : '';
+
+    $(e.target).attr('class') == 'competionName Even' ||
+      $(e.target).attr('class') == 'pale' ? slideEven() : '';
+
+    function slideOdd() {
+      if ($(e.target).attr('class') == 'pale') {
+        $(e.target).css('opacity', '1')
+        $(e.target).css('animation', 'wordShake .8s 1')
+        $(e.target).parent().css('transform', 'skew(0deg)')
+        $(e.target).parent().next().css('animation', 'competionInOdd .8s 1 forwards')
+      } else {
+        $(e.target).children().first().css('opacity', '1')
+        $(e.target).children().first().css('animation', 'wordShake .8s 1')
+        $(e.target).next().css('animation', 'competionInOdd .8s 1 forwards')
+        $(e.target).css('transform', 'skew(0deg)')
+      }
+    }
+
+    function slideEven() {
+      if ($(e.target).attr('class') == 'pale') {
+        $(e.target).css('opacity', '1')
+        $(e.target).css('animation', 'wordShake .8s 1')
+        $(e.target).parent().css('transform', 'skew(0deg)')
+        $(e.target).parent().next().css('animation', 'competionInEven .8s 1 forwards')
+      } else {
+        $(e.target).children().first().css('opacity', '1')
+        $(e.target).children().first().css('animation', 'wordShake .8s 1')
+        $(e.target).next().css('animation', 'competionInEven .8s 1 forwards')
+        $(e.target).css('transform', 'skew(0deg)')
+      }
     }
   }
 
   function slideOut(e) {
-    e.target.classList.contains('competionName') ? slide() : '';
-    function slide() {
-      $(e.target).next().css('animation','competionOut 1s 1 forwards')
+    $(e.target).attr('class') == 'competionName Odd' ||
+      $(e.target).attr('class') == 'pale' ? slideOdd() : '';
+
+    $(e.target).attr('class') == 'competionName Even' ||
+      $(e.target).attr('class') == 'pale' ? slideEven() : '';
+
+    function slideOdd() {
+      if ($(e.target).attr('class') == 'pale') {
+        $(e.target).css('opacity', '0.5')
+        $(e.target).css('animation', 'wordShake .8s infinite')
+        $(e.target).parent().css('transform', 'skew(-20deg)')
+        $(e.target).parent().next().css('animation', 'competionOutOdd .8s 1 forwards')
+      } else {
+        $(e.target).children().first().css('opacity', '0.5')
+        $(e.target).children().first().css('animation', 'wordShake .8s infinite')
+        $(e.target).next().css('animation', 'competionOutOdd .8s 1 forwards')
+        $(e.target).css('transform', 'skew(-20deg)')
+      }
+    }
+
+    function slideEven() {
+      if ($(e.target).attr('class') == 'pale') {
+        $(e.target).css('opacity', '0.5')
+        $(e.target).css('animation', 'wordShake .8s infinite')
+        $(e.target).parent().css('transform', 'skew(-20deg)')
+        $(e.target).parent().next().css('animation', 'competionOutEven .8s 1 forwards')
+      } else {
+        $(e.target).children().first().css('opacity', '0.5')
+        $(e.target).children().first().css('animation', 'wordShake .8s infinite')
+        $(e.target).next().css('animation', 'competionOutEven .8s 1 forwards')
+        $(e.target).css('transform', 'skew(-20deg)')
+      }
     }
   }
 }
@@ -75,4 +132,4 @@ const competionShow = () => {
 
 teamImgToText()
 presidiumDrag()
-competionShow()
+activityShow()
