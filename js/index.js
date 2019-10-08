@@ -135,21 +135,27 @@ const projectSlideShow = () => {
   list.addEventListener('mouseout', slideDown);
 
   function slideUp(e) {
-    $(e.target).attr('class') == 'projectImg' ? up() : '';
+    $(e.target).attr('class') == 'blackScreen' ? up() : '';
 
     function up() {
-      $(e.target).css('transform',`translateY(${$(e.target).parent().parent().height() - $(e.target).height()}px)`)
+      $(e.target).css('opacity','0')
+      $(e.target).prev().prev().css('background','green')
+      setTimeout(() =>{
+        let img = $(e.target).prev().children().children();
+        $(img).css('transform',`translateY(${$(img).parent().parent().height() - $(img).height()}px)`)
+      },500)
     }
 
   }
 
   function slideDown(e) {
-    $(e.target).attr('class') == 'projectImg' ? down() : '';
+    $(e.target).attr('class') == 'blackScreen' ? down() : '';
 
     function down() {
-      $(e.target).css('transform','translateY(0)')
+      $(e.target).prev().children().children().css('transform','translateY(0)')
+      $(e.target).css('opacity','1')
+      $(e.target).prev().prev().css('background','red')
     }
-
   }
 }
 

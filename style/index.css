@@ -3,8 +3,9 @@
   padding: 0
 }
 
-body {
-  background: #e7a6a6;
+@font-face{
+  font-family: 'ZiXinFangXiaMuTi';
+  src:url('../font/ZiXinFangXiaMuTi-2.ttf')
 }
 
 /* #c9ecdd */
@@ -13,6 +14,7 @@ body {
   height: 100vh;
   display: flex;
   /* overflow: hidden; */
+  background: url('../img/TIM图片20191008180854.jpg') 
 }
 
 .teamLeft {
@@ -271,7 +273,7 @@ body {
   -webkit-text-stroke: 2px #895847de;
   -webkit-text-fill-color: #fffbdd;
   font-size: 2.9rem;
-  font-family: STXingkai;
+  font-family: 'ZiXinFangXiaMuTi';
   transform: skew(-20deg);
   transition: all .5s ease-in-out;
 }
@@ -357,6 +359,7 @@ body {
   flex-basis: 25%;
   background: url('../img/666.png') no-repeat;
   overflow: hidden;
+  position: relative;
 }
 
 .projectImgBox {
@@ -370,4 +373,23 @@ body {
 .projectImgBox img {
   width: 100%;
   transition: all 3s ease-in-out;
+}
+.light{
+  position: absolute;
+  width: 1.5vh;
+  border-radius: 50%;
+  background: red;
+  height: 1.5vh;
+  bottom: 23%;
+  right: 7%;
+  transition: all .5s ease-in-out
+}
+.blackScreen{
+  width: 85%;
+  background: black;
+  height: 48%;
+  position: absolute;
+  top: 21%;
+  left: 10%;
+  transition: all .5s ease-in-out
 }
