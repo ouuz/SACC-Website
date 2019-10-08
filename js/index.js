@@ -10,9 +10,24 @@ const teamImgToText = () => {
       $($(e.target).children().get(0)).css('transform', 'translateX(-200%)')
       $($(e.target).children().get(1)).css('transform', 'translateX(-200%)')
       $(e.target).next().css('opacity', '1')
+      $('.backgroundImg').css('transform','translateX(100%)')
       $('.teamLeft').empty().append(`
-      <img src=${$($(e.target).children().get(0)).attr('src')} alt=""  class="teamLeftLogo">
+        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
+        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
+        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
+        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
+        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
+        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
       `)
+
+      setTimeout(() => {
+        $($('.teamLeft').children()[0]).css('transform', 'translate(-14vw,-14vh)').css('width', '105px')
+        $($('.teamLeft').children()[1]).css('transform', 'translate(3vw,15vh)').css('width', '140px')
+        $($('.teamLeft').children()[2]).css('transform', 'translate(9vw,-6vh)').css('width', '120px')
+        $($('.teamLeft').children()[3]).css('transform', 'translate(-12vw,8vh)').css('width', '130px')
+        $($('.teamLeft').children()[4]).css('transform', 'translate(1vw,-25vh)').css('width', '100px')
+      }, 3000)
+
     }
   }
 
@@ -138,12 +153,12 @@ const projectSlideShow = () => {
     $(e.target).attr('class') == 'blackScreen' ? up() : '';
 
     function up() {
-      $(e.target).css('opacity','0')
-      $(e.target).prev().prev().css('background','green')
-      setTimeout(() =>{
+      $(e.target).css('opacity', '0')
+      $(e.target).prev().prev().css('background', 'green')
+      setTimeout(() => {
         let img = $(e.target).prev().children().children();
-        $(img).css('transform',`translateY(${$(img).parent().parent().height() - $(img).height()}px)`)
-      },500)
+        $(img).css('transform', `translateY(${$(img).parent().parent().height() - $(img).height()}px)`)
+      }, 500)
     }
 
   }
@@ -152,9 +167,9 @@ const projectSlideShow = () => {
     $(e.target).attr('class') == 'blackScreen' ? down() : '';
 
     function down() {
-      $(e.target).prev().children().children().css('transform','translateY(0)')
-      $(e.target).css('opacity','1')
-      $(e.target).prev().prev().css('background','red')
+      $(e.target).prev().children().children().css('transform', 'translateY(0)')
+      $(e.target).css('opacity', '1')
+      $(e.target).prev().prev().css('background', 'red')
     }
   }
 }

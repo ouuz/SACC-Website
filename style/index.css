@@ -3,28 +3,39 @@
   padding: 0
 }
 
-@font-face{
+@font-face {
   font-family: 'ZiXinFangXiaMuTi';
-  src:url('../font/ZiXinFangXiaMuTi-2.ttf')
+  src: url('../font/ZiXinFangXiaMuTi-2.ttf')
 }
 
-/* #c9ecdd */
+/* #c9ecdd , #faf8eb */
 
 .team {
   height: 100vh;
   display: flex;
-  /* overflow: hidden; */
-  background: url('../img/TIM图片20191008180854.jpg') 
+  overflow: hidden;
+  background: #faf8eb;
+  position: relative;
+}
+
+.backgroundImg {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  transition: all 2.2s ease-in-out;
+  z-index: 1;
 }
 
 .teamLeft {
   width: 40%;
   position: relative;
+  z-index:2
 }
 
 .teamRight {
   width: 60%;
   cursor: pointer;
+  z-index:2
 }
 
 .teamRight {
@@ -55,7 +66,7 @@
 }
 
 .groupComic {
-  width: 50%;
+  width: 45%;
   transition: all .5s ease-in-out;
 }
 
@@ -87,8 +98,9 @@
   padding: 20px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: bounce 3s 1;
+  animation: bounce 2.2s 1;
   box-shadow: 6px 4px 20px 2px #46393963;
+  transition: all .8s ease-in-out
 }
 
 @keyframes bounce {
@@ -374,7 +386,8 @@
   width: 100%;
   transition: all 3s ease-in-out;
 }
-.light{
+
+.light {
   position: absolute;
   width: 1.5vh;
   border-radius: 50%;
@@ -384,7 +397,8 @@
   right: 7%;
   transition: all .5s ease-in-out
 }
-.blackScreen{
+
+.blackScreen {
   width: 85%;
   background: black;
   height: 48%;
