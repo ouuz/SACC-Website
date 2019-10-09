@@ -10,7 +10,7 @@ const teamImgToText = () => {
       $($(e.target).children().get(0)).css('transform', 'translateX(-200%)')
       $($(e.target).children().get(1)).css('transform', 'translateX(-200%)')
       $(e.target).next().css('opacity', '1')
-      $('.backgroundImg').css('transform','translateX(100%)')
+      $('.backgroundImg').css('transform', 'translateX(100%)')
       $('.teamLeft').empty().append(`
         <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
         <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
@@ -174,7 +174,10 @@ const projectSlideShow = () => {
   }
 }
 
+
+
 teamImgToText()
 presidiumDrag()
 activityShow()
 projectSlideShow()
+// departmentComicMove()

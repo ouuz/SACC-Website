@@ -29,13 +29,13 @@
 .teamLeft {
   width: 40%;
   position: relative;
-  z-index:2
+  z-index: 2;
 }
 
 .teamRight {
   width: 60%;
   cursor: pointer;
-  z-index:2
+  z-index: 2
 }
 
 .teamRight {
@@ -140,7 +140,7 @@
 .presidium {
   width: 70%;
   margin: auto;
-  height: 80vh;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -165,23 +165,20 @@
 
 .PresidiumPortrait>img {
   width: 70%;
-  /* border-radius: 50%; */
   box-shadow: 2px 2px 2px 2px #e2e2e2;
 }
 
 .Presidium {
   background: #edeaeb24;
   padding: 1.5% 0;
-  flex: 1 1 16%;
+  width: 25%;
   margin: 0 4%;
   box-shadow: 5px 4px 14px 0px #a08a8a;
   position: relative;
 }
 
 .PresidiumYear {
-  position: absolute;
-  top: -8%;
-  right: 20%;
+  margin: -10% 0% 0% 67%;
   font-size: 1.5rem;
 }
 
@@ -219,13 +216,13 @@
 }
 
 .Presidium:nth-child(1) {
-  text-align: center;
-  font-size: 3.5rem;
-  position: relative;
-  margin: 0 5%;
-  padding: 3rem;
+  padding: 1rem;
   background: transparent;
   box-shadow: none;
+}
+
+.Presidium:nth-child(1)>img {
+  width: 80%;
 }
 
 /* activity */
@@ -364,7 +361,8 @@
 .project {
   height: 50vh;
   display: flex;
-  justify-content: space-around
+  justify-content: space-around;
+  margin-bottom: 25vh;
 }
 
 .projectContent {
@@ -405,5 +403,60 @@
   position: absolute;
   top: 21%;
   left: 10%;
-  transition: all .5s ease-in-out
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+}
+
+/* department */
+.department {
+  height: 100vh;
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  overflow: hidden;
+  background: pink
+}
+
+.departmentContent {
+  width: 40%;
+  background: #85d589;
+  display: flex;
+  justify-content: center;
+  height: 25%;
+  align-items: center;
+  z-index: 4
+}
+
+.departmentContentImg {
+  width: 60%;
+  margin: 1rem;
+}
+
+.departmentContentImg img {
+  width: 100%
+}
+
+.departmentContent p {
+  font-size: 1rem;
+  line-height: 2
+}
+
+.departmentContent:nth-child(2) {
+  position: absolute;
+  right: 0
+}
+
+.departmentComic {
+  width: 500px;
+  position: absolute;
+  top: 0;
+  z-index: 5
+}
+
+.departmentComic img {
+  width: 100%;
+  
 }
