@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>draw curve</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #canvas {
+      background: #282c5b;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <canvas id="canvas" width="1850" height="2811"></canvas>
+  <script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    canvas.style.width = document.documentElement.clientWidth + 'px';
+    canvas.style.height = document.documentElement.clientHeight * 3 + 'px';
+
+    function drawCurve() {
+      function drawFirstCurve() {
+        function one() {
+          ctx.lineWidth = 35;
+          ctx.strokeStyle = '#cf91d4';
+          ctx.setLineDash([80, 30]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [280, -10],
+            [150, 230],
+            0.1
+          );
+
+          ctx.stroke();
+        }
+
+        function two() {
+          ctx.lineWidth = 35;
+          ctx.strokeStyle = '#9c91d5';
+          ctx.setLineDash([80, 30]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [150, 230],
+            [0, 350],
+            0.1
+          );
+
+          ctx.stroke();
+        }
+        one()
+        two()
+      }
+
+      function drawSecondCurve() {
+        function one() {
+          ctx.lineWidth = 40;
+          ctx.strokeStyle = '#8692fe';
+          ctx.setLineDash([110, 50]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [580, -10],
+            [405, 400],
+            0.1
+          );
+
+          ctx.stroke();
+        }
+
+        function two() {
+          ctx.lineWidth = 40;
+          ctx.strokeStyle = '#96d493';
+          ctx.setLineDash([110, 50]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [416, 384],
+            [-100, 900],
+            0.07
+          );
+
+          ctx.stroke();
+        }
+        one()
+        two()
+
+      }
+
+      function drawThirdCurve() {
+        function one() {
+          ctx.lineWidth = 35;
+          ctx.strokeStyle = '#8dc6e1';
+          ctx.setLineDash([140, 50]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [1430, -10],
+            [1300, 650],
+            0.15
+          );
+
+          ctx.stroke();
+        }
+
+        function two() {
+          ctx.lineWidth = 35;
+          ctx.strokeStyle = '#febc7f';
+          ctx.setLineDash([140, 50]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [1300, 649],
+            [550, 1250],
+            0.15
+          );
+
+          ctx.stroke();
+        }
+
+        function three() {
+          ctx.lineWidth = 35;
+          ctx.strokeStyle = '#ff9281';
+          ctx.setLineDash([140, 50]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [550, 1249],
+            [-100, 1400],
+            0.1
+          );
+
+          ctx.stroke();
+        }
+        one()
+        two()
+        three()
+      }
+
+      function drawFourthCurve() {
+        function one() {
+          ctx.lineWidth = 30;
+          ctx.strokeStyle = '#cd5dbf';
+          ctx.setLineDash([160, 60]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [1880, 550],
+            [1620, 1211],
+            0.06
+          );
+
+          ctx.stroke();
+        }
+
+        function two() {
+          ctx.lineWidth = 30;
+          ctx.strokeStyle = '#82fef6';
+          ctx.setLineDash([160, 60]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [1621, 1210],
+            [620, 2300],
+            0.14
+          );
+
+          ctx.stroke();
+        }
+
+        function three() {
+          ctx.lineWidth = 30;
+          ctx.strokeStyle = '#4f70d9';
+          ctx.setLineDash([160, 60]);
+          ctx.beginPath();
+
+          drawCurvePath(
+            ctx,
+            [620, 2300],
+            [-100, 2600],
+            0.1
+          );
+
+          ctx.stroke();
+        }
+
+        one()
+        two()
+        three()
+      }
+
+      function drawCurvePath(ctx, start, end, curveness) {
+        var cp = [
+          (start[0] + end[0]) / 2 - (start[1] - end[1]) * curveness,
+          (start[1] + end[1]) / 2 - (end[0] - start[0]) * curveness
+        ];
+        ctx.moveTo(start[0], start[1]);
+        ctx.quadraticCurveTo(
+          cp[0], cp[1],
+          end[0], end[1]
+        );
+      }
+
+      drawFirstCurve()
+      drawSecondCurve()
+      drawThirdCurve()
+      drawFourthCurve()
+    }
+
+    function drawCircle() {
+      function drawfirstCircle() {
+        ctx.lineWidth = 20;
+        ctx.setLineDash([80, 0]);
+        ctx.beginPath();
+        ctx.strokeStyle = "transparent";
+        ctx.arc(1380, 290, 100, 0, 2 * Math.PI);
+        ctx.stroke()
+
+        ctx.clip()
+        ctx.rotate(30 * Math.PI / 180)
+        ctx.beginPath();
+        ctx.fillRect(1150, -335, 400, 20);
+        ctx.fillStyle = "#63aaec";
+        ctx.fillRect(1150, -355, 400, 20);
+        ctx.fillStyle = "#7393fa";
+        ctx.fillRect(1150, -375, 400, 20);
+        ctx.fillStyle = "#cdfefb";
+        ctx.fillRect(1150, -395, 400, 20);
+        ctx.fillStyle = "#4cb1e7";
+        ctx.fillRect(1150, -415, 400, 20);
+        ctx.fillStyle = "#71d4fb";
+        ctx.fillRect(1150, -435, 400, 20);
+        ctx.fillStyle = "#d0fefe";
+        ctx.fillRect(1150, -455, 400, 20);
+        ctx.fillStyle = "#7188fa";
+        ctx.fillRect(1150, -475, 400, 20);
+        ctx.fillStyle = "#49b2e9";
+        ctx.fillRect(1150, -495, 400, 20);
+        ctx.fillStyle = "#71ccf9";
+        ctx.fillRect(1150, -515, 400, 20);
+        ctx.fillStyle = "#cdfffe";
+        ctx.fillRect(1150, -535, 400, 20);
+        ctx.fillStyle = "#71ccf9";
+        ctx.fillRect(1150, -555, 400, 20);
+        ctx.fillStyle = "#73ecfd";
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 23;
+        ctx.strokeStyle = "#e5a0d6";
+        ctx.arc(1340, -440, 100, 0, Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.strokeStyle = "#aeadfd";
+        ctx.arc(1340, -440, 100,  0.9 * Math.PI, 2.1 * Math.PI);
+        ctx.stroke()
+      }
+
+      function drawSecondCircle() {
+        ctx.lineWidth = 20;
+        ctx.setLineDash([80, 0]);
+        ctx.fillStyle = "#e1cf85";
+        ctx.beginPath();
+        ctx.lineWidth = 23;
+        ctx.strokeStyle = "#f8f9ad";
+        ctx.arc(0, 1100, 500, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fill()
+      }
+
+      function drawThirdCircle() {
+        ctx.fillStyle ="#c85c52";
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#c9fcb9";
+        ctx.arc(200, 110, 100, 0, Math.PI);
+        ctx.stroke()
+        ctx.fill()
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#7874e2";
+        ctx.arc(200, 110, 100, 0.7 * Math.PI, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fill()
+
+      }
+
+      drawSecondCircle()
+      drawThirdCircle()
+      drawfirstCircle()
+    }
+
+    function drawLine() {
+      function drawFirstLine() {
+        ctx.strokeStyle = "#f7caa9";
+        ctx.fillStyle = "#ff6f8a"
+        ctx.lineWidth = 20;
+        ctx.lineJoin="round";
+        ctx.moveTo(1500, -10);
+        ctx.lineTo(1500, 3);
+        ctx.lineTo(1500, 5);
+
+        ctx.lineTo(1540, 40);
+
+        ctx.lineTo(1545, 65);
+        ctx.lineTo(1540, 90);
+        ctx.lineTo(1560, 110);
+        ctx.lineTo(1570, 130);
+        ctx.lineTo(1550, 180);
+        ctx.lineTo(1600, 190);
+        ctx.lineTo(1660, 270);
+        ctx.lineTo(1670, 305);
+        ctx.lineTo(1720, 320);
+        ctx.lineTo(1730, 330);
+        ctx.lineTo(1740, 350);
+        ctx.lineTo(1760, 345);
+        ctx.lineTo(1920, 370);
+        ctx.lineTo(2000, 370);
+        ctx.lineTo(2000, 5);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+      }
+      drawFirstLine()
+    }
+
+    drawLine()
+    drawCurve()
+    drawCircle()
+  </script>
+</body>
+
+</html>
