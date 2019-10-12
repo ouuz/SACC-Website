@@ -11,26 +11,42 @@
 
     #canvas {
       background: #282c5b;
+
     }
   </style>
 
 </head>
 
 <body>
-  <div class="firstScreen">
-    <div class="Logo">
-      <canvas id="canvas" width="1850" height="2811"></canvas>
-    </div>
-  </div>
-
+  <canvas id="canvas" width="1850" height="2811"></canvas>
   <script>
     var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
     var percent = 0;
-    var ctx;
+    var time = 0;
+
     canvas.style.width = document.documentElement.clientWidth + 'px';
     canvas.style.height = document.documentElement.clientHeight * 3 + 'px';
 
-    function drawCurve() {
+
+    var curve = window.setInterval(() => {
+      percent++;
+      animate()
+      if (percent > 100) {
+        window.clearInterval(curve)
+        drawRedPlanet()
+      }
+    }, 20)
+
+    var RedPlanet = window.setInterval(() => {
+      time++;
+      if (time > 200) {
+        window.clearInterval(RedPlanet)
+        drawYellowPlanet()
+      }
+    }, 20)
+
+    function drawCurve() { //画轨迹
       function drawFirstCurve() {
         function one() {
           ctx.lineWidth = 35;
@@ -40,10 +56,9 @@
 
           drawCurvePath(
             ctx,
-            [290, -10],
-            [270, 70],
-            0.1,
-            percent
+            [280, -10],
+            [150, 230],
+            0.1, percent
           );
 
           ctx.stroke();
@@ -59,8 +74,7 @@
             ctx,
             [150, 230],
             [0, 350],
-            0.1,
-            percent
+            0.1, percent
           );
 
           ctx.stroke();
@@ -80,8 +94,7 @@
             ctx,
             [580, -10],
             [405, 400],
-            0.1,
-            percent
+            0.1, percent
           );
 
           ctx.stroke();
@@ -90,21 +103,21 @@
         function two() {
           ctx.lineWidth = 40;
           ctx.strokeStyle = '#96d493';
-          ctx.setLineDash([90, 50]);
+          ctx.setLineDash([110, 50]);
           ctx.beginPath();
 
           drawCurvePath(
             ctx,
-            [417, 383],
-            [215, 630],
-            0.07,
-            percent
+            [416, 384],
+            [-100, 900],
+            0.07, percent
           );
 
           ctx.stroke();
         }
         one()
         two()
+
       }
 
       function drawThirdCurve() {
@@ -118,8 +131,7 @@
             ctx,
             [1430, -10],
             [1300, 650],
-            0.15,
-            percent
+            0.15, percent
           );
 
           ctx.stroke();
@@ -134,9 +146,8 @@
           drawCurvePath(
             ctx,
             [1300, 649],
-            [630, 1250],
-            0.15,
-            percent
+            [550, 1250],
+            0.15, percent
           );
 
           ctx.stroke();
@@ -150,15 +161,13 @@
 
           drawCurvePath(
             ctx,
-            [630, 1250],
-            [520, 1290],
-            0.1,
-            percent
+            [550, 1249],
+            [-100, 1400],
+            0.1, percent
           );
 
           ctx.stroke();
         }
-
         one()
         two()
         three()
@@ -175,8 +184,7 @@
             ctx,
             [1880, 550],
             [1620, 1211],
-            0.06,
-            percent
+            0.06, percent
           );
 
           ctx.stroke();
@@ -192,8 +200,7 @@
             ctx,
             [1621, 1210],
             [620, 2300],
-            0.14,
-            percent
+            0.14, percent
           );
 
           ctx.stroke();
@@ -209,7 +216,7 @@
             ctx,
             [620, 2300],
             [-100, 2600],
-            0.1
+            0.1, percent
           );
 
           ctx.stroke();
@@ -226,21 +233,12 @@
       drawFourthCurve()
     }
 
-    function animate() {
-      ctx.clearRect(0, 0, 1920, 2811);
-      ctx.beginPath();
-      drawCurve()
-      console.log("@")
-    }
-
-    function drawCurvePath(ctx, start, end, curveness, percent) {
-      var cp = [
+    function drawCurvePath(ctx, start, end, curveness, percent) { //贝塞尔曲线
+      let cp = [
         (start[0] + end[0]) / 2 - (start[1] - end[1]) * curveness,
         (start[1] + end[1]) / 2 - (end[0] - start[0]) * curveness
       ];
-
       ctx.moveTo(start[0], start[1]);
-
       for (let t = 0; t <= percent / 100; t += 0.01) {
         let x = quadraticBezier(start[0], cp[0], end[0], t);
         let y = quadraticBezier(start[1], cp[1], end[1], t);
@@ -248,18 +246,45 @@
       }
     }
 
-    function quadraticBezier(p0, p1, p2, t) {
+    function quadraticBezier(p0, p1, p2, t) { //贝塞尔曲线方程
       var k = 1 - t;
       return k * k * p0 + 2 * (1 - t) * t * p1 + t * t * p2;
     }
 
+    function drawYellowPlanet() {
+      let arr = [];
+      ctx.strokeStyle = "#f8f9ad";
+      ctx.fillStyle = "#e1cf85";
 
-    var a = window.setInterval(() => {
-      percent++;
-      animate()
-      if (percent >= 100)
-        window.clearInterval(a)
-    }, 20)
+      for (let i = 1.5 * Math.PI; i <= 3.5 * Math.PI; i += 2 * (Math.PI / 180)) {
+        let x = 0 + 600 * Math.cos(i);
+        let y = 1100 + 600 * Math.sin(i);
+        arr.push([x, y]);
+      }
+
+      let startPoint = arr.shift();
+      ctx.beginPath();
+      ctx.moveTo(startPoint[0], startPoint[1]);
+
+      let rander = function () {
+        if (arr.length) {
+          ctx.lineWidth = 20;
+          ctx.setLineDash([80, 0]);
+
+          let tmpPoint = arr.shift();
+          ctx.lineTo(tmpPoint[0], tmpPoint[1]);
+          ctx.fill()
+          ctx.stroke();
+        } else {
+          arr = null;
+          return;
+        }
+
+        requestAnimationFrame(rander);
+      };
+
+      rander();
+    }
 
     function drawCircle() {
       function drawfirstCircle() {
@@ -311,41 +336,83 @@
         ctx.stroke()
       }
 
+      function drawThirdCircle() {
+        ctx.fillStyle = "#c85c52";
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#c9fcb9";
+        ctx.arc(200, 110, 100, 0, Math.PI);
+        ctx.stroke()
+        ctx.fill()
+
+        ctx.beginPath();
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = "#7874e2";
+        ctx.arc(200, 110, 100, 0.7 * Math.PI, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fill()
+
+      }
+
+      drawThirdCircle()
       drawfirstCircle()
     }
 
-    function drawImg() {
-      let red = new Image(),
-      purple = new Image(),
-        yellow = new Image()
-        ;
-      red.src = "./img/红色星球.png";
-      yellow.src = "./img/黄色星球.png";
-      purple.src = "./img/绿紫星球.png";
+    function drawRedPlanet() {
+      ctx.stroke();
+      let arr = [
+        [1530, -10],
+        [1540, -5],
+        [1540, 40],
+        [1545, 65],
+        [1540, 90],
+        [1560, 110],
+        [1570, 130],
+        [1550, 180],
+        [1600, 190],
+        [1660, 270],
+        [1670, 305],
+        [1720, 320],
+        [1730, 330],
+        [1740, 350],
+        [1760, 345],
+        [1920, 370],
+        [1920, -5],
+        [1500, -10]
+      ]
 
-      red.onload = function () {
-        console.log("1")
-        ctx = canvas.getContext('2d');
-        ctx.drawImage(red, 1230, -400, 782, 1200)
-      }
+      let startPoint = arr.shift();
+      ctx.beginPath();
+      ctx.moveTo(startPoint[0], startPoint[1]);
 
-      purple.onload = function () {
-        ctx = canvas.getContext('2d');
-        console.log("2")
-        ctx.drawImage(purple, -30, -140, 440, 600)
-      }
+      let Rander = function () {
+        
+        if (arr.length) {
+          ctx.lineWidth = 20;
+          ctx.setLineDash([80, 0]);
+          ctx.strokeStyle = "#f7caa9";
+          ctx.fillStyle = "#ff6f8a";
+          ctx.lineJoin = "round";
 
-      yellow.onload = function () {
-        console.log("3")
-        ctx = canvas.getContext('2d');
-        ctx.drawImage(yellow, -290, 430, 1080, 1500)
-        drawCircle()
-        animate();
-      }
-      
+          let tmpPoint = arr.shift();
+          ctx.lineTo(tmpPoint[0], tmpPoint[1]);
+          ctx.fill()
+          ctx.stroke();
+        } else {
+          arr = null;
+          return;
+        }
+
+        requestAnimationFrame(Rander);
+      };
+
+      Rander();
     }
 
-    drawImg()
+    function animate() {
+      ctx.clearRect(0, 0, 1920, 2811);
+      drawCurve()
+    }
   </script>
 </body>
 
