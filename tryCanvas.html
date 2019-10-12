@@ -271,7 +271,7 @@
 
         ctx.beginPath();
         ctx.strokeStyle = "#aeadfd";
-        ctx.arc(1340, -440, 100,  0.9 * Math.PI, 2.1 * Math.PI);
+        ctx.arc(1340, -440, 100, 0.9 * Math.PI, 2.1 * Math.PI);
         ctx.stroke()
       }
 
@@ -288,7 +288,7 @@
       }
 
       function drawThirdCircle() {
-        ctx.fillStyle ="#c85c52";
+        ctx.fillStyle = "#c85c52";
         ctx.beginPath();
         ctx.lineWidth = 10;
         ctx.strokeStyle = "#c9fcb9";
@@ -315,7 +315,7 @@
         ctx.strokeStyle = "#f7caa9";
         ctx.fillStyle = "#ff6f8a"
         ctx.lineWidth = 20;
-        ctx.lineJoin="round";
+        ctx.lineJoin = "round";
         ctx.moveTo(1500, -10);
         ctx.lineTo(1500, 3);
         ctx.lineTo(1500, 5);
@@ -341,7 +341,75 @@
         ctx.stroke();
         ctx.fill();
       }
+
+      function drawRocketsLine() {
+        function drawHead() {
+          ctx.strokeStyle = "#fffdac";
+          ctx.fillStyle = "#df7672"
+          ctx.lineWidth = 15;
+          ctx.lineJoin = "round";
+          ctx.beginPath()
+          ctx.moveTo(840, 280);
+          ctx.lineTo(835, 350);
+          ctx.lineTo(770, 310);
+          ctx.closePath();
+          ctx.stroke();
+          ctx.fill();
+        }
+
+        function drawBodyRect() {
+          ctx.strokeStyle = "#fffdac";
+          ctx.fillStyle = "#e5dfbd"
+          ctx.lineWidth = 10;
+          ctx.lineJoin = "round";
+          ctx.beginPath()
+          ctx.moveTo(768, 309);
+          ctx.lineTo(702, 410);
+          ctx.lineTo(765, 453);
+          ctx.lineTo(835, 353);
+
+          ctx.closePath();
+          ctx.stroke();
+          ctx.fill();
+        }
+
+        function drawLeftWing(){
+          ctx.strokeStyle = "#e6e69e";
+          ctx.fillStyle = "#df7672"
+          ctx.lineWidth = 13;
+          ctx.lineJoin = "round";
+          ctx.beginPath()
+          ctx.moveTo(748, 330);
+          ctx.lineTo(640, 360);
+          ctx.lineTo(712, 380);
+
+          ctx.closePath();
+          ctx.stroke();
+          ctx.fill();
+        }
+
+        function drawRightWing(){
+          ctx.strokeStyle = "#e6e69e";
+          ctx.fillStyle = "#df7672"
+          ctx.lineWidth = 13;
+          ctx.lineJoin = "round";
+          ctx.beginPath()
+          ctx.moveTo(825, 370);
+          ctx.lineTo(790, 430);
+          ctx.lineTo(838, 485);
+
+          ctx.closePath();
+          ctx.stroke();
+          ctx.fill();
+        }
+
+        drawHead()
+        drawBodyRect()
+        drawLeftWing()
+        drawRightWing()
+      }
       drawFirstLine()
+      drawRocketsLine()
     }
 
     drawLine()
