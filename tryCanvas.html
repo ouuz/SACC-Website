@@ -22,29 +22,40 @@
   <script>
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-    var percent = 0;
-    var time = 0;
+    var percent = 0,
+      time = 0;
 
     canvas.style.width = document.documentElement.clientWidth + 'px';
     canvas.style.height = document.documentElement.clientHeight * 3 + 'px';
 
 
-    var curve = window.setInterval(() => {
-      percent++;
-      animate()
-      if (percent > 100) {
-        window.clearInterval(curve)
-        drawRedPlanet()
-      }
-    }, 20)
-
-    var RedPlanet = window.setInterval(() => {
-      time++;
-      if (time > 200) {
-        window.clearInterval(RedPlanet)
-        drawYellowPlanet()
-      }
-    }, 20)
+    // var curve = window.setInterval(() => {
+    //   percent++;
+    //   animate()
+    //   if (percent > 100) {
+    //     window.clearInterval(curve)
+    //     drawRedPlanet()
+    //     setTimeout(() => {
+    //       drawYellowPlanet()
+    //     }, 300)
+    //     setTimeout(() => {
+    //       m()
+    //     }, 4000)
+    //   }
+    // }, 10)
+    drawYellowPlanet()
+           setTimeout(() => {
+          m()
+        }, 4000)
+    var m = () => {
+      window.setInterval(() => {
+        time++;
+        drawMeteorites()
+        if (time > 100) {
+          window.clearInterval(m)
+        }
+      }, 20)
+    }
 
     function drawCurve() { //画轨迹
       function drawFirstCurve() {
@@ -251,14 +262,14 @@
       return k * k * p0 + 2 * (1 - t) * t * p1 + t * t * p2;
     }
 
-    function drawYellowPlanet() {
+    function drawYellowPlanet() { // 画黄色星球
       let arr = [];
       ctx.strokeStyle = "#f8f9ad";
       ctx.fillStyle = "#e1cf85";
 
       for (let i = 1.5 * Math.PI; i <= 3.5 * Math.PI; i += 2 * (Math.PI / 180)) {
-        let x = 0 + 600 * Math.cos(i);
-        let y = 1100 + 600 * Math.sin(i);
+        let x = 0 + 500 * Math.cos(i);
+        let y = 1100 + 500 * Math.sin(i);
         arr.push([x, y]);
       }
 
@@ -286,7 +297,7 @@
       rander();
     }
 
-    function drawCircle() {
+    function drawCircle() { //画多层色星球
       function drawfirstCircle() {
         ctx.lineWidth = 20;
         ctx.setLineDash([80, 0]);
@@ -358,7 +369,7 @@
       drawfirstCircle()
     }
 
-    function drawRedPlanet() {
+    function drawRedPlanet() { //画红色星球
       ctx.stroke();
       let arr = [
         [1500, -100],
@@ -386,7 +397,7 @@
       ctx.moveTo(startPoint[0], startPoint[1]);
 
       let Rander = function () {
-        
+
         if (arr.length) {
           ctx.lineWidth = 20;
           ctx.setLineDash([80, 0]);
@@ -409,9 +420,44 @@
       Rander();
     }
 
-    function animate() {
+    function animate() { //画轨迹运动曲线
       ctx.clearRect(0, 0, 1920, 2811);
       drawCurve()
+    }
+
+    function Ellipse(ctx, x, y, a, b) { //画椭圆
+      let step = (a > b) ? 1 / a : 1 / b;
+      ctx.fillStyle = "#dba36a"
+      ctx.beginPath();
+      ctx.moveTo(x + a, y);
+      for (let i = 0; i < 2 * Math.PI; i += step) {
+        ctx.lineTo(x + a * Math.cos(i), y + b * Math.sin(i));
+      }
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function drawMeteorites() { // 画陨石
+      ctx.lineWidth = 25;
+      ctx.strokeStyle = "#dba36a";
+      ctx.lineJoin = "round"
+      ctx.beginPath()
+      ctx.moveTo(-10,1000)
+      ctx.lineTo(0,1590)
+      ctx.lineTo(230,1530)
+      ctx.closePath()
+      ctx.fill()
+      ctx.stroke()
+      Ellipse(ctx,80,750,50,20)
+      Ellipse(ctx,230,830,50,20)
+      Ellipse(ctx,270,1400,50,20)
+      Ellipse(ctx,140,900,50,20)
+      Ellipse(ctx,440,1050,30,100)
+      Ellipse(ctx,240,1200,20,70)
+      Ellipse(ctx,300,1080,50,20)
+      Ellipse(ctx,350,1300,50,20)
+      Ellipse(ctx,170,1010,50,20)
+      Ellipse(ctx,230,950,50,20)
     }
   </script>
 </body>
