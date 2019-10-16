@@ -1,9 +1,10 @@
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
+//canvasLOGO
+var canvasLOGO = document.getElementById('Logo');
+var ctx = canvasLOGO.getContext('2d');
 var percent = 0;
 
-canvas.style.width = document.documentElement.clientWidth + 'px';
-canvas.style.height = document.documentElement.clientHeight * 3 + 'px';
+canvasLOGO.style.width = document.documentElement.clientWidth + 'px';
+canvasLOGO.style.height = document.documentElement.clientHeight * 3 + 'px';
 
 Interval()
 
@@ -212,10 +213,10 @@ function quadraticBezier(p0, p1, p2, t) { //贝塞尔曲线方程
   return k * k * p0 + 2 * (1 - t) * t * p1 + t * t * p2;
 }
 
-function drawPlanet(X, Y, r, start, end, strokeColor, fillColor, lineWidth) { // 画星球
+function drawPlanet(ctx, X, Y, r, start, end, strokeColor, fillColor, lineWidth) { // 画星球
   let arr = []
 
-  for (let i = start * Math.PI; i <= end * Math.PI; i += 2 * (Math.PI / 180)) {
+  for (let i = start * Math.PI; i <= end * Math.PI; i += 4 * (Math.PI / 180)) {
     let x = X + r * Math.cos(i);
     let y = Y + r * Math.sin(i);
     arr.push([x, y]);
@@ -228,7 +229,6 @@ function drawPlanet(X, Y, r, start, end, strokeColor, fillColor, lineWidth) { //
   function rander() {
     if (arr.length) {
       ctx.lineWidth = lineWidth;
-      ctx.setLineDash([80, 0]);
       ctx.strokeStyle = strokeColor;
       ctx.fillStyle = fillColor;
 
@@ -249,7 +249,7 @@ function drawPlanet(X, Y, r, start, end, strokeColor, fillColor, lineWidth) { //
 }
 
 function drawCircle() { //画多层色星球
-  drawPlanet(1340, -440, 100, 0, 2, '#aeadfd', 'transparent', 20)
+  drawPlanet(ctx, 1340, -440, 100, 0, 2, '#aeadfd', 'transparent', 20)
   ctx.lineWidth = 20;
   ctx.setLineDash([80, 0]);
   ctx.beginPath();
@@ -415,14 +415,67 @@ function Interval() {
       window.clearInterval(curve)
       drawRedPlanet()
       setTimeout(() => {
-        drawPlanet(0, 1100, 500, 1.5, 3.5, '#f8f9ad', '#e1cf85', 20)
+        drawPlanet(ctx, 0, 1100, 500, 1.5, 3.5, '#f8f9ad', '#e1cf85', 20)
       }, 200)
       setTimeout(() => {
         drawMeteorites()
-      }, 1500)
+      }, 1600)
       setTimeout(() => {
         drawCircle()
       }, 2500);
     }
   }, 10)
+}
+
+//canvasGroup
+var canvasGroup = document.getElementById('Group');
+var context = canvasGroup.getContext('2d');
+var Percent = 0;
+canvasGroup.style.width = document.documentElement.clientWidth / 2 + 'px';
+canvasGroup.style.height = document.documentElement.clientHeight + 'px';
+
+
+var curve = window.setInterval(() => {
+  Percent++;
+  Curve()
+  if(Percent > 100){
+    window.clearInterval(curve)
+    context.setLineDash([80, 20])
+    drawPlanet(context, 380, 465, 200, 0, 2, "#ffedd6", 'transparent', 10)
+    setTimeout(() => {
+      context.setLineDash([60, 0])
+      drawPlanet(context, 380, 465, 150, 0, 2, "#ffedd6", 'transparent', 10)
+    }, 800)
+    setTimeout(() => {
+      drawPlanet(context, 380, 465, 75, 1, 3, "#ffedd6", 'transparent', 10)
+    }, 1500)
+  }
+ 
+},10)
+
+function Curve(){
+  context.lineWidth = 10;
+  context.setLineDash([60, 30]);
+  context.strokeStyle = "#ffedd6";
+  context.beginPath();
+
+  drawCurvePath(
+    context,
+    [350, -20],
+    [445, 150],
+    0, Percent
+  );
+
+  context.stroke();
+
+  context.beginPath();
+
+  drawCurvePath(
+    context,
+    [350, 950],
+    [465, 720],
+    0, Percent
+  );
+
+  context.stroke();
 }

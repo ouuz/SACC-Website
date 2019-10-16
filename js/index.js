@@ -20,7 +20,7 @@ const teamImgToText = () => {
         $(ev1).css('transform', 'translateX(-200%)')
         $(ev2).css('transform', 'translateX(-200%)')
         $(ev3).next().css('opacity', '1')
-        $('.backgroundImg').css('transform', 'translateX(100%)')
+        $('.backgroundImg').css('transform', 'translateX(50%)')
       }
 
       $(e.target).attr('class') == "groupLogo" ?
@@ -29,7 +29,7 @@ const teamImgToText = () => {
         bounce($(e.target).prev()) : '';
 
       function bounce(ev1) {
-        $('.teamLeft').empty().append(`
+        $('.teamLeftBox').empty().append(`
           <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
           <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
           <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
@@ -38,11 +38,11 @@ const teamImgToText = () => {
           <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
         `)
         setTimeout(() => {
-          $($('.teamLeft').children()[0]).css('transform', 'translate(-14vw,-14vh)').css('width', '105px')
-          $($('.teamLeft').children()[1]).css('transform', 'translate(3vw,15vh)').css('width', '140px')
-          $($('.teamLeft').children()[2]).css('transform', 'translate(9vw,-6vh)').css('width', '120px')
-          $($('.teamLeft').children()[3]).css('transform', 'translate(-12vw,8vh)').css('width', '130px')
-          $($('.teamLeft').children()[4]).css('transform', 'translate(1vw,-25vh)').css('width', '100px')
+          $($('.teamLeftBox').children()[1]).css('transform', 'translate(-14vw,-14vh)').css('width', '105px')
+          $($('.teamLeftBox').children()[2]).css('transform', 'translate(3vw,15vh)').css('width', '140px')
+          $($('.teamLeftBox').children()[3]).css('transform', 'translate(9vw,-6vh)').css('width', '120px')
+          $($('.teamLeftBox').children()[4]).css('transform', 'translate(-12vw,8vh)').css('width', '130px')
+          $($('.teamLeftBox').children()[5]).css('transform', 'translate(1vw,-25vh)').css('width', '100px')
         }, 3000)
       }
 
@@ -50,14 +50,14 @@ const teamImgToText = () => {
   }
 
   function slideOut(e) {
-    e.target.classList.contains('groupText') ? slide() : '';
+    $(e.target).attr('class') =='groupText'? slide() : '';
 
     function slide() {
       setTimeout(() => {
         $($(e.target).prev().children().get(0)).css('transform', 'translateX(0)')
         $($(e.target).prev().children().get(1)).css('transform', 'translateX(0)')
         $(e.target).css('opacity', '0')
-      }, 100)
+      }, 50)
     }
   }
 }
@@ -188,8 +188,19 @@ const projectSlideShow = () => {
   }
 }
 
+function generateStars(n) {
+  for (let i = 0; i < n; i++) {
+    let className = i % 20 == 0 ? 'star starBig' : i % 9 == 0 ? 'star starMedium' : 'star';
+    let top = Math.round(Math.random() * window.innerHeight,
+    left = Math.round(Math.random() * window.innerWidth),
+    animationDuration = Math.round(Math.random() * 3000) + 3000),
+    animationDelay = Math.round(Math.random() * 3000)
+    
+    $('.starBox').append($(`<div class="${className}"style ="top:${top}px;left:${left}px;animation-duration:${animationDuration}ms;animation-delay:${animationDelay}ms"></div>`));
+  }
+};
 
-
+generateStars(150);
 teamImgToText()
 presidiumDrag()
 activityShow()
