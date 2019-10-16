@@ -8,13 +8,86 @@
   src: url('../font/ZiXinFangXiaMuTi-2.ttf')
 }
 
+#canvas {
+  background: #282c5b;
+  z-index: -1;
+  position: absolute;
+}
+
 /* #c9ecdd , #faf8eb */
 
+/* logo */
+.logo {
+  height: 100vh;
+  position: relative;
+}
+
+#logoText {
+  color: #f8f9ad;
+  font-size: 20em;
+  position: absolute;
+  right: 14%;
+  bottom: 17%;
+  letter-spacing: 0.15em;
+}
+
+#shadow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: #282c5b;
+  animation: logoText 3s forwards;
+  width: 50vw;
+  height: 30vh;
+}
+
+.logoRocket {
+  width: 35vw;
+}
+
+.logoRocket>img {
+  width: 100%;
+  transform: translate(-20vw, 100vh) rotate(-3deg);
+  animation: flyRocket 3s forwards;
+}
+
+.logoPurplePlant {
+  width: 35vw;
+  position: absolute;
+  top: -14%;
+  left: -4%;
+  opacity: 1;
+  animation: logoPurplePlant 2s forwards;
+}
+
+.logoPurplePlant>img {
+  width: 100%;
+}
+
+@keyframes flyRocket {
+  100% {
+    transform: translate(10vw, 0) rotate(-3deg);
+  }
+}
+
+@keyframes logoText {
+  to {
+    width: 0;
+  }
+}
+
+@keyframes logoPurplePlant {
+  from {
+    opacity: 0;
+  }
+}
+
+/* team */
 .team {
   height: 100vh;
   display: flex;
   overflow: hidden;
-  background: #faf8eb;
+  background: #282c5b;
   position: relative;
 }
 
@@ -45,7 +118,6 @@
   align-items: center;
   height: 80%;
   margin: auto;
-
 }
 
 .group {
@@ -80,6 +152,11 @@
   padding: 20px;
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  color: #ffffff;
+  font-size: 1.3rem;
+  letter-spacing: 0.3rem;
+  transition-duration: 0.3s;
+  position: relative;
 }
 
 .groupLogo {
@@ -101,6 +178,45 @@
   animation: bounce 2.2s 1;
   box-shadow: 6px 4px 20px 2px #46393963;
   transition: all .8s ease-in-out
+}
+
+.borderTopLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top-style: solid;
+  width: 0;
+  height: 0;
+  border-left-style: solid;
+  animation: borderAnimation 5s infinite linear;
+}
+
+.borderBottomRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom-style: solid;
+  width: 0;
+  height: 0;
+  border-right-style: solid;
+  animation: borderAnimation 3s infinite linear;
+}
+
+@keyframes borderAnimation {
+  0% {
+    width: 30%;
+    height: 1%
+  }
+
+  50% {
+    width: 1%;
+    height: 50%
+  }
+
+  100% {
+    width: 30%;
+    height: 1%
+  }
 }
 
 @keyframes bounce {
@@ -417,17 +533,19 @@
   justify-content: space-around;
   position: relative;
   overflow: hidden;
-  background: pink
+  margin-top: 100vh;
 }
 
 .departmentContent {
   width: 40%;
-  background: #85d589;
+  background: rgba(255, 255, 255, .1);
   display: flex;
   justify-content: center;
   height: 25%;
   align-items: center;
-  z-index: 4
+  z-index: 4;
+  color: white;
+  border-radius: 30px;
 }
 
 .departmentContentImg {
@@ -458,5 +576,5 @@
 
 .departmentComic img {
   width: 100%;
-  
+
 }

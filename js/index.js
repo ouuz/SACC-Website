@@ -4,29 +4,47 @@ const teamImgToText = () => {
   list.addEventListener('mouseout', slideOut);
 
   function slideIn(e) {
-    e.target.classList.contains('groupImgBox') ? slide() : '';
+    $(e.target).attr('class') == 'groupImgBox' ||
+      $(e.target).attr('class') == "groupLogo" ||
+      $(e.target).attr('class') == "groupComic" ? slide() : '';
 
     function slide() {
-      $($(e.target).children().get(0)).css('transform', 'translateX(-200%)')
-      $($(e.target).children().get(1)).css('transform', 'translateX(-200%)')
-      $(e.target).next().css('opacity', '1')
-      $('.backgroundImg').css('transform', 'translateX(100%)')
-      $('.teamLeft').empty().append(`
-        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
-        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
-        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
-        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
-        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
-        <img src=${$($(e.target).children().get(0)).attr('src')}  class="teamLeftLogo" >
-      `)
+      $(e.target).attr('class') == 'groupImgBox' ?
+        Slide($(e.target).children().get(0), $(e.target).children().get(1), $(e.target)) :
+        $(e.target).attr('class') == "groupLogo" ?
+        Slide($(e.target), $(e.target).next(), $(e.target).parent()) :
+        $(e.target).attr('class') == "groupComic" ?
+        Slide($(e.target).prev(), $(e.target), $(e.target).parent()) : '';
 
-      setTimeout(() => {
-        $($('.teamLeft').children()[0]).css('transform', 'translate(-14vw,-14vh)').css('width', '105px')
-        $($('.teamLeft').children()[1]).css('transform', 'translate(3vw,15vh)').css('width', '140px')
-        $($('.teamLeft').children()[2]).css('transform', 'translate(9vw,-6vh)').css('width', '120px')
-        $($('.teamLeft').children()[3]).css('transform', 'translate(-12vw,8vh)').css('width', '130px')
-        $($('.teamLeft').children()[4]).css('transform', 'translate(1vw,-25vh)').css('width', '100px')
-      }, 3000)
+      function Slide(ev1, ev2, ev3) {
+        $(ev1).css('transform', 'translateX(-200%)')
+        $(ev2).css('transform', 'translateX(-200%)')
+        $(ev3).next().css('opacity', '1')
+        $('.backgroundImg').css('transform', 'translateX(100%)')
+      }
+
+      $(e.target).attr('class') == "groupLogo" ?
+        bounce($(e.target)) :
+        $(e.target).attr('class') == "groupComic" ?
+        bounce($(e.target).prev()) : '';
+
+      function bounce(ev1) {
+        $('.teamLeft').empty().append(`
+          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
+          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
+          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
+          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
+          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
+          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
+        `)
+        setTimeout(() => {
+          $($('.teamLeft').children()[0]).css('transform', 'translate(-14vw,-14vh)').css('width', '105px')
+          $($('.teamLeft').children()[1]).css('transform', 'translate(3vw,15vh)').css('width', '140px')
+          $($('.teamLeft').children()[2]).css('transform', 'translate(9vw,-6vh)').css('width', '120px')
+          $($('.teamLeft').children()[3]).css('transform', 'translate(-12vw,8vh)').css('width', '130px')
+          $($('.teamLeft').children()[4]).css('transform', 'translate(1vw,-25vh)').css('width', '100px')
+        }, 3000)
+      }
 
     }
   }
@@ -79,30 +97,28 @@ const activityShow = () => {
       $(e.target).attr('class') == 'pale' ? slideEven() : '';
 
     function slideOdd() {
-      if ($(e.target).attr('class') == 'pale') {
-        $(e.target).css('opacity', '1')
-        $(e.target).css('animation', 'wordShake .8s 1')
-        $(e.target).parent().css('transform', 'skew(0deg)')
-        $(e.target).parent().next().css('animation', 'competionInOdd .8s 1 forwards')
-      } else {
-        $(e.target).children().first().css('opacity', '1')
-        $(e.target).children().first().css('animation', 'wordShake .8s 1')
-        $(e.target).next().css('animation', 'competionInOdd .8s 1 forwards')
-        $(e.target).css('transform', 'skew(0deg)')
+      $(e.target).attr('class') == 'pale' ?
+        slideodd($(e.target), $(e.target).parent()) :
+        slideodd($(e.target).children().first(), $(e.target))
+
+      function slideodd(ev1, ev2) {
+        $(ev1).css('opacity', '1')
+        $(ev1).css('animation', 'wordShake .8s 1')
+        $(ev2).css('transform', 'skew(0deg)')
+        $(ev2).next().css('animation', 'competionInOdd .8s 1 forwards')
       }
     }
 
     function slideEven() {
-      if ($(e.target).attr('class') == 'pale') {
-        $(e.target).css('opacity', '1')
-        $(e.target).css('animation', 'wordShake .8s 1')
-        $(e.target).parent().css('transform', 'skew(0deg)')
-        $(e.target).parent().next().css('animation', 'competionInEven .8s 1 forwards')
-      } else {
-        $(e.target).children().first().css('opacity', '1')
-        $(e.target).children().first().css('animation', 'wordShake .8s 1')
-        $(e.target).next().css('animation', 'competionInEven .8s 1 forwards')
-        $(e.target).css('transform', 'skew(0deg)')
+      $(e.target).attr('class') == 'pale' ?
+        slideeven($(e.target), $(e.target).parent()) :
+        slideeven($(e.target).children().first(), $(e.target))
+
+      function slideeven(ev1, ev2) {
+        $(ev1).css('opacity', '1')
+        $(ev1).css('animation', 'wordShake .8s 1')
+        $(ev2).css('transform', 'skew(0deg)')
+        $(ev2).next().css('animation', 'competionInEven .8s 1 forwards')
       }
     }
   }
@@ -115,30 +131,28 @@ const activityShow = () => {
       $(e.target).attr('class') == 'pale' ? slideEven() : '';
 
     function slideOdd() {
-      if ($(e.target).attr('class') == 'pale') {
-        $(e.target).css('opacity', '0.5')
-        $(e.target).css('animation', 'wordShake .8s infinite')
-        $(e.target).parent().css('transform', 'skew(-20deg)')
-        $(e.target).parent().next().css('animation', 'competionOutOdd .8s 1 forwards')
-      } else {
-        $(e.target).children().first().css('opacity', '0.5')
-        $(e.target).children().first().css('animation', 'wordShake .8s infinite')
-        $(e.target).next().css('animation', 'competionOutOdd .8s 1 forwards')
-        $(e.target).css('transform', 'skew(-20deg)')
+      $(e.target).attr('class') == 'pale' ?
+        slideodd($(e.target), $(e.target).parent()) :
+        slideodd($(e.target).children().first(), $(e.target))
+
+      function slideodd(ev1, ev2) {
+        $(ev1).css('opacity', '0.5')
+        $(ev1).css('animation', 'wordShake .8s infinite')
+        $(ev2).css('transform', 'skew(-20deg)')
+        $(ev2).next().css('animation', 'competionOutOdd .8s 1 forwards')
       }
     }
 
     function slideEven() {
-      if ($(e.target).attr('class') == 'pale') {
-        $(e.target).css('opacity', '0.5')
-        $(e.target).css('animation', 'wordShake .8s infinite')
-        $(e.target).parent().css('transform', 'skew(-20deg)')
-        $(e.target).parent().next().css('animation', 'competionOutEven .8s 1 forwards')
-      } else {
-        $(e.target).children().first().css('opacity', '0.5')
-        $(e.target).children().first().css('animation', 'wordShake .8s infinite')
-        $(e.target).next().css('animation', 'competionOutEven .8s 1 forwards')
-        $(e.target).css('transform', 'skew(-20deg)')
+      $(e.target).attr('class') == 'pale' ?
+        slideeven($(e.target), $(e.target).parent()) :
+        slideeven($(e.target).children().first(), $(e.target))
+
+      function slideeven(ev1, ev2) {
+        $(ev1).css('opacity', '0.5')
+        $(ev1).css('animation', 'wordShake .8s infinite')
+        $(ev2).css('transform', 'skew(-20deg)')
+        $(ev2).next().css('animation', 'competionOutEven .8s 1 forwards')
       }
     }
   }
@@ -180,4 +194,3 @@ teamImgToText()
 presidiumDrag()
 activityShow()
 projectSlideShow()
-// departmentComicMove()
