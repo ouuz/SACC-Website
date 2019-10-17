@@ -3,9 +3,20 @@
   padding: 0
 }
 
-@font-face {
-  font-family: 'ZiXinFangXiaMuTi';
-  src: url('../font/ZiXinFangXiaMuTi-2.ttf')
+ html {
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+}
+/*
+body {
+  width: 100%;
+  overflow-y: scroll;
+} */
+html {
+    width: 100%;
+    height:auto;
+    overflow-x: hidden;
 }
 
 #Logo {
@@ -30,6 +41,9 @@
   right: 14%;
   bottom: 17%;
   letter-spacing: 0.15em;
+  /* font-family: 'Pacifico', cursive; */
+  /* font-family: 'Indie Flower', cursive; */
+  font-family: 'Dancing Script', cursive;
 }
 
 #shadow {
@@ -335,95 +349,146 @@
 /* presidium */
 
 .presidium {
-  width: 70%;
-  margin: auto;
+  height: 300vh;
+}
+
+.presidiumContent {
   height: 100vh;
-  overflow: hidden;
-}
-
-.presidiumTop {
-  height: 10%;
-}
-
-.presidiumBottom {
-  height: 90%;
-  display: flex;
-  width: 200%;
-  transition: all .5s ease-in-out;
-}
-
-.successivePresidium {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  height: 90%;
-}
-
-.PresidiumPortrait>img {
-  width: 70%;
-  box-shadow: 2px 2px 2px 2px #e2e2e2;
-}
-
-.Presidium {
-  background: #edeaeb24;
-  padding: 1.5% 0;
-  width: 25%;
-  margin: 0 4%;
-  box-shadow: 5px 4px 14px 0px #a08a8a;
   position: relative;
+  background: #282c5b;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+}
+
+.presidiumContent>ul {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  width: 150vw;
+  transition: all .05s ease-in-out;
+}
+
+.presidiumContent>ul li {
+  display: flex;
+  width: 20%;
+  justify-content: space-around;
+}
+
+.presidiumContent ul li:nth-child(1) {
+  letter-spacing: 1px;
+  line-height: 1.5;
+  color: #ffffff;
+  font-size: 2rem;
+  padding-right: 12vw;
+}
+
+.presidiumContent ul li:not(:first-child) {
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+.presidiumContent ul li:not(:first-child) p {
+  color: #d6fffc;
+
+}
+
+.presidiumContent li.musicpaper {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: -50vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.presidiumContent li.musicpaper .end {
+  position: absolute;
+  left: 100%;
+  top: -1px;
+  bottom: -1px;
+  margin-left: -1px;
+  width: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.presidiumContent li.musicpaper.eq0 {
+  top: 20%;
+  height: 60%;
+}
+
+.presidiumContent li.musicpaper.eq1 {
+  top: 35%;
+}
+
+.presidiumContent li.musicpaper.eq2 {
+  top: 50%;
+}
+
+.presidiumContent li.musicpaper.eq3 {
+  top: 65%;
+}
+
+.presidiumContent li.musicpaper.eq4 {
+  top: 80%;
+  height: 60%;
+}
+
+.presidiumContent li.musicpaper.eq4 .end {
+  top: -100%;
+  bottom: 100%;
+  width: 2px;
+  margin-top: -1px;
+  margin-left: -7px;
+}
+
+.PresidiumTag {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .PresidiumYear {
-  margin: -10% 0% 0% 67%;
-  font-size: 1.5rem;
-}
-
-.PresidiumContent {
-  display: flex;
-  align-items: center;
-  margin-left: -10%;
-  transition: all 3s ease-in-out;
+  font-size: 25px;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .PresidiumPortrait {
-  flex-basis: 40%;
+  width: 3vw;
 }
 
-.PresidiumTeam {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  line-height: 2;
-  font-size: 16px;
+.PresidiumPortrait>img {
+  width: 100%;
+  border-radius: 50%;
 }
 
-.signature {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  max-width: 180px;
-  transition: all .3s ease-in-out;
-  height: 50px;
-}
 
-.signature:hover {
-  height: 320px;
-  white-space: pre-wrap;
-}
 
-.Presidium:nth-child(1) {
-  padding: 1rem;
-  background: transparent;
-  box-shadow: none;
-}
-
-.Presidium:nth-child(1)>img {
-  width: 80%;
+.PresidiumSaying {
+  display: none;
 }
 
 /* activity */
 .activity {
+  height: 300vh;
+  position: relative;
+}
+
+.activitySlideBox {
+  width: 10vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 1s ease-in-out;
+}
+
+.activity img {
+  width: 100%;
+}
+
+/* .activity {
   width: 80%;
   margin: auto;
   display: flex;
@@ -489,7 +554,7 @@
   transition: all .1s ease-in-out;
   animation: wordShake 1s infinite;
   display: inline-block;
-}
+} */
 
 @keyframes competionInOdd {
   0% {
@@ -627,6 +692,7 @@
   z-index: 4;
   color: white;
   border-radius: 30px;
+  border: 2px #f8f9ad solid;
 }
 
 .departmentContentImg {

@@ -416,10 +416,10 @@ function Interval() {
       drawRedPlanet()
       setTimeout(() => {
         drawPlanet(ctx, 0, 1100, 500, 1.5, 3.5, '#f8f9ad', '#e1cf85', 20)
-      }, 200)
+      }, 300)
       setTimeout(() => {
         drawMeteorites()
-      }, 1600)
+      }, 1800)
       setTimeout(() => {
         drawCircle()
       }, 2500);

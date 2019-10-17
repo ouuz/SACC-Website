@@ -50,7 +50,7 @@ const teamImgToText = () => {
   }
 
   function slideOut(e) {
-    $(e.target).attr('class') =='groupText'? slide() : '';
+    $(e.target).attr('class') == 'groupText' ? slide() : '';
 
     function slide() {
       setTimeout(() => {
@@ -59,28 +59,6 @@ const teamImgToText = () => {
         $(e.target).css('opacity', '0')
       }, 50)
     }
-  }
-}
-
-const presidiumDrag = () => {
-  $('.presidiumBottom').bind("selectstart", function () {
-    return false;
-  });
-
-  let list = document.querySelector('.presidiumBottom'),
-    then, now;
-  list.addEventListener('mousedown', dragDown);
-  list.addEventListener('mouseup', dragUp);
-
-  function dragDown(e) {
-    then = e.offsetX;
-  }
-
-  function dragUp(e) {
-    now = e.offsetX;
-    (now - then < 50) && (now - then < 0) ?
-    $('.presidiumBottom').css('transform', 'translateX(-50%)'):
-      $('.presidiumBottom').css('transform', 'translateX(0)')
   }
 }
 
@@ -188,20 +166,76 @@ const projectSlideShow = () => {
   }
 }
 
+const presidiumScroll = () => {
+  const selfHeight = $(".presidium").height();
+  let beforeOffsetTop = $(".presidium").offset().top;
+  let percent = 0;
+  $(window).scroll(function () {
+    const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    window.onmousewheel = function (e) {
+      e = e || window.event;
+      if (e.wheelDelta) {
+        if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
+          if (e.wheelDelta < 0) {
+            percent += 8;
+            console.log(percent)
+            $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
+          }
+          if (e.wheelDelta > 0) {
+            percent -= 8;
+            console.log(percent)
+            $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
+          }
+        }
+      }
+    };
+  })
+
+}
+
 function generateStars(n) {
   for (let i = 0; i < n; i++) {
     let className = i % 20 == 0 ? 'star starBig' : i % 9 == 0 ? 'star starMedium' : 'star';
     let top = Math.round(Math.random() * window.innerHeight,
-    left = Math.round(Math.random() * window.innerWidth),
-    animationDuration = Math.round(Math.random() * 3000) + 3000),
-    animationDelay = Math.round(Math.random() * 3000)
-    
+        left = Math.round(Math.random() * window.innerWidth),
+        animationDuration = Math.round(Math.random() * 3000) + 3000),
+      animationDelay = Math.round(Math.random() * 3000)
+
     $('.starBox').append($(`<div class="${className}"style ="top:${top}px;left:${left}px;animation-duration:${animationDuration}ms;animation-delay:${animationDelay}ms"></div>`));
   }
 };
 
+const activityScroll = () => {
+  const selfHeight = $(".activity").height();
+  let beforeOffsetTop = $(".activity").offset().top;
+  let percentX = 0,percentY=0;
+
+  $(window).scroll(function () {
+    const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    window.onmousewheel = function (e) {
+      e = e || window.event;
+      if (e.wheelDelta) {
+        if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
+          if (e.wheelDelta < 0) {
+            console.log(percentX,percentY)
+            percentX += 10;
+            percentY += 10
+            $('.activitySlideBox').css('transform', `translate3d(${percentX}vw,${percentY}vw,0)`)
+          }
+          if (e.wheelDelta > 0) {
+            percentX -= 10;
+            percentY -= 10;
+            $('.activitySlideBox').css('transform', `translate3d(${percentX}vw,${percentY}vw,0)`)
+          }
+        }
+      }
+    };
+  })
+
+}
 generateStars(150);
 teamImgToText()
-presidiumDrag()
-activityShow()
-projectSlideShow()
+// activityShow()
+// projectSlideShow()
+presidiumScroll()
+// activityScroll()
