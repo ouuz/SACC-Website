@@ -180,12 +180,17 @@ const presidiumScroll = () => {
             percent += 8;
             console.log(percent)
             $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
-          }
-          if (e.wheelDelta > 0) {
+          } else {
             percent -= 8;
             console.log(percent)
             $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
           }
+        } else if (elementScrollTop > (beforeOffsetTop + selfHeight - window.innerHeight)) {
+          percent = 150
+          $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
+        } else if (elementScrollTop < beforeOffsetTop) {
+          percent = 0
+          $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
         }
       }
     };
@@ -208,24 +213,41 @@ function generateStars(n) {
 const activityScroll = () => {
   const selfHeight = $(".activity").height();
   let beforeOffsetTop = $(".activity").offset().top;
-  let percentX = 0,percentY=0;
-
+  let percentX = 65,
+    percentY = 0;
+  let percent = [
+    [65,0],
+    [20,20],
+    [40,45],
+    [60,85]
+  ]
   $(window).scroll(function () {
     const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     window.onmousewheel = function (e) {
       e = e || window.event;
       if (e.wheelDelta) {
         if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
-          if (e.wheelDelta < 0) {
-            console.log(percentX,percentY)
-            percentX += 10;
-            percentY += 10
-            $('.activitySlideBox').css('transform', `translate3d(${percentX}vw,${percentY}vw,0)`)
-          }
-          if (e.wheelDelta > 0) {
-            percentX -= 10;
-            percentY -= 10;
-            $('.activitySlideBox').css('transform', `translate3d(${percentX}vw,${percentY}vw,0)`)
+          if (e.wheelDelta < 0) {   //向下
+            console.log(percentX, percentY)
+            percentY += 5;
+console.log((elementScrollTop,window.innerHeight  * 3 + beforeOffsetTop ) * 0.8)
+            if(elementScrollTop - ((window.innerHeight * 3 + beforeOffsetTop) * 0.2) >= 0 ){
+              console.log(111111111)
+              percentX -= 5;
+            }else{
+              console.log(222222222)
+                percentX += 6;
+              }
+            $('.activitySlideBox').css('top',`${percentY}%`).css('left',`${percentX}%`)
+          }else{
+            console.log(percentX, percentY)
+            percentY -= 5;
+            if(percentX <= 65 && percentX >= 30){
+              percentX += 5;
+            }else{
+                percentX += 6;
+              }
+            $('.activitySlideBox').css('top',`${percentY}%`).css('left',`${percentX}%`)
           }
         }
       }
@@ -233,9 +255,10 @@ const activityScroll = () => {
   })
 
 }
+
 generateStars(150);
 teamImgToText()
 // activityShow()
 // projectSlideShow()
 presidiumScroll()
-// activityScroll()
+activityScroll()

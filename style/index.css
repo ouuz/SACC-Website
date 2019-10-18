@@ -464,8 +464,6 @@ html {
   border-radius: 50%;
 }
 
-
-
 .PresidiumSaying {
   display: none;
 }
@@ -481,9 +479,17 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  transition: all 1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
-
+.a,.b{
+  height: 100vh;
+}
+.a{
+  background: red;
+}
+.b{
+  background: blue;
+}
 .activity img {
   width: 100%;
 }
