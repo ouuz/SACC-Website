@@ -170,9 +170,9 @@ const presidiumScroll = () => {
   const selfHeight = $(".presidium").height();
   let beforeOffsetTop = $(".presidium").offset().top;
   let percent = 0;
-  $(window).scroll(function () {
+  $(window).scroll(() => {
     const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    window.onmousewheel = function (e) {
+    window.onwheel = function (e) {
       e = e || window.event;
       if (e.wheelDelta) {
         if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
@@ -211,49 +211,32 @@ function generateStars(n) {
 };
 
 const activityScroll = () => {
-  const selfHeight = $(".activity").height();
   let beforeOffsetTop = $(".activity").offset().top;
-  let percentX = 65,
-    percentY = 0;
-  let percent = [
-    [65,0],
-    [20,20],
-    [40,45],
-    [60,85]
-  ]
-  $(window).scroll(function () {
-    const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    window.onmousewheel = function (e) {
-      e = e || window.event;
-      if (e.wheelDelta) {
-        if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
-          if (e.wheelDelta < 0) {   //向下
-            console.log(percentX, percentY)
-            percentY += 5;
-console.log((elementScrollTop,window.innerHeight  * 3 + beforeOffsetTop ) * 0.8)
-            if(elementScrollTop - ((window.innerHeight * 3 + beforeOffsetTop) * 0.2) >= 0 ){
-              console.log(111111111)
-              percentX -= 5;
-            }else{
-              console.log(222222222)
-                percentX += 6;
-              }
-            $('.activitySlideBox').css('top',`${percentY}%`).css('left',`${percentX}%`)
-          }else{
-            console.log(percentX, percentY)
-            percentY -= 5;
-            if(percentX <= 65 && percentX >= 30){
-              percentX += 5;
-            }else{
-                percentX += 6;
-              }
-            $('.activitySlideBox').css('top',`${percentY}%`).css('left',`${percentX}%`)
-          }
-        }
-      }
-    };
-  })
+  let elementScrollTop = document.documentElement.scrollTop,
+    top = elementScrollTop - beforeOffsetTop,
+    left = 0,
+    x0 = 0,
+    r = 0,
+    y0 = 0;
 
+  $(window).scroll(() => {
+    elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (elementScrollTop - beforeOffsetTop + 200 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 2.3) <= 0) {
+      if (elementScrollTop - document.documentElement.scrollTop < 150) {
+        if (elementScrollTop - beforeOffsetTop + 200 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5) <= 0) {
+          r= window.innerHeight * 1.5;
+          y0 = elementScrollTop - beforeOffsetTop;
+          left = Math.abs(Math.sqrt(Math.pow(r, 2) - Math.pow(y0, 2)) + x0)
+        } else {
+          r = window.innerHeight * 1.5;
+          y0 = elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5)
+          left = Math.abs(Math.sqrt(Math.pow(r, 2) + Math.pow(y0, 2)) + x0)    
+        }
+        top = elementScrollTop - beforeOffsetTop + window.innerHeight * 0.35
+        $('.activitySlideBox').css('top', `${top}px`).css('left', `${left}px`).css('transform',`rorate(${rorate}deg)`)
+      }
+    }
+  })
 }
 
 generateStars(150);

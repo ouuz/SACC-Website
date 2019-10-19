@@ -3,11 +3,11 @@
   padding: 0
 }
 
- html {
+ /* html {
   width: 100%;
   height: auto;
   overflow-x: hidden;
-}
+} */
 /*
 body {
   width: 100%;
@@ -478,8 +478,7 @@ html {
   width: 10vw;
   position: absolute;
   top: 0;
-  left: 0;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 .a,.b{
   height: 100vh;
@@ -636,7 +635,7 @@ html {
 .projectContent {
   flex-basis: 25%;
   background: url('../img/666.png') no-repeat;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
 }
 
