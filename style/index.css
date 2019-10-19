@@ -493,62 +493,41 @@ html {
   width: 100%;
 }
 
-/* .activity {
-  width: 80%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 70vh;
-  margin-top: 15%;
-}
-
 .competion {
   display: flex;
   justify-content: center;
-  height: 20%;
-  width: 100%;
-  position: relative;
+  flex-direction: column-reverse;
+  position: absolute;
 }
 
 .competion img {
   opacity: 0;
   width: 19vw;
   height: 8vh;
-  position: absolute;
-  transition: all .8s ease-in-out;
+  transition: all .5s ease-in-out;
 }
-
-.competion:nth-of-type(odd)>img {
-  left: 0%;
+.competion:nth-child(1){
+  top: 10%;
+  left: 40%;
 }
-
-.competion:nth-of-type(even)>img {
-  right: 0%;
-}
-
-.competion:nth-child(1)>img {
-  top: 20%;
-}
-
-.competion:nth-child(2)>img {
+.competion:nth-child(2){
   top: 30%;
+  left: 15%;
 }
-
-.competion:nth-child(3)>img {
-  top: 240%;
+.competion:nth-child(3){
+  top: 50%;
+  left: 70%;
 }
-
-.competion:nth-child(4)>img {
-  top: 60%;
+.competion:nth-child(4){
+  top: 70%;
+  left: 15%;
 }
 
 .competionName {
   text-align: center;
-  height: 40%;
   -webkit-text-stroke: 2px #895847de;
   -webkit-text-fill-color: #fffbdd;
-  font-size: 2.9rem;
+  font-size: 1.9rem;
   font-family: 'ZiXinFangXiaMuTi';
   transform: skew(-20deg);
   transition: all .5s ease-in-out;
@@ -559,55 +538,32 @@ html {
   transition: all .1s ease-in-out;
   animation: wordShake 1s infinite;
   display: inline-block;
-} */
+} 
 
-@keyframes competionInOdd {
+@keyframes competionIn{
   0% {
     transform: translate3d(0px, -40vh, 0px) scaleY(2);
     opacity: 0;
   }
 
   100% {
-    transform: translate3d(0px, -20vh, 0px) scaleY(3);
+    transform: translate3d(0px, 20vh, 0px) scaleY(3);
     opacity: 1;
   }
 }
 
-@keyframes competionOutOdd {
+@keyframes competionOut{
   0% {
-    transform: translate3d(0px, -20vh, 0px) scaleY(3);
+    transform: translate3d(0px, 20vh, 0px) scaleY(3);
     opacity: 1;
   }
 
   100% {
-    transform: translate3d(0px, 0px, 0px) scaleY(4);
+    transform: translate3d(0px, 40vh, 0px) scaleY(4);
     opacity: 0;
   }
 }
 
-@keyframes competionInEven {
-  0% {
-    transform: translate3d(0px, 0px, 0px) scaleY(2);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translate3d(0px, -20vh, 0px) scaleY(3);
-    opacity: 1;
-  }
-}
-
-@keyframes competionOutEven {
-  0% {
-    transform: translate3d(0px, -20vh, 0px) scaleY(3);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate3d(0px, -40vh, 0px) scaleY(4);
-    opacity: 0;
-  }
-}
 
 @keyframes wordShake {
   0% {

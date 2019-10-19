@@ -62,80 +62,6 @@ const teamImgToText = () => {
   }
 }
 
-const activityShow = () => {
-  let list = document.querySelector('.activity');
-  list.addEventListener('mouseover', slideIn);
-  list.addEventListener('mouseout', slideOut);
-
-  function slideIn(e) {
-    $(e.target).attr('class') == 'competionName Odd' ||
-      $(e.target).attr('class') == 'pale' ? slideOdd() : '';
-
-    $(e.target).attr('class') == 'competionName Even' ||
-      $(e.target).attr('class') == 'pale' ? slideEven() : '';
-
-    function slideOdd() {
-      $(e.target).attr('class') == 'pale' ?
-        slideodd($(e.target), $(e.target).parent()) :
-        slideodd($(e.target).children().first(), $(e.target))
-
-      function slideodd(ev1, ev2) {
-        $(ev1).css('opacity', '1')
-        $(ev1).css('animation', 'wordShake .8s 1')
-        $(ev2).css('transform', 'skew(0deg)')
-        $(ev2).next().css('animation', 'competionInOdd .8s 1 forwards')
-      }
-    }
-
-    function slideEven() {
-      $(e.target).attr('class') == 'pale' ?
-        slideeven($(e.target), $(e.target).parent()) :
-        slideeven($(e.target).children().first(), $(e.target))
-
-      function slideeven(ev1, ev2) {
-        $(ev1).css('opacity', '1')
-        $(ev1).css('animation', 'wordShake .8s 1')
-        $(ev2).css('transform', 'skew(0deg)')
-        $(ev2).next().css('animation', 'competionInEven .8s 1 forwards')
-      }
-    }
-  }
-
-  function slideOut(e) {
-    $(e.target).attr('class') == 'competionName Odd' ||
-      $(e.target).attr('class') == 'pale' ? slideOdd() : '';
-
-    $(e.target).attr('class') == 'competionName Even' ||
-      $(e.target).attr('class') == 'pale' ? slideEven() : '';
-
-    function slideOdd() {
-      $(e.target).attr('class') == 'pale' ?
-        slideodd($(e.target), $(e.target).parent()) :
-        slideodd($(e.target).children().first(), $(e.target))
-
-      function slideodd(ev1, ev2) {
-        $(ev1).css('opacity', '0.5')
-        $(ev1).css('animation', 'wordShake .8s infinite')
-        $(ev2).css('transform', 'skew(-20deg)')
-        $(ev2).next().css('animation', 'competionOutOdd .8s 1 forwards')
-      }
-    }
-
-    function slideEven() {
-      $(e.target).attr('class') == 'pale' ?
-        slideeven($(e.target), $(e.target).parent()) :
-        slideeven($(e.target).children().first(), $(e.target))
-
-      function slideeven(ev1, ev2) {
-        $(ev1).css('opacity', '0.5')
-        $(ev1).css('animation', 'wordShake .8s infinite')
-        $(ev2).css('transform', 'skew(-20deg)')
-        $(ev2).next().css('animation', 'competionOutEven .8s 1 forwards')
-      }
-    }
-  }
-}
-
 const projectSlideShow = () => {
   let list = document.querySelector('.project');
   list.addEventListener('mouseover', slideUp);
@@ -211,37 +137,81 @@ function generateStars(n) {
 };
 
 const activityScroll = () => {
-  let beforeOffsetTop = $(".activity").offset().top;
-  let elementScrollTop = document.documentElement.scrollTop,
+  let beforeOffsetTop = $(".activity").offset().top,
+    elementScrollTop = document.documentElement.scrollTop,
+    el = $('.activityImgBox').children(),
     top = elementScrollTop - beforeOffsetTop,
     left = 0,
     x0 = 0,
     r = 0,
-    y0 = 0;
+    y0 = 0,
+    rorate = 0,
+    ImgTop = [
+      $($('.competion')[0]).offset().top,
+      $($('.competion')[1]).offset().top,
+      $($('.competion')[2]).offset().top,
+      $($('.competion')[3]).offset().top
+    ];
 
   $(window).scroll(() => {
     elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    if (elementScrollTop - beforeOffsetTop + 200 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 2.3) <= 0) {
-      if (elementScrollTop - document.documentElement.scrollTop < 150) {
-        if (elementScrollTop - beforeOffsetTop + 200 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5) <= 0) {
-          r= window.innerHeight * 1.5;
+    if (elementScrollTop - beforeOffsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 2.3) <= 0) {
+      if (elementScrollTop - document.documentElement.scrollTop < 180) {
+        window.onwheel = function (e) {
+          e.wheelDelta < 0 ?
+            activityImgShow(activityImgShowDown) :
+            activityImgShow(activityImgShowUp)
+        }
+
+        if (elementScrollTop - beforeOffsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5) <= 0) {
+          r = window.innerHeight * 1.5;
           y0 = elementScrollTop - beforeOffsetTop;
           left = Math.abs(Math.sqrt(Math.pow(r, 2) - Math.pow(y0, 2)) + x0)
         } else {
           r = window.innerHeight * 1.5;
           y0 = elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5)
-          left = Math.abs(Math.sqrt(Math.pow(r, 2) + Math.pow(y0, 2)) + x0)    
+          left = Math.abs(Math.sqrt(Math.pow(r, 2) + Math.pow(y0, 2)) + x0)
         }
+        
         top = elementScrollTop - beforeOffsetTop + window.innerHeight * 0.35
-        $('.activitySlideBox').css('top', `${top}px`).css('left', `${left}px`).css('transform',`rorate(${rorate}deg)`)
+        $('.activitySlideBox').css('top', `${top}px`).css('left', `${left}px`).css('transform', `rorate(${rorate}deg)`)
       }
     }
   })
+
+  function activityImgShow(func) {
+    elementScrollTop - ImgTop[0] <= 0 ?
+      $(el.get(0)).find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards') :
+      (elementScrollTop - ImgTop[0] > 0 && elementScrollTop - ImgTop[1] <= 0) ?
+      func($(el.get(0))) :
+      (elementScrollTop - ImgTop[1] > 0 && elementScrollTop - ImgTop[2] <= 0) ?
+      func($(el.get(1))) :
+      (elementScrollTop - ImgTop[2] > 0 && elementScrollTop - ImgTop[3] <= 0) ?
+      func($(el.get(2))) :
+      $(el.get(3)).find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards')
+  }
+
+  function activityImgShowDown(ev) {
+    $(ev).find('h1').css('transform', 'skew(-20deg)')
+    $(ev).find('h1').find('span').css('animation', 'wordShake .8s infinite').css('opacity', '0.5')
+    $(ev).next().find('h1').css('transform', 'skew(0deg)')
+    $(ev).next().find('h1').find('span').css('animation', 'wordShake .8s 1').css('opacity', '1')
+    $(ev).find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards')
+    $(ev).next().find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards')
+  }
+
+  function activityImgShowUp(ev) {
+    $(ev).find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards')
+    $(ev).next().find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards')
+    $(ev).next().find('h1').css('transform', 'skew(-20deg)')
+    $(ev).next().find('h1').find('span').css('animation', 'wordShake .8s infinite').css('opacity', '0.5')
+    $(ev).find('h1').css('transform', 'skew(0deg)')
+    $(ev).find('h1').find('span').css('animation', 'wordShake .8s 1').css('opacity', '1')
+  }
 }
 
 generateStars(150);
 teamImgToText()
-// activityShow()
 // projectSlideShow()
 presidiumScroll()
 activityScroll()
