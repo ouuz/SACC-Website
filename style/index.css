@@ -3,7 +3,7 @@
   padding: 0
 }
 
- /* html {
+/* html {
   width: 100%;
   height: auto;
   overflow-x: hidden;
@@ -14,9 +14,9 @@ body {
   overflow-y: scroll;
 } */
 html {
-    width: 100%;
-    height:auto;
-    overflow-x: hidden;
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
 }
 
 #Logo {
@@ -364,18 +364,18 @@ html {
 .presidiumContent>ul {
   position: absolute;
   bottom: 5%;
-  left: 50%;
-  white-space: nowrap;
+  left: 85%;
   display: flex;
-  align-items: center;
-  width: 150vw;
+  align-items: flex-end;
+  width: 200vw;
   transition: all .05s ease-in-out;
 }
 
 .presidiumContent>ul li {
   display: flex;
   width: 20%;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  position: relative;
 }
 
 .presidiumContent ul li:nth-child(1) {
@@ -383,12 +383,13 @@ html {
   line-height: 1.5;
   color: #ffffff;
   font-size: 2rem;
-  padding-right: 12vw;
+  padding-right: 9vw;
 }
 
 .presidiumContent ul li:not(:first-child) {
   font-size: 25px;
   line-height: 1.3;
+  transition: all .5s ease-in-out;
 }
 
 .presidiumContent ul li:not(:first-child) p {
@@ -436,7 +437,9 @@ html {
   top: 80%;
   height: 60%;
 }
-
+.Presidium{
+  cursor: pointer;
+}
 .presidiumContent li.musicpaper.eq4 .end {
   top: -100%;
   bottom: 100%;
@@ -453,6 +456,7 @@ html {
 .PresidiumYear {
   font-size: 25px;
   color: rgba(255, 255, 255, 0.3);
+  opacity: 0;
 }
 
 .PresidiumPortrait {
@@ -465,7 +469,17 @@ html {
 }
 
 .PresidiumSaying {
-  display: none;
+  opacity: 0;
+  transition: all .3s ease-in-out;
+  position: absolute;
+  top: -35vh;
+  width: 15vw;
+  left: -3vw;
+  color: #ffffff;
+  font-size: 1.3rem;
+  letter-spacing: .2rem;
+  padding: 0.5rem;
+  border-color: transparent;
 }
 
 /* activity */
@@ -480,15 +494,7 @@ html {
   top: 0;
   transition: all 0.5s ease-in-out;
 }
-.a,.b{
-  height: 100vh;
-}
-.a{
-  background: red;
-}
-.b{
-  background: blue;
-}
+
 .activity img {
   width: 100%;
 }
@@ -506,19 +512,23 @@ html {
   height: 8vh;
   transition: all .5s ease-in-out;
 }
-.competion:nth-child(1){
+
+.competion:nth-child(1) {
   top: 10%;
   left: 40%;
 }
-.competion:nth-child(2){
+
+.competion:nth-child(2) {
   top: 30%;
   left: 15%;
 }
-.competion:nth-child(3){
+
+.competion:nth-child(3) {
   top: 50%;
   left: 70%;
 }
-.competion:nth-child(4){
+
+.competion:nth-child(4) {
   top: 70%;
   left: 15%;
 }
@@ -538,9 +548,9 @@ html {
   transition: all .1s ease-in-out;
   animation: wordShake 1s infinite;
   display: inline-block;
-} 
+}
 
-@keyframes competionIn{
+@keyframes competionIn {
   0% {
     transform: translate3d(0px, -40vh, 0px) scaleY(2);
     opacity: 0;
@@ -552,7 +562,7 @@ html {
   }
 }
 
-@keyframes competionOut{
+@keyframes competionOut {
   0% {
     transform: translate3d(0px, 20vh, 0px) scaleY(3);
     opacity: 1;

@@ -96,6 +96,24 @@ const presidiumScroll = () => {
   const selfHeight = $(".presidium").height();
   let beforeOffsetTop = $(".presidium").offset().top;
   let percent = 0;
+  let left = $('.presidiumContent ul').offset().left - 100;
+  let children = $('.presidiumContent ul').children()
+  let Y = 0
+  let index = 1
+
+  function translateY() {
+    index == 1 || index == 6 || index == 11 ?
+      Y = -15 :
+      index == 2 || index == 7 || index == 12 ?
+      Y = -8 :
+      index == 3 || index == 8 || index == 13 ?
+      Y = -5 :
+      index == 4 || index == 9 || index == 14 ?
+      Y = -12 :
+      index == 5 || index == 10 ?
+      Y = -10 : ''
+  }
+
   $(window).scroll(() => {
     const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     window.onwheel = function (e) {
@@ -103,25 +121,71 @@ const presidiumScroll = () => {
       if (e.wheelDelta) {
         if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
           if (e.wheelDelta < 0) {
-            percent += 8;
+            percent += 12;
             console.log(percent)
-            $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
-          } else {
-            percent -= 8;
-            console.log(percent)
-            $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
-          }
-        } else if (elementScrollTop > (beforeOffsetTop + selfHeight - window.innerHeight)) {
-          percent = 150
-          $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
-        } else if (elementScrollTop < beforeOffsetTop) {
+            if ($('.presidiumContent ul').offset().left - left <= 150 && index <= 14) {
+              left = $('.presidiumContent ul').offset().left;
+              translateY()
+              $($(children).get(index)).css('transform', `translate3d(0,${Y}vh,0)`)
+              $($($(children).get(index)).children().last().children().get(2)).css('opacity', '1')
+              index++;
+            }
+          } else
+            percent -= 12;
+        } else if (elementScrollTop > (beforeOffsetTop + selfHeight - window.innerHeight))
+          percent = 216
+        else if (elementScrollTop < beforeOffsetTop)
           percent = 0
-          $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
-        }
+        $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
       }
     };
   })
 
+}
+
+const presidiumShow = () => {
+  let list = document.querySelector('.presidiumContent ul');
+  list.addEventListener('mouseover', slideIn);
+  list.addEventListener('mouseout', slideOut);
+
+  function slideIn(e) {
+    e.target.className == 'PresidiumPortrait' || e.target.className == 'PresidiumYear' ?
+      slide() : ''
+
+    function slide() {
+        e.target.className == 'PresidiumPortrait' ?
+        Slide($(e.target).next().children().get(3)) :
+        e.target.className == 'PresidiumYear' ?
+        Slide($(e.target).next()) : ''
+
+      function Slide(ev) {
+        $(ev).css('opacity', '1').css('border', '3px solid yellow').css('transition', 'border-top-color 0.2s linear 0.3s, border-right-color 0.2s linear 0.15s, border-bottom-color 0.2s linear 0s, border-left-color 0.2s linear 0.21s')
+        $(ev).prev().css('opacity','1')
+      }
+
+    }
+  }
+
+  function slideOut(e) {
+    e.target.className == 'PresidiumPortrait' || e.target.className == 'PresidiumYear' ?
+      slide() : ''
+
+    function slide() {
+        e.target.className == 'PresidiumPortrait' ?
+        Slide($(e.target).next().children().get(3)) :
+        e.target.className == 'PresidiumYear' ?
+        Slide($(e.target).next()) :''
+
+      function Slide(ev) {
+        setTimeout(() => {
+          $(ev).css('border', '3px solid transparent').css('transition', 'border-top-color 0.2s linear 0s, border-right-color 0.2s linear 0.15s, border-bottom-color 0.2s linear 0.3s, border-left-color 0.2s linear 0.21s')
+        }, 200)
+        setTimeout(() => {
+          $(ev).css('opacity', '0')
+        },400)
+      }
+    }
+  }
 }
 
 function generateStars(n) {
@@ -172,7 +236,7 @@ const activityScroll = () => {
           y0 = elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5)
           left = Math.abs(Math.sqrt(Math.pow(r, 2) + Math.pow(y0, 2)) + x0)
         }
-        
+
         top = elementScrollTop - beforeOffsetTop + window.innerHeight * 0.35
         $('.activitySlideBox').css('top', `${top}px`).css('left', `${left}px`).css('transform', `rorate(${rorate}deg)`)
       }
@@ -212,6 +276,7 @@ const activityScroll = () => {
 
 generateStars(150);
 teamImgToText()
-// projectSlideShow()
+projectSlideShow()
 presidiumScroll()
 activityScroll()
+presidiumShow()
