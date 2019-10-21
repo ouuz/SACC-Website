@@ -433,7 +433,14 @@ var context = canvasGroup.getContext('2d');
 var Percent = 0;
 canvasGroup.style.width = document.documentElement.clientWidth / 2 + 'px';
 canvasGroup.style.height = document.documentElement.clientHeight + 'px';
-
+window.onscroll = function() {
+  let show = document.querySelector('.team');
+  let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  let showTop = show.getBoundingClientRect().top;
+  if (showTop <= clientH) {
+      
+  }
+};
 
 var curve = window.setInterval(() => {
   Percent++;
@@ -445,10 +452,10 @@ var curve = window.setInterval(() => {
     setTimeout(() => {
       context.setLineDash([60, 0])
       drawPlanet(context, 380, 465, 150, 0, 2, "#ffedd6", 'transparent', 10)
-    }, 800)
+    }, 1500)
     setTimeout(() => {
       drawPlanet(context, 380, 465, 75, 1, 3, "#ffedd6", 'transparent', 10)
-    }, 1500)
+    }, 3000)
   }
  
 },10)

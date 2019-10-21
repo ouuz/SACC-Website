@@ -364,10 +364,10 @@ html {
 .presidiumContent>ul {
   position: absolute;
   bottom: 5%;
-  left: 85%;
+  left: 50%;
   display: flex;
   align-items: flex-end;
-  width: 200vw;
+  width: 150vw;
   transition: all .05s ease-in-out;
 }
 
@@ -376,6 +376,7 @@ html {
   width: 20%;
   justify-content: space-evenly;
   position: relative;
+  align-items: center;
 }
 
 .presidiumContent ul li:nth-child(1) {
@@ -394,7 +395,6 @@ html {
 
 .presidiumContent ul li:not(:first-child) p {
   color: #d6fffc;
-
 }
 
 .presidiumContent li.musicpaper {
@@ -437,9 +437,7 @@ html {
   top: 80%;
   height: 60%;
 }
-.Presidium{
-  cursor: pointer;
-}
+
 .presidiumContent li.musicpaper.eq4 .end {
   top: -100%;
   bottom: 100%;
@@ -467,7 +465,9 @@ html {
   width: 100%;
   border-radius: 50%;
 }
-
+.PresidiumPortrait>img:hover{
+  animation: scale .5s;
+}
 .PresidiumSaying {
   opacity: 0;
   transition: all .3s ease-in-out;
@@ -480,6 +480,37 @@ html {
   letter-spacing: .2rem;
   padding: 0.5rem;
   border-color: transparent;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.PresidiumSaying p {
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+
+.u-tri {
+  display: inline-block;
+  border-top: 20px solid #838ecccf;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  position: absolute;
+  bottom: -15%;
+  left: 40%;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.1, .9);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
 }
 
 /* activity */

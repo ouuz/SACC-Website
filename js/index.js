@@ -118,20 +118,21 @@ const presidiumScroll = () => {
     let time = options.time,
       finalNum = options.num,
       regulator = options.regulator
-      step = finalNum / (time / regulator),
-      count = 0, 
+    step = finalNum / (time / regulator),
+      count = 0,
       initial = 0;
 
-    let timer = setInterval(function() {
+    let timer = setInterval(function () {
       count = count + step;
-      if(count >= finalNum) {
+      if (count >= finalNum) {
         clearInterval(timer);
         count = finalNum;
       }
       let t = Math.floor(count);
       initial = t;
       $(targetEle).html(`${initial}`)
-      if(t == initial) return;
+      if (isNaN(t)) $(targetEle).html(`${finalNum}`)
+      if (t == initial) return;
     }, 30);
   }
 
@@ -142,7 +143,8 @@ const presidiumScroll = () => {
       if (e.wheelDelta) {
         if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
           if (e.wheelDelta < 0) {
-            percent += 12;
+            percent += 8;
+            this.console.log(percent)
             if ($('.presidiumContent ul').offset().left - left <= 270 && index <= 14) {
               left = $('.presidiumContent ul').offset().left;
               translateY()
@@ -150,18 +152,18 @@ const presidiumScroll = () => {
               let a = $($(children).get(index)).children().last().children().get(2)
               setTimeout(() => {
                 NumAutoPlusAnimation(a, {
-                  time: 1500,
+                  time: 1800,
                   num: `${$(a).html()}`,
                   regulator: 50
                 })
-              },50);
+              }, 50);
               $($($(children).get(index)).children().last().children().get(2)).css('opacity', '1')
               index++;
             }
           } else
-            percent -= 12;
+            percent -= 8;
         } else if (elementScrollTop > (beforeOffsetTop + selfHeight - window.innerHeight))
-          percent = 216
+          percent = 136
         else if (elementScrollTop < beforeOffsetTop)
           percent = 0
         $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
@@ -177,40 +179,35 @@ const presidiumShow = () => {
   list.addEventListener('mouseout', slideOut);
 
   function slideIn(e) {
-    e.target.className == 'PresidiumPortrait' || e.target.className == 'PresidiumYear' ?
-      slide() : ''
+    e.target.className == 'PresidiumName' ? slide() : ''
 
     function slide() {
-        e.target.className == 'PresidiumPortrait' ?
-        Slide($(e.target).next().children().get(3)) :
-        e.target.className == 'PresidiumYear' ?
-        Slide($(e.target).next()) : ''
+      e.target.className == 'PresidiumName' ?
+        Slide($(e.target).next().next()) : ''
 
       function Slide(ev) {
-        $(ev).css('opacity', '1').css('border', '3px solid yellow').css('transition', 'border-top-color 0.2s linear 0.3s, border-right-color 0.2s linear 0.15s, border-bottom-color 0.2s linear 0s, border-left-color 0.2s linear 0.21s')
-        $(ev).prev().css('opacity','1')
+        $(ev).css('opacity', '1').css('border', '3px solid #838ecccf').css('transition', 'border-top-color 0.1s linear 0.3s, border-right-color 0.1s linear 0.1s, border-bottom-color 0.1s linear 0s, border-left-color 0.1s linear 0.11s')
+        setTimeout(() => {
+          $(ev).find('p').css('opacity', '1')
+        }, 200)
       }
 
     }
   }
 
   function slideOut(e) {
-    e.target.className == 'PresidiumPortrait' || e.target.className == 'PresidiumYear' ?
-      slide() : ''
+    e.target.className == 'PresidiumName' ? slide() : ''
 
     function slide() {
-        e.target.className == 'PresidiumPortrait' ?
-        Slide($(e.target).next().children().get(3)) :
-        e.target.className == 'PresidiumYear' ?
-        Slide($(e.target).next()) :''
+      e.target.className == 'PresidiumName' ?
+        Slide($(e.target).next().next()) : ''
 
       function Slide(ev) {
-        setTimeout(() => {
-          $(ev).css('border', '3px solid transparent').css('transition', 'border-top-color 0.2s linear 0s, border-right-color 0.2s linear 0.15s, border-bottom-color 0.2s linear 0.3s, border-left-color 0.2s linear 0.21s')
-        }, 200)
+        $(ev).css('border', '3px solid transparent').css('transition', 'border-top-color 0.2s linear 0s, border-right-color 0.2s linear 0.21s, border-bottom-color 0.2s linear 0.3s, border-left-color 0.2s linear 0.21s')
+        $(ev).find('p').css('opacity', '0')
         setTimeout(() => {
           $(ev).css('opacity', '0')
-        },400)
+        }, 400)
       }
     }
   }
