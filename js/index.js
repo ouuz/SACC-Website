@@ -114,6 +114,31 @@ const presidiumScroll = () => {
       Y = -10 : ''
   }
 
+  function NumAutoPlusAnimation(targetEle, options) {
+    let time = options.time,
+      finalNum = options.num,
+      regulator = options.regulator
+
+      step = finalNum / (time / regulator),
+      count = 0, 
+      initial = 0;
+
+    let timer = setInterval(function() {
+
+      count = count + step;
+
+      if(count >= finalNum) {
+        clearInterval(timer);
+        count = finalNum;
+      }
+      let t = Math.floor(count);
+      if(t == initial) return;
+
+      initial = t;
+      $(targetEle).html(`${initial}`)
+    }, 30);
+  }
+
   $(window).scroll(() => {
     const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     window.onwheel = function (e) {
@@ -122,11 +147,18 @@ const presidiumScroll = () => {
         if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
           if (e.wheelDelta < 0) {
             percent += 12;
-            console.log(percent)
-            if ($('.presidiumContent ul').offset().left - left <= 150 && index <= 14) {
+            if ($('.presidiumContent ul').offset().left - left <= 270 && index <= 14) {
               left = $('.presidiumContent ul').offset().left;
               translateY()
               $($(children).get(index)).css('transform', `translate3d(0,${Y}vh,0)`)
+              let a = $($(children).get(index)).children().last().children().get(2)
+              setTimeout(() => {
+                NumAutoPlusAnimation(a, {
+                  time: 1000,
+                  num: `${$(a).html()}`,
+                  regulator: 30
+                })
+              },50);
               $($($(children).get(index)).children().last().children().get(2)).css('opacity', '1')
               index++;
             }
