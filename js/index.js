@@ -118,24 +118,20 @@ const presidiumScroll = () => {
     let time = options.time,
       finalNum = options.num,
       regulator = options.regulator
-
       step = finalNum / (time / regulator),
       count = 0, 
       initial = 0;
 
     let timer = setInterval(function() {
-
       count = count + step;
-
       if(count >= finalNum) {
         clearInterval(timer);
         count = finalNum;
       }
       let t = Math.floor(count);
-      if(t == initial) return;
-
       initial = t;
       $(targetEle).html(`${initial}`)
+      if(t == initial) return;
     }, 30);
   }
 
@@ -154,9 +150,9 @@ const presidiumScroll = () => {
               let a = $($(children).get(index)).children().last().children().get(2)
               setTimeout(() => {
                 NumAutoPlusAnimation(a, {
-                  time: 1000,
+                  time: 1500,
                   num: `${$(a).html()}`,
-                  regulator: 30
+                  regulator: 50
                 })
               },50);
               $($($(children).get(index)).children().last().children().get(2)).css('opacity', '1')
