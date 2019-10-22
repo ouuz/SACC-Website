@@ -2,7 +2,9 @@
   margin: 0;
   padding: 0
 }
-
+.container{
+  position: relative;
+}
 /* html {
   width: 100%;
   height: auto;
@@ -725,5 +727,48 @@ html {
 
 .departmentComic img {
   width: 100%;
+}
 
+/* nav */
+.nav{
+  display: none;
+  opacity: 0;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  font-size: 2rem;
+  position: fixed;
+  top: 0;
+  z-index: 999999;
+}
+.nav>ul{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 3;
+  transition: all .8s ease-in-out;
+}
+.nav>ul li{
+  cursor: pointer;
+}
+#nav{
+  position: fixed;
+  top: 0;
+  z-index: 9999999;
+}
+@keyframes navShow{
+  0%{
+    width: 0%;
+  }
+  100%{
+    width: 100%;
+  }
+}
+@keyframes navHidden{
+  0%{
+    width: 100%;
+  }
+  100%{
+    width: 0%;
+  }
 }

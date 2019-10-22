@@ -299,9 +299,31 @@ const activityScroll = () => {
   }
 }
 
+const nav = () => {
+  
+  $('#nav').click(() =>{
+    $('.nav').css('opacity') == '0'?navShow():navHidden()
+    function navShow(){
+      $('.nav').css('display','block')
+      setTimeout(() =>{
+        $('.nav li').css('opacity','1')
+        $('.nav').css('opacity','1').css('animation','navShow .5s 1 forwards')
+      },100)
+    }
+    function navHidden(){
+      $('.nav').css('animation','navHidden .5s 1 forwards')
+      $('.nav li').css('opacity','0')
+      setTimeout(() =>{
+        $('.nav').css('opacity','0').css('displey','none')
+      },400)
+    }
+  })
+}
+
 generateStars(150);
 teamImgToText()
 projectSlideShow()
 presidiumScroll()
 activityScroll()
 presidiumShow()
+nav()
