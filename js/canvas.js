@@ -437,28 +437,34 @@ window.onscroll = function() {
   let show = document.querySelector('.team');
   let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   let showTop = show.getBoundingClientRect().top;
-  if (showTop <= clientH) {
-      
+  if (clientH - showTop >= 600 && show.classList.contains('on') && clientH - showTop <= 800) {
+    drawTeamEye()
+    console.log(11111)
+    $('.team').removeClass('on')
   }
 };
 
-var curve = window.setInterval(() => {
-  Percent++;
-  Curve()
-  if(Percent > 100){
-    window.clearInterval(curve)
-    context.setLineDash([80, 20])
-    drawPlanet(context, 380, 465, 200, 0, 2, "#ffedd6", 'transparent', 10)
-    setTimeout(() => {
-      context.setLineDash([60, 0])
-      drawPlanet(context, 380, 465, 150, 0, 2, "#ffedd6", 'transparent', 10)
-    }, 1500)
-    setTimeout(() => {
-      drawPlanet(context, 380, 465, 75, 1, 3, "#ffedd6", 'transparent', 10)
-    }, 3000)
-  }
- 
-},10)
+var curve = null;
+
+function drawTeamEye(){
+  curve = window.setInterval(() => {
+    Percent++;
+    Curve()
+    if(Percent > 100){
+      window.clearInterval(curve)
+      context.setLineDash([80, 20])
+      drawPlanet(context, 380, 465, 200, 0, 2, "#ffedd6", 'transparent', 10)
+      setTimeout(() => {
+        context.setLineDash([60, 0])
+        drawPlanet(context, 380, 465, 150, 0, 2, "#ffedd6", 'transparent', 10)
+      }, 1500)
+      setTimeout(() => {
+        drawPlanet(context, 380, 465, 75, 1, 3, "#ffedd6", 'transparent', 10)
+      }, 3000)
+    }
+   
+  },10)
+}
 
 function Curve(){
   context.lineWidth = 10;

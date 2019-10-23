@@ -2,9 +2,11 @@
   margin: 0;
   padding: 0
 }
-.container{
+
+.container {
   position: relative;
 }
+
 /* html {
   width: 100%;
   height: auto;
@@ -272,7 +274,7 @@ html {
   padding: 20px;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: bounce 2.2s 1;
+  /* animation: bounce 2.2s 1; */
   box-shadow: 6px 4px 20px 2px #46393963;
   transition: all .8s ease-in-out
 }
@@ -316,7 +318,7 @@ html {
   }
 }
 
-@keyframes bounce {
+/* @keyframes bounce {
   0% {
     top: 0%;
     left: 0%;
@@ -345,7 +347,7 @@ html {
     left: 37%;
     transform: rotate(360deg);
   }
-}
+} */
 
 
 /* presidium */
@@ -467,9 +469,11 @@ html {
   width: 100%;
   border-radius: 50%;
 }
-.PresidiumPortrait>img:hover{
+
+.PresidiumPortrait>img:hover {
   animation: scale .5s;
 }
+
 .PresidiumSaying {
   opacity: 0;
   transition: all .3s ease-in-out;
@@ -730,7 +734,7 @@ html {
 }
 
 /* nav */
-.nav{
+.nav {
   display: none;
   opacity: 0;
   height: 100vh;
@@ -741,34 +745,55 @@ html {
   top: 0;
   z-index: 999999;
 }
-.nav>ul{
+
+.nav>ul {
   width: 80%;
   margin: 0 auto;
-  text-align: center;
-  line-height: 3;
   transition: all .8s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-around;
 }
-.nav>ul li{
+
+.nav>ul li {
   cursor: pointer;
+  position: relative;
 }
-#nav{
+
+#nav {
   position: fixed;
   top: 0;
   z-index: 9999999;
 }
-@keyframes navShow{
-  0%{
+
+@keyframes navShow {
+  0% {
     width: 0%;
   }
-  100%{
+
+  100% {
     width: 100%;
   }
 }
-@keyframes navHidden{
-  0%{
+
+@keyframes navHidden {
+  0% {
     width: 100%;
   }
-  100%{
+
+  100% {
     width: 0%;
   }
+}
+
+.stick {
+  position: absolute;
+  width: 10px;
+  height: 100px;
+  transform: rotate(-75deg);
+  left: 50%;
+  background-color: rgba(220,160,40,0.7);
+  top: -50%;
 }
