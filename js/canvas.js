@@ -439,7 +439,6 @@ window.onscroll = function() {
   let showTop = show.getBoundingClientRect().top;
   if (clientH - showTop >= 600 && show.classList.contains('on') && clientH - showTop <= 800) {
     drawTeamEye()
-    console.log(11111)
     $('.team').removeClass('on')
   }
 };

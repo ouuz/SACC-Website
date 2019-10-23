@@ -300,7 +300,36 @@ const activityScroll = () => {
 }
 
 const nav = () => {
-  
+  let list = document.querySelector('.nav ul')
+  list.addEventListener('mouseover', slideIn);
+ list.addEventListener('mouseout', slideOut);
+
+  function slideIn(e){
+    e.target.className == 'navigation' || e.target.className == 'stick'?slide():''
+    function slide(){
+      $(e.target).find('.stick').css('opacity','1')
+      e.target.className == 'navigation' ?
+      Slide($(e.target).find('.stick'))
+      :e.target.className == 'stick'?Slide($(e.target)):''
+      function Slide(ev){
+        $(ev).find('.stick').css('opacity','1')
+      }
+    }
+    console.log(e.target.className)
+  }
+  function slideOut(e){
+    e.target.className == 'navigation' || e.target.className == 'stick'?slide():''
+    function slide(){
+      $(e.target).find('.stick').css('opacity','0')
+      e.target.className == 'navigation' ?
+      Slide($(e.target).find('.stick'))
+      :e.target.className == 'stick'?Slide($(e.target)):''
+      function Slide(ev){
+        $(ev).find('.stick').css('opacity','0')
+      }
+    }
+    console.log(e.target.className)
+  }
   $('#nav').click(() =>{
     $('.nav').css('opacity') == '0'?navShow():navHidden()
     function navShow(){

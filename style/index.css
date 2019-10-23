@@ -193,7 +193,7 @@ html {
 .backgroundImg {
   position: absolute;
   bottom: 0;
-  left: -50%;
+  right: 0%;
   transition: all 2.2s ease-in-out;
   z-index: 1;
 }
@@ -504,7 +504,12 @@ html {
   bottom: -15%;
   left: 40%;
 }
-
+.moonBox{
+  width: 28vw;
+}
+.moonBox>img{
+  width: 100%;
+}
 @keyframes scale {
   0% {
     transform: scale(1, 1);
@@ -572,8 +577,7 @@ html {
 
 .competionName {
   text-align: center;
-  -webkit-text-stroke: 2px #895847de;
-  -webkit-text-fill-color: #fffbdd;
+  -webkit-text-fill-color: #000000;
   font-size: 1.9rem;
   font-family: 'ZiXinFangXiaMuTi';
   transform: skew(-20deg);
@@ -701,8 +705,11 @@ html {
   color: white;
   border-radius: 30px;
   border: 2px #f8f9ad solid;
+  transition: all .2s;
 }
-
+.departmentContent:hover{
+  box-shadow: 8px 7px 11px 4px #e8e7da
+}
 .departmentContentImg {
   width: 60%;
   margin: 1rem;
@@ -796,4 +803,5 @@ html {
   left: 50%;
   background-color: rgba(220,160,40,0.7);
   top: -50%;
+  opacity: 0;
 }
