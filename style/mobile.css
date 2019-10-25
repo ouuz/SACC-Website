@@ -1,0 +1,209 @@
+@media (min-width: 1200px) {}
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+@media (min-width: 768px) and (max-width: 991px) {}
+
+@media (max-width: 767px) {
+  canvas {
+    display: none;
+  }
+
+  .logo,
+  .department {
+    background: #282c5b;
+  }
+
+  #logoText {
+    font-size: 5rem;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 10vh;
+    text-align: center;
+  }
+
+  .logoPurplePlant>img {
+    display: none;
+  }
+
+  .department {
+    margin-top: 35vh;
+    width: auto;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .departmentContent {
+    width: auto;
+    height: auto;
+    margin: 0 2%;
+  }
+
+  .departmentContent:nth-child(2) {}
+
+  .departmentContent p {
+    font-size: 1rem;
+  }
+
+  .backgroundImg {
+    display: none;
+  }
+
+  .groupImgBox img:nth-child(1),
+  .teamLeft,
+  .project,
+  .cloudBox,
+  .activitySlideBox {
+    display: none;
+  }
+
+  .teamRight {
+    width: 100%;
+    height: 100%;
+  }
+
+  .group {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 3%;
+  }
+
+  .group:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .groupText {
+    opacity: 1;
+    margin: 0;
+    font-size: 1rem;
+    transition-duration: 0s;
+  }
+
+  .team {
+    height: 150vh;
+    background: #282c5b;
+    position: relative;
+  }
+
+  .activity {
+    height: auto;
+    width: 100vw;
+    overflow: hidden;
+    background: #282c5b;
+    position: absolute;
+    top: 100vh;
+  }
+
+  .activityImgBox {
+    display: flex;
+    width: 400vw;
+    transition: all .3s;
+  }
+
+  .competion {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+    position: inherit;
+  }
+
+  .competion img {
+    width: 100vw;
+    height: 33vh;
+    opacity: 1;
+    border-radius: 25px;
+    padding: 1rem;
+  }
+
+  .competionName {
+    text-align: center;
+    -webkit-text-fill-color: #ddd;
+    font-size: 1.3rem;
+    transform: skew(0deg);
+    transition: none;
+  }
+
+  .presidium {
+    display: none;
+  }
+
+  .presidiumMobile {
+    display: block;
+    background: #282c5b;
+  }
+
+  .presidiumMobile_2019,
+  .presidiumMobile_2018,
+  .presidiumMobile_2017 {
+    width: 100vw;
+    height: 25vh;
+    overflow: hidden;
+  }
+
+  .presidiumMobile_2019>ul,
+  .presidiumMobile_2018>ul,
+  .presidiumMobile_2017>ul {
+    display: flex;
+    width: 500%;
+  }
+
+  .presidiumMobile_2019>ul li,
+  .presidiumMobile_2018>ul li,
+  .presidiumMobile_2017>ul li {
+    color: #ffffff;
+    position: relative;
+  }
+
+  .presidiumMobile_2019>ul li h3,
+  .presidiumMobile_2018>ul li h3,
+  .presidiumMobile_2017>ul li h3 {
+    line-height: 1.5;
+    font-size: 1.3rem;
+    width: 30%;
+  }
+
+  .presidiumMobilePortrait {
+    width: 30%;
+  }
+
+  .presidiumMobileDes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .presidiumMobilePortrait>img {
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  .presidiumMobileSaying {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
+
+  @keyframes mobileImgScale {
+    50%{
+      transform: scale(1.2);
+    }
+    100%{
+      transform: scale(0);
+    }
+  }
+  @keyframes mobileTextScale {
+    50%{
+      transform: scale(0.8);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+}

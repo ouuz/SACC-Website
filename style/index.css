@@ -1,4 +1,6 @@
-* {
+div,
+html,
+body {
   margin: 0;
   padding: 0
 }
@@ -474,9 +476,13 @@ html {
   animation: scale .5s;
 }
 
+.presidiumMobile {
+  display: none;
+}
+
 .PresidiumSaying {
   opacity: 0;
-  transition: all .3s ease-in-out;
+  transition: all .2s ease-in-out;
   position: absolute;
   top: -35vh;
   width: 15vw;
@@ -504,12 +510,15 @@ html {
   bottom: -15%;
   left: 40%;
 }
-.moonBox{
+
+.moonBox {
   width: 28vw;
 }
-.moonBox>img{
+
+.moonBox>img {
   width: 100%;
 }
+
 @keyframes scale {
   0% {
     transform: scale(1, 1);
@@ -707,9 +716,11 @@ html {
   border: 2px #f8f9ad solid;
   transition: all .2s;
 }
-.departmentContent:hover{
+
+.departmentContent:hover {
   box-shadow: 8px 7px 11px 4px #e8e7da
 }
+
 .departmentContentImg {
   width: 60%;
   margin: 1rem;
@@ -801,7 +812,7 @@ html {
   height: 100px;
   transform: rotate(-75deg);
   left: 50%;
-  background-color: rgba(220,160,40,0.7);
+  background-color: rgba(220, 160, 40, 0.7);
   top: -50%;
   opacity: 0;
 }
