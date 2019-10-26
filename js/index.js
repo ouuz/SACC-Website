@@ -355,6 +355,7 @@ const nav = () => {
     }
   })
 }
+
 if (window.innerWidth >= 768) {
   teamImgToText()
   projectSlideShow()
@@ -362,5 +363,6 @@ if (window.innerWidth >= 768) {
   activityScroll()
   presidiumShow()
 }
+
 generateStars(150);
 nav()

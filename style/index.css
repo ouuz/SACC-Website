@@ -9,16 +9,6 @@ body {
   position: relative;
 }
 
-/* html {
-  width: 100%;
-  height: auto;
-  overflow-x: hidden;
-} */
-/*
-body {
-  width: 100%;
-  overflow-y: scroll;
-} */
 html {
   width: 100%;
   height: auto;
@@ -30,8 +20,6 @@ html {
   z-index: -1;
   position: absolute;
 }
-
-/* #c9ecdd , #faf8eb */
 
 /* logo */
 .logo {
@@ -320,38 +308,6 @@ html {
   }
 }
 
-/* @keyframes bounce {
-  0% {
-    top: 0%;
-    left: 0%;
-  }
-
-  30% {
-    top: 90%;
-    left: 10%;
-    transform: rotate(90deg);
-  }
-
-  50% {
-    top: 40%;
-    left: 20%;
-    transform: rotate(180deg);
-  }
-
-  80% {
-    top: 70%;
-    left: 30%;
-    transform: rotate(270deg);
-  }
-
-  100% {
-    top: 37%;
-    left: 37%;
-    transform: rotate(360deg);
-  }
-} */
-
-
 /* presidium */
 
 .presidium {
@@ -544,10 +500,137 @@ html {
   position: absolute;
   top: 0;
   transition: all 0.5s ease-in-out;
+  z-index: -2;
 }
 
 .activity img {
   width: 100%;
+}
+
+.cloudBoxA,
+.cloudBoxB,
+.cloudBoxC {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  background: #ffedd64f;
+}
+
+.cloudBoxA svg {
+  fill: #f5ddd6;
+  opacity: 0.6;
+  animation: cloudMoveA 5s infinite;
+  position: absolute;
+}
+
+.cloudBoxB svg {
+  fill: #e7c9d2;
+  opacity: 0.8;
+  position: absolute;
+  animation: cloudMoveB 5s infinite;
+}
+
+.cloudBoxC svg {
+  fill: #e7c9d2;
+  position: absolute;
+  animation: cloudMoveC 5s infinite;
+}
+
+.cloudBoxA svg:nth-child(1) {
+  top: 15%;
+  left: 3%;
+}
+
+.cloudBoxA svg:nth-child(2) {
+  top: 25%;
+  left: 0%;
+}
+
+.cloudBoxA svg:nth-child(3) {
+  top: 70%;
+  left: 22%
+}
+
+.cloudBoxA svg:nth-child(4) {
+  top: 59%;
+  left: 29%;
+}
+
+.cloudBoxA svg:nth-child(5) {
+  top: 69%;
+  left: 37%;
+}
+
+.cloudBoxA svg:nth-child(6) {
+  top: 3%;
+  right: 6%;
+}
+
+.cloudBoxA svg:nth-child(7) {
+  top: 38%;
+  right: 12%;
+  fill: #e7c9d2;
+}
+
+.cloudBoxA svg:nth-child(8) {
+  top: 41%;
+  right: 17%;
+}
+
+.cloudBoxB svg:nth-child(1) {
+  top: 50%;
+  left: 33%;
+  fill: #f5ddd6;
+}
+
+.cloudBoxB svg:nth-child(2) {
+  top: 46%;
+  left: 40%;
+}
+
+.cloudBoxB svg:nth-child(3) {
+  top: 9%;
+  left: 85%;
+}
+
+.cloudBoxB svg:nth-child(4) {
+  top: 80%;
+  left: 8%;
+}
+
+.cloudBoxB svg:nth-child(5) {
+  top: 3%;
+  left: 70%;
+}
+
+.cloudBoxC svg:nth-child(1) {
+  top: 36%;
+  right: 32%;
+}
+
+.cloudBoxC svg:nth-child(2) {
+  top: 5%;
+  fill: #f5ddd6;
+  right: 15%;
+}
+
+.cloudBoxC svg:nth-child(3) {
+  top: 75%;
+  right: 10%;
+}
+
+.cloudBoxC svg:nth-child(4) {
+  top: 14%;
+  right: 7%;
+}
+
+.cloudBoxB {
+  margin-top: 100vh;
+}
+
+.cloudBoxC {
+  margin-top: 200vh;
 }
 
 .competion {
@@ -559,13 +642,13 @@ html {
 
 .competion img {
   opacity: 0;
-  width: 19vw;
+  width: 25vw;
   height: 8vh;
   transition: all .5s ease-in-out;
 }
 
 .competion:nth-child(1) {
-  top: 10%;
+  top: 2%;
   left: 40%;
 }
 
@@ -607,7 +690,7 @@ html {
   }
 
   100% {
-    transform: translate3d(0px, 20vh, 0px) scaleY(3);
+    transform: translate3d(0px, 25vh, 0px) scaleY(3.5);
     opacity: 1;
   }
 }
@@ -639,6 +722,47 @@ html {
   }
 }
 
+@keyframes cloudMoveA {
+  0% {
+    transform: translateX(0px) scale(0.9);
+  }
+
+  50% {
+    transform: translateX(20px) scale(0.9);
+  }
+
+  100% {
+    transform: translateX(0px) scale(0.9);
+  }
+}
+
+@keyframes cloudMoveB {
+  0% {
+    transform: translateX(0px) scale(1.2);
+  }
+
+  50% {
+    transform: translateX(20px) scale(1.2);
+  }
+
+  100% {
+    transform: translateX(0px) scale(1.2);
+  }
+}
+
+@keyframes cloudMoveC {
+  0% {
+    transform: translateX(0px) scale(1.5);
+  }
+
+  50% {
+    transform: translateX(20px) scale(1.5);
+  }
+
+  100% {
+    transform: translateX(0px) scale(1.5);
+  }
+}
 
 /* project */
 .project {

@@ -27,25 +27,28 @@ const activityMobileDrag = (moveClass) => {
 
 const presidiumMobileDrag = (moveClass) => {
   let list = document.querySelector(moveClass),
-    then, now, index = 0,
+    then, now, index = 0,time = 0,curTime = 0,
     length = $(moveClass).children().length;
   list.addEventListener('touchmove', dragDown);
   list.addEventListener('touchend', dragUp);
 
   function dragDown(touchItem) {
     then = touchItem.changedTouches[0].pageX;
+    time = new Date()
   }
 
   function dragUp(touchItem) {
     now = touchItem.changedTouches[0].pageX;
-    if (now - then <= 5) {
-      index = (index + 1) % length
-    } else if (now - then >= 0) {
-      index = (index - 1) % length
+    curTime = new Date()
+    if(curTime - time <= 300){
+      if (now - then <= 0) {
+        index = (index + 1) % length
+      } else{
+        index = (index - 1) % length
+      }
+      $(moveClass).css('transform', `translateX(${index * (-20)}%)`)
     }
-    $(moveClass).css('transform', `translateX(${index * (-20)}%)`)
   }
-
 }
 
 const presidiumMobileShow = () => {
@@ -61,6 +64,8 @@ const presidiumMobileShow = () => {
   }
 }
 
-activityMobileDrag('.activityImgBox')
+// activityMobileDrag('.activityImgBox')
 presidiumMobileDrag('.presidiumMobile_2019 ul')
+presidiumMobileDrag('.presidiumMobile_2018 ul')
+presidiumMobileDrag('.presidiumMobile_2017 ul')
 presidiumMobileShow()
