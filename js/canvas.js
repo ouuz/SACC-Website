@@ -8,191 +8,42 @@ canvasLOGO.style.height = document.documentElement.clientHeight * 3 + 'px';
 
 Interval()
 
+function drawPartCurve(lineWidth, strokeColor, lineDash, startPonit, endPoint, radian) {
+  ctx.lineWidth = lineWidth;
+  ctx.strokeStyle = strokeColor;
+  ctx.setLineDash(lineDash);
+  ctx.beginPath();
+
+  drawCurvePath(
+    ctx,
+    startPonit,
+    endPoint,
+    radian, percent
+  );
+
+  ctx.stroke();
+
+}
+
 function drawCurve() { //画轨迹
-  function drawFirstCurve() {
-    function one() {
-      ctx.lineWidth = 35;
-      ctx.strokeStyle = '#cf91d4';
-      ctx.setLineDash([80, 30]);
-      ctx.beginPath();
+  // drawFirstCurve
+  drawPartCurve(35, '#cf91d4', [80, 30], [280, -10], [150, 230], 0.1)
+  drawPartCurve(35, '#9c91d5', [80, 30], [150, 230], [0, 350], 0.1)
 
-      drawCurvePath(
-        ctx,
-        [280, -10],
-        [150, 230],
-        0.1, percent
-      );
+  // drawSecondCurve
+  drawPartCurve(40, '#8692fe', [110, 50], [580, -10], [405, 400], 0.1)
+  drawPartCurve(40, '#96d493', [110, 50], [416, 384], [-100, 900], 0.07)
 
-      ctx.stroke();
-    }
+  // drawThirdCurve
+  drawPartCurve(35, '#8dc6e1', [140, 50], [1430, -10], [1300, 650], 0.15)
+  drawPartCurve(35, '#febc7f', [140, 50], [1300, 649], [550, 1250], 0.15)
+  drawPartCurve(35, '#ff9281', [140, 50], [550, 1249], [-100, 1400], 0.1)
+  
+  // drawFourthCurve
+  drawPartCurve(30, '#cd5dbf', [160, 60], [1880, 550], [1620, 1211], 0.06)
+  drawPartCurve(30, '#82fef6', [160, 60], [1621, 1210], [620, 2300], 0.14)
+  drawPartCurve(30, '#4f70d9', [160, 60], [620, 2300], [-100, 2600], 0.1)
 
-    function two() {
-      ctx.lineWidth = 35;
-      ctx.strokeStyle = '#9c91d5';
-      ctx.setLineDash([80, 30]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [150, 230],
-        [0, 350],
-        0.1, percent
-      );
-
-      ctx.stroke();
-    }
-    one()
-    two()
-  }
-
-  function drawSecondCurve() {
-    function one() {
-      ctx.lineWidth = 40;
-      ctx.strokeStyle = '#8692fe';
-      ctx.setLineDash([110, 50]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [580, -10],
-        [405, 400],
-        0.1, percent
-      );
-
-      ctx.stroke();
-    }
-
-    function two() {
-      ctx.lineWidth = 40;
-      ctx.strokeStyle = '#96d493';
-      ctx.setLineDash([110, 50]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [416, 384],
-        [-100, 900],
-        0.07, percent
-      );
-
-      ctx.stroke();
-    }
-    one()
-    two()
-
-  }
-
-  function drawThirdCurve() {
-    function one() {
-      ctx.lineWidth = 35;
-      ctx.strokeStyle = '#8dc6e1';
-      ctx.setLineDash([140, 50]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [1430, -10],
-        [1300, 650],
-        0.15, percent
-      );
-
-      ctx.stroke();
-    }
-
-    function two() {
-      ctx.lineWidth = 35;
-      ctx.strokeStyle = '#febc7f';
-      ctx.setLineDash([140, 50]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [1300, 649],
-        [550, 1250],
-        0.15, percent
-      );
-
-      ctx.stroke();
-    }
-
-    function three() {
-      ctx.lineWidth = 35;
-      ctx.strokeStyle = '#ff9281';
-      ctx.setLineDash([140, 50]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [550, 1249],
-        [-100, 1400],
-        0.1, percent
-      );
-
-      ctx.stroke();
-    }
-    one()
-    two()
-    three()
-  }
-
-  function drawFourthCurve() {
-    function one() {
-      ctx.lineWidth = 30;
-      ctx.strokeStyle = '#cd5dbf';
-      ctx.setLineDash([160, 60]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [1880, 550],
-        [1620, 1211],
-        0.06, percent
-      );
-
-      ctx.stroke();
-    }
-
-    function two() {
-      ctx.lineWidth = 30;
-      ctx.strokeStyle = '#82fef6';
-      ctx.setLineDash([160, 60]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [1621, 1210],
-        [620, 2300],
-        0.14, percent
-      );
-
-      ctx.stroke();
-    }
-
-    function three() {
-      ctx.lineWidth = 30;
-      ctx.strokeStyle = '#4f70d9';
-      ctx.setLineDash([160, 60]);
-      ctx.beginPath();
-
-      drawCurvePath(
-        ctx,
-        [620, 2300],
-        [-100, 2600],
-        0.1, percent
-      );
-
-      ctx.stroke();
-    }
-
-    one()
-    two()
-    three()
-  }
-
-  drawFirstCurve()
-  drawSecondCurve()
-  drawThirdCurve()
-  drawFourthCurve()
 }
 
 function drawCurvePath(ctx, start, end, curveness, percent) { //贝塞尔曲线
@@ -431,9 +282,11 @@ function Interval() {
 var canvasGroup = document.getElementById('Group');
 var context = canvasGroup.getContext('2d');
 var Percent = 0;
+var curve = null;
 canvasGroup.style.width = document.documentElement.clientWidth / 2 + 'px';
 canvasGroup.style.height = document.documentElement.clientHeight + 'px';
-window.onscroll = function() {
+
+window.onscroll = function () {
   let show = document.querySelector('.team');
   let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   let showTop = show.getBoundingClientRect().top;
@@ -443,13 +296,11 @@ window.onscroll = function() {
   }
 };
 
-var curve = null;
-
-function drawTeamEye(){
+function drawTeamEye() {
   curve = window.setInterval(() => {
     Percent++;
     Curve()
-    if(Percent > 100){
+    if (Percent > 100) {
       window.clearInterval(curve)
       context.setLineDash([80, 20])
       drawPlanet(context, 380, 465, 200, 0, 2, "#ffedd6", 'transparent', 10)
@@ -461,11 +312,11 @@ function drawTeamEye(){
         drawPlanet(context, 380, 465, 75, 1, 3, "#ffedd6", 'transparent', 10)
       }, 3000)
     }
-   
-  },10)
+
+  }, 10)
 }
 
-function Curve(){
+function Curve() {
   context.lineWidth = 10;
   context.setLineDash([60, 30]);
   context.strokeStyle = "#ffedd6";

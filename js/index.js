@@ -356,13 +356,180 @@ const nav = () => {
   })
 }
 
+const addPresidiumContent = (arr) => {
+  arr.map(item => {
+    $('.presidiumContent ul').append(`
+    <li class="Presidium">
+      <div class="PresidiumPortrait">
+        <img src=${item.portraitSrc} alt="">
+      </div>
+      <h3>
+        <div class="PresidiumTag">${item.position}</div>
+        <p class="PresidiumName">${item.name}</p>
+        <div class="PresidiumYear">${item.year}</div>
+        <div class="PresidiumSaying">
+          <span class="u-tri"></span>
+          <p>${item.signature}</p>
+        </div>
+      </h3>
+    </li>
+    `)
+  })
+
+  $('.presidiumContent ul').append(`          
+  <li class="musicpaper eq0"><div class="end"></div></li>
+  <li class="musicpaper eq1"></li>
+  <li class="musicpaper eq2"></li>
+  <li class="musicpaper eq3"></li>
+  <li class="musicpaper eq4"><div class="end"></div></li>`)
+}
+
+const addPresidiumMobileContent = (arr) => {
+  arr.map((item, index) => {
+    if (index <= 4)
+      $('.presidiumMobile_2019 ul').append(`
+        <li>
+          <div class="presidiumMobileDes">
+            <div class="presidiumMobilePortrait">
+              <img src=${item.portraitSrc} alt="">
+            </div>
+            <h3>
+              <div class="presidiumMobileTag">${item.position}</div>
+              <p class="presidiumMobileName">${item.name}</p>
+              <div class="presidiumMobileYear">${item.year}</div>
+            </h3>
+          </div>
+          <div class="presidiumMobileSaying">
+            <p>${item.signature}</p>
+          </div>
+        </li>
+      `)
+    else if (index > 4 && index <= 9)
+      $('.presidiumMobile_2018 ul').append(`
+        <li>
+          <div class="presidiumMobileDes">
+            <div class="presidiumMobilePortrait">
+              <img src=${item.portraitSrc} alt="">
+            </div>
+            <h3>
+              <div class="presidiumMobileTag">${item.position}</div>
+              <p class="presidiumMobileName">${item.name}</p>
+              <div class="presidiumMobileYear">${item.year}</div>
+            </h3>
+          </div>
+          <div class="presidiumMobileSaying">
+            <p>${item.signature}</p>
+          </div>
+        </li>
+      `)
+    else
+      $('.presidiumMobile_2017 ul').append(`
+        <li>
+          <div class="presidiumMobileDes">
+            <div class="presidiumMobilePortrait">
+              <img src=${item.portraitSrc} alt="">
+            </div>
+            <h3>
+              <div class="presidiumMobileTag">${item.position}</div>
+              <p class="presidiumMobileName">${item.name}</p>
+              <div class="presidiumMobileYear">${item.year}</div>
+            </h3>
+          </div>
+          <div class="presidiumMobileSaying">
+            <p>${item.signature}</p>
+          </div>
+        </li>
+      `)
+  })
+}
+
+const addGroupContent = (arr) => {
+  arr.map(item => {
+    $('.teamRight').append(`
+    <div class="group">
+    <div class="groupImgBox">
+      <img src=${item.groupImgSrc} alt="" class="groupLogo">
+      <img src=${item.groupComicImgSrc} alt="" class="groupComic">
+    </div>
+    <div class="groupText">
+      <p>${item.des}</p>
+      <div class="borderTopLeft"></div>
+      <div class="borderBottomRight"></div>
+    </div>
+  </div>
+    `)
+  })
+}
+
+const addClouds = () => {
+  $('.cloudBoxA').append(
+    FirstCloud.create(),
+    SecondCloud.create(),
+    ThirdCloud.create(),
+    FirstCloud.create(),
+    SecondCloud.create(),
+    ThirdCloud.create(),
+    FirstCloud.create(),
+    FirstCloud.create()
+  )
+  $('.cloudBoxB').append(
+    FirstCloud.create(),
+    FirstCloud.create(),
+    SecondCloud.create(),
+    SecondCloud.create(),
+    ThirdCloud.create()
+  )
+  $('.cloudBoxC').append(
+    FirstCloud.create(),
+    FirstCloud.create(),
+    SecondCloud.create(),
+    ThirdCloud.create()
+  )
+}
+
+const addDepartmentContent = (arr) => {
+  arr.map(item => {
+    $('.department').append(`
+    <div class="departmentContent">
+      <div class="departmentContentImg">
+        <img src=${item.departmentImgSrc} alt="">
+      </div>
+      <p>${item.departmentText}</p>
+    </div>
+  `)
+  })
+}
+
+const addProjectContent = (arr) => {
+  arr.map(item => {
+    $('.project').append(`
+    <div class="projectContent">
+      <div class="light"></div>
+      <div class="projectImgBox">
+        <a href=${item.projectLink}target="_blank"><img src=${item.projectImgSrc}
+            alt="" class="projectImg"></a>
+      </div>
+      <div class="blackScreen"></div>
+    </div>
+  `)
+  })
+}
+
 if (window.innerWidth >= 768) {
   teamImgToText()
   projectSlideShow()
+  addPresidiumContent(presidium)
+  addGroupContent(group)
+  addDepartmentContent(department)
+  addProjectContent(project)
+  addClouds()
   presidiumScroll()
   activityScroll()
   presidiumShow()
+} else {
+  addPresidiumMobileContent(presidium)
 }
+
 
 generateStars(150);
 nav()
