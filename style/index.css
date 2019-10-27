@@ -16,7 +16,7 @@ html {
 }
 
 #Logo {
-  background: #282c5b;
+  background: linear-gradient(#1d1d2c,30%,#675284,#2c2c43);
   z-index: -1;
   position: absolute;
 }
@@ -176,7 +176,7 @@ html {
   height: 100vh;
   display: flex;
   overflow: hidden;
-  background: #282c5b;
+  background: linear-gradient(#f2c2b3, 20%,#ffffee);
   position: relative;
 }
 
@@ -212,6 +212,7 @@ html {
 .group {
   width: 35%;
   height: 25%;
+  opacity: 0;
 }
 
 .groupImgBox {
@@ -317,7 +318,7 @@ html {
 .presidiumContent {
   height: 100vh;
   position: relative;
-  background: #282c5b;
+  background: #2c2c43;
   overflow: hidden;
   position: sticky;
   top: 0;
@@ -939,4 +940,20 @@ html {
   background-color: rgba(220, 160, 40, 0.7);
   top: -50%;
   opacity: 0;
+}
+
+@keyframes load{
+  0%{
+    transform: translateY(10vh) scale(0);
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+.departmentContent,
+.moonBox,
+.competion,.projectContent{
+  opacity:0
 }

@@ -286,16 +286,6 @@ var curve = null;
 canvasGroup.style.width = document.documentElement.clientWidth / 2 + 'px';
 canvasGroup.style.height = document.documentElement.clientHeight + 'px';
 
-window.onscroll = function () {
-  let show = document.querySelector('.team');
-  let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  let showTop = show.getBoundingClientRect().top;
-  if (clientH - showTop >= 600 && show.classList.contains('on') && clientH - showTop <= 800) {
-    drawTeamEye()
-    $('.team').removeClass('on')
-  }
-};
-
 function drawTeamEye() {
   curve = window.setInterval(() => {
     Percent++;

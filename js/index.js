@@ -144,7 +144,7 @@ const presidiumScroll = () => {
         if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
           if (e.wheelDelta < 0) {
             percent += 8;
-            this.console.log(percent)
+
             if ($('.presidiumContent ul').offset().left - left <= 270 && index <= 14) {
               left = $('.presidiumContent ul').offset().left;
               translateY()
@@ -462,29 +462,19 @@ const addGroupContent = (arr) => {
 }
 
 const addClouds = () => {
-  $('.cloudBoxA').append(
-    FirstCloud.create(),
-    SecondCloud.create(),
-    ThirdCloud.create(),
-    FirstCloud.create(),
-    SecondCloud.create(),
-    ThirdCloud.create(),
-    FirstCloud.create(),
-    FirstCloud.create()
-  )
-  $('.cloudBoxB').append(
-    FirstCloud.create(),
-    FirstCloud.create(),
-    SecondCloud.create(),
-    SecondCloud.create(),
-    ThirdCloud.create()
-  )
-  $('.cloudBoxC').append(
-    FirstCloud.create(),
-    FirstCloud.create(),
-    SecondCloud.create(),
-    ThirdCloud.create()
-  )
+  let A = [1, 2, 3, 1, 2, 3, 1, 1],
+    B = [1, 1, 2, 2, 3],
+    C = [1, 1, 2, 3]
+
+  createClouds(A, '.cloudBoxA')
+  createClouds(B, '.cloudBoxB')
+  createClouds(C, '.cloudBoxC')
+
+  function createClouds(arr, addDom) {
+    arr.map(item => {
+      $(addDom).append(Clouds.create(item))
+    })
+  }
 }
 
 const addDepartmentContent = (arr) => {
@@ -515,14 +505,73 @@ const addProjectContent = (arr) => {
   })
 }
 
-if (window.innerWidth >= 768) {
-  teamImgToText()
-  projectSlideShow()
+const dataImport = () => {
   addPresidiumContent(presidium)
   addGroupContent(group)
   addDepartmentContent(department)
   addProjectContent(project)
   addClouds()
+}
+
+const Load = () => {
+  let pageIndex = 0;
+
+  function loadAnimation() {
+    let domClass = '';
+    switch (pageIndex) {
+      case 3:
+        index = 0;
+        domClass = '.departmentContent';
+        break;
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+        index = 1;
+        domClass = '.moonBox';
+        break;
+      case 9:
+        index = 2;
+        domClass = '.group';
+        drawTeamEye()
+        break;
+      case 10:
+      case 11:
+      case 12:
+      case 13:
+        index = 3;
+        domClass = '.competion';
+        break;
+      case 14:
+        index = 4;
+        domClass = '.projectContent';
+        break;
+    }
+    fakeLoad(domClass)
+  }
+
+  function fakeLoad(domClass) {
+    Array.from(document.querySelectorAll(domClass)).map((item, index) => {
+      item.style.animation = `load .5s ${.1*index}s 1 forwards`
+    })
+  }
+
+  window.onscroll = function () {
+    let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    if (document.documentElement.scrollTop - clientH * 0.7 * pageIndex >= 0) {
+      pageIndex++;
+      if (pageIndex >= 3)
+        loadAnimation()
+    }
+  };
+}
+
+if (window.innerWidth >= 768) {
+  teamImgToText()
+  projectSlideShow()
+  Load()
+  dataImport()
   presidiumScroll()
   activityScroll()
   presidiumShow()
