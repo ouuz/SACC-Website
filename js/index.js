@@ -92,6 +92,29 @@ const projectSlideShow = () => {
   }
 }
 
+const departmentHoverShow = () => {
+  let list = document.querySelector('.department');
+  list.addEventListener('mouseover', slideIn);
+  list.addEventListener('mouseout', slideOut);
+  let time = null,curTime = null
+
+  function slideIn(e) {
+    time = new Date()
+    e.target.className == 'departmentContent' ? slide() : ''
+
+    function slide() {
+      $($(e.target).children().get(2)).css('display', 'block').css('animation', 'hiddenImgJump .3s 1 forwards')
+    }
+  }
+
+  function slideOut(e) {
+    curTime = new Date()
+    if(curTime - time >= 50){
+        $('.hiddenImg').css('display', 'none')
+    }
+  }
+}
+
 const presidiumScroll = () => {
   const selfHeight = $(".presidium").height();
   let beforeOffsetTop = $(".presidium").offset().top;
@@ -485,6 +508,9 @@ const addDepartmentContent = (arr) => {
         <img src=${item.departmentImgSrc} alt="">
       </div>
       <p>${item.departmentText}</p>
+      <div class="hiddenImg">
+          <img src=${item.hiddenImgSrc} alt="">
+        </div>
     </div>
   `)
   })
@@ -575,6 +601,7 @@ if (window.innerWidth >= 768) {
   presidiumScroll()
   activityScroll()
   presidiumShow()
+  departmentHoverShow()
 } else {
   addPresidiumMobileContent(presidium)
 }

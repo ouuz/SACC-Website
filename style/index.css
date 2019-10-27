@@ -16,7 +16,7 @@ html {
 }
 
 #Logo {
-  background: linear-gradient(#1d1d2c,30%,#675284,#2c2c43);
+  background: linear-gradient(#1d1d2c, 30%, #675284, #2c2c43);
   z-index: -1;
   position: absolute;
 }
@@ -176,7 +176,7 @@ html {
   height: 100vh;
   display: flex;
   overflow: hidden;
-  background: linear-gradient(#f2c2b3, 20%,#ffffee);
+  background: linear-gradient(#f2c2b3, 20%, #ffffee);
   position: relative;
 }
 
@@ -824,7 +824,6 @@ html {
   flex-direction: column;
   justify-content: space-around;
   position: relative;
-  overflow: hidden;
   margin-top: 100vh;
 }
 
@@ -840,10 +839,23 @@ html {
   border-radius: 30px;
   border: 2px #f8f9ad solid;
   transition: all .2s;
+  position: relative;
 }
 
 .departmentContent:hover {
   box-shadow: 8px 7px 11px 4px #e8e7da
+}
+
+.hiddenImg {
+  position: absolute;
+  display: none;
+  top: -100%;
+  width: 20vw;
+  left: 40%;
+}
+
+.hiddenImg>img {
+  width: 100%;
 }
 
 .departmentContentImg {
@@ -874,6 +886,19 @@ html {
 
 .departmentComic img {
   width: 100%;
+}
+
+@keyframes hiddenImgJump {
+  0%{
+    transform: translateY(10vh);
+  }
+  50% {
+    transform: translateY(-10vh);
+  }
+
+  100% {
+    transform: translateY(0vh);
+  }
 }
 
 /* nav */
@@ -942,18 +967,21 @@ html {
   opacity: 0;
 }
 
-@keyframes load{
-  0%{
+@keyframes load {
+  0% {
     transform: translateY(10vh) scale(0);
     opacity: 0;
   }
-  100%{
+
+  100% {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
+
 .departmentContent,
 .moonBox,
-.competion,.projectContent{
-  opacity:0
+.competion,
+.projectContent {
+  opacity: 0
 }
