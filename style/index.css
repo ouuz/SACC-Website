@@ -471,6 +471,7 @@ html {
   position: absolute;
   top: -35vh;
   width: 15vw;
+  height: 30vh;
   left: -3vw;
   color: #ffffff;
   font-size: 1.3rem;
@@ -482,6 +483,7 @@ html {
 
 .PresidiumSaying p {
   opacity: 0;
+  word-break: break-all;
   transition: all .2s ease-in-out;
 }
 
@@ -803,7 +805,7 @@ html {
 
 .projectContent {
   flex-basis: 25%;
-  background: url('../img/666.png') no-repeat;
+  background: url('../img/material/xsq.png') no-repeat;
   overflow-x: hidden;
   position: relative;
 }

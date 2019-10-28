@@ -411,8 +411,8 @@ const addPresidiumContent = (arr) => {
         <p class="PresidiumName">${item.name}</p>
         <div class="PresidiumYear">${item.year}</div>
         <div class="PresidiumSaying">
-          <span class="u-tri"></span>
           <p>${item.signature}</p>
+          <span class="u-tri"></span>
         </div>
       </h3>
     </li>

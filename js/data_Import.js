@@ -3,86 +3,86 @@ var presidium = [{
     'position': '主席',
     'year': 2019,
     'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'portraitSrc': './img/portrait/wrq.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
+    'name': '王文钦',
+    'position': '副主席',
     'year': 2019,
     'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'portraitSrc': './img/portrait/wwq.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
+    'name': '余锦标',
+    'position': '副主席',
     'year': 2019,
     'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'portraitSrc': './img/portrait/yjb.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
+    'name': '黄远宁',
+    'position': '副主席',
+    'year': 2019,
+    'signature': '拖延症晚期患者，精通各种摸鱼事宜。语言成绩准备中，杜绝躺尸从我做起qaq',
+    'portraitSrc': './img/portrait/hyn.jpg'
+  }, {
+    'name': '徐淑敏',
+    'position': '副主席',
     'year': 2019,
     'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'portraitSrc': './img/portrait/xhm.jpg'
   }, {
-    'name': '王润庆',
+    'name': '张嘉',
     'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'year': 2018,
+    'signature': '懂一点Python，Java，学不会前端只能学后端的渣渣，技术没有长进，头皮越来越冷，只有霸王才能拯救我。PS:我边上的几位才是真大佬，最后广告位出租(ಡωಡ)有意私聊',
+    'portraitSrc': './img/portrait/zj.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'name': '陈坤',
+    'position': '副主席',
+    'year': 2018,
+    'signature': '我常常因为不够沙雕而感到和大家格格不入',
+    'portraitSrc': './img/portrait/ck.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'name': '郭亚旻',
+    'position': '副主席',
+    'year': 2018,
+    'signature': '这个人不懒，但她什么都没有留下',
+    'portraitSrc': './img/portrait/gym.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'name': '高宇',
+    'position': '副主席',
+    'year': 2018,
+    'signature': '用过flask搭建后台，后转为用java。目前在做图形学（ComputerGraphics,ComputerVision,ImageProcessing）',
+    'portraitSrc': './img/portrait/gy.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'name': '雷镇豪',
+    'position': '副主席',
+    'year': 2018,
+    'signature': '本人擅长单片机、物联网、无人机等项目的鼓掌和叫好，精通 C、C++、Python、Golang、Docker、Kubernetes、HTML、CSS、JavaScript等单词的拼写，熟悉 Windows、Linux、OS X、Android、iOS 等系统的开关机。',
+    'portraitSrc': './img/portrait/lzh.jpg'
   }, {
-    'name': '王润庆',
+    'name': '王玉函',
     'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'year': 2017,
+    'signature': 'http://intro.ponder.ink/#/welcome1',
+    'portraitSrc': './img/portrait/wyh.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'name': '王化益',
+    'position': '副主席',
+    'year': 2017,
+    'signature': '本人男，很帅，敲了3年代码，很累，现寻找漂亮小姐姐一起浪迹天涯，有意者加我微信:fytc1011',
+    'portraitSrc': './img/portrait/why.jpg'
   }, {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
-  }, {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'name': '刁太',
+    'position': '副主席',
+    'year': 2017,
+    'signature': '这个人很懒，什么都没有写。',
+    'portraitSrc': './img/portrait/dt.jpg'
   },
   {
-    'name': '王润庆',
-    'position': '主席',
-    'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
-    'portraitSrc': './img/TIM图片20190921133506.jpg'
+    'name': '陈维清',
+    'position': '副主席',
+    'year': 2017,
+    'signature': '精通各种bug编写，嘤嘤嘤能力满级。機械學習海外在逃，21世纪的学科入坑中。长期高价收购防脱发秘籍+vx:budazhu97',
+    'portraitSrc': './img/portrait/cwq.jpg'
   }
 ]
 
@@ -102,7 +102,7 @@ var technologyStackList = {
     './img/technologyStack/python.png'
   ],
   'game': [
-    './img/游戏.png',
+    './img/group/yx.png',
     './img/technologyStack/C.png',
     './img/technologyStack/C++.png',
     './img/technologyStack/Java.png',
@@ -115,7 +115,7 @@ var technologyStackList = {
     'http://sacc.oss-cn-beijing.aliyuncs.com/sacc-static/%E5%AE%89%E5%85%A8.png'
   ],
   'algorithm': [
-    './img/算法.png',
+    './img/group/sf.png',
     './img/technologyStack/C.png',
     './img/technologyStack/C++.png',
     './img/technologyStack/Java.png'
@@ -124,62 +124,62 @@ var technologyStackList = {
 
 var group = [{
     'tag': '前端组',
-    'GroupComicImgSrc': './img/前端.png',
-    'groupImgSrc': './img/HTML5.png',
+    'GroupComicImgSrc': './img/group/qdComic.png',
+    'groupImgSrc': './img/technologyStack/HTML.png',
     'des': '我们是网站的艺术总监，只写有情怀的代码。我们是科协的颜值担当，只做有情调的码农欢迎加入前端开发组~'
   },
   {
     'tag': '后端组',
-    'GroupComicImgSrc': './img/后端.png',
-    'groupImgSrc': 'http://sacc.oss-cn-beijing.aliyuncs.com/sacc-static/java.png',
+    'GroupComicImgSrc': './img/group/hdComic.png',
+    'groupImgSrc': './img/technologyStack/Java.png',
     'des': '后端组使用Java语言进行后端开发，处理前端发送的各种请求。'
   }, {
     'tag': 'python组',
-    'GroupComicImgSrc': './img/python组.png',
-    'groupImgSrc': 'http://sacc.oss-cn-beijing.aliyuncs.com/sacc-static/python.png',
+    'GroupComicImgSrc': './img/group/pyComic.png',
+    'groupImgSrc': './img/technologyStack/python.png',
     'des': 'Life is short，you need Python。python组旨在带领大家领略python的简洁优雅，找到适合自己的方向'
   }, {
     'tag': '算法组',
-    'GroupComicImgSrc': './img/算法组.png',
-    'groupImgSrc': './img/算法.png',
+    'GroupComicImgSrc': './img/group/sfComic.png',
+    'groupImgSrc': './img/group/sf.png',
     'des': '算法是一个计算的具体步骤，常用于计算、数据处理和自动推理。其在计算机这个行业中无处不在。'
   }, {
     'tag': '安全组',
-    'GroupComicImgSrc': './img/安全.png',
+    'GroupComicImgSrc': './img/group/aqComic.png',
     'groupImgSrc': 'http://sacc.oss-cn-beijing.aliyuncs.com/sacc-static/%E5%AE%89%E5%85%A8.png',
     'des': '安全组是由一群对黑客技术感兴趣的年轻人组成的兴趣团体。',
   }, {
     'tag': '游戏组',
-    'GroupComicImgSrc': './img/游戏组.png',
-    'groupImgSrc': './img/游戏.png',
+    'GroupComicImgSrc': './img/group/yxComic.png',
+    'groupImgSrc': './img/group/yx.png',
     'des': '两个人，一个组。简单却暗藏玄机，广泛涉猎各种语言，加入我们、一起在编程的路上斩妖除bug！'
   }
 ]
 
 var department = [{
     'departmentImgSrc': './img/TIM图片20190921133506.jpg',
-    'departmentText': '技术部现有算法、程序设计、前端设计和网络安全等技术方向，这些技术相辅相成。技术部的骨干成员实力雄厚，经历丰富。多人在程序设计大赛、网络攻防大赛、网页设计大赛等中获得奖项。',
-    'hiddenImgSrc': './img/TIM图片20191027160124.png'
+    'departmentText': '作为科协的推广部门，新媒体的小伙伴们主要负责的是关于科协的信息的发布与分享，以及院科协公众号的运营，同时还会教授剪辑学院视频的内容，一起见证科协的各项活动，为院科协的蓬勃发展添上有力的一笔。',
+    'hiddenImgSrc': './img/department/xmt.png'
   }, {
     'departmentImgSrc': './img/TIM图片20190921133506.jpg',
     'departmentText': '技术部现有算法、程序设计、前端设计和网络安全等技术方向，这些技术相辅相成。技术部的骨干成员实力雄厚，经历丰富。多人在程序设计大赛、网络攻防大赛、网页设计大赛等中获得奖项。',
-    'hiddenImgSrc': './img/TIM图片20191027160124.png'
+    'hiddenImgSrc': './img/department/jsb.png'
   }, {
     'departmentImgSrc': './img/TIM图片20190921133506.jpg',
-    'departmentText': '技术部现有算法、程序设计、前端设计和网络安全等技术方向，这些技术相辅相成。技术部的骨干成员实力雄厚，经历丰富。多人在程序设计大赛、网络攻防大赛、网页设计大赛等中获得奖项。',
-    'hiddenImgSrc': './img/TIM图片20191027160124.png'
+    'departmentText': '办公室是科协的重要组成部分！它负责科协的整个统筹规划，承担活动策划宣传，组织运行，等工作。其下设有内务部，策划部宣传部。在办公室成员的合作下，科协才能顺利地举办各种比赛。另外，它也是科协交流放松地方和科协女生的集中营！',
+    'hiddenImgSrc': './img/department/bgs.png'
   }
 ]
 
 var project = [{
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
-  'projectImgSrc': './img/2456465.png'
+  'projectImgSrc': './img/project/onePlusOne.png'
   }, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
-  'projectImgSrc': './img/2456465.png'
+  'projectImgSrc': './img/project/onePlusOne.png'
   }, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
-  'projectImgSrc': './img/2456465.png'
+  'projectImgSrc': './img/project/onePlusOne.png'
   }
 ]
 
