@@ -293,13 +293,13 @@ function drawTeamEye() {
     if (Percent > 100) {
       window.clearInterval(curve)
       context.setLineDash([80, 20])
-      drawPlanet(context, 380, 465, 200, 0, 2, "#ffedd6", 'transparent', 10)
+      drawPlanet(context, 380, 465, 200, 0, 2, "#f3c6b7", 'transparent', 10)
       setTimeout(() => {
         context.setLineDash([60, 0])
-        drawPlanet(context, 380, 465, 150, 0, 2, "#ffedd6", 'transparent', 10)
+        drawPlanet(context, 380, 465, 150, 0, 2, "#f3c6b7", 'transparent', 10)
       }, 1500)
       setTimeout(() => {
-        drawPlanet(context, 380, 465, 75, 1, 3, "#ffedd6", 'transparent', 10)
+        drawPlanet(context, 380, 465, 75, 1, 3, "#f3c6b7", 'transparent', 10)
       }, 3000)
     }
 
@@ -309,7 +309,7 @@ function drawTeamEye() {
 function Curve() {
   context.lineWidth = 10;
   context.setLineDash([60, 30]);
-  context.strokeStyle = "#ffedd6";
+  context.strokeStyle = "#f3c6b7";
   context.beginPath();
 
   drawCurvePath(

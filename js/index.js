@@ -1,64 +1,82 @@
+const findFather = (dom, fatherName) => {
+  if ($(dom).attr('class') === fatherName)
+    return dom
+  else
+    return findFather($(dom).parent(), fatherName)
+}
+
 const teamImgToText = () => {
-  let list = document.querySelector('.teamRight');
-  let time = null,curTime = null
+  let list = document.querySelector('.teamRight'),
+    time = null,
+    curTime = null,
+    transformPoint = ['-14vw,-14vh', '3vw,15vh', '9vw,-6vh', '-12vw,8vh', '1vw,-25vh']
   list.addEventListener('mouseover', slideIn);
   list.addEventListener('mouseout', slideOut);
 
   function slideIn(e) {
     time = new Date()
-    $(e.target).attr('class') == 'groupImgBox' ||
-      $(e.target).attr('class') == "groupLogo" ||
-      $(e.target).attr('class') == "groupComic" ? slide() : '';
+    if ($(e.target).attr('class'))
+      $(e.target).attr('class').match('Group') ? slide() : '';
 
     function slide() {
-      $(e.target).attr('class') == 'groupImgBox' ?
-        Slide($(e.target).children().get(0), $(e.target).children().get(1), $(e.target)) :
-        $(e.target).attr('class') == "groupLogo" ?
-        Slide($(e.target), $(e.target).next(), $(e.target).parent()) :
-        $(e.target).attr('class') == "groupComic" ?
-        Slide($(e.target).prev(), $(e.target), $(e.target).parent()) : '';
+      let fatherDom = findFather(e.target, 'GroupImgBox'),
+        arr = []
 
-      function Slide(ev1, ev2, ev3) {
-        $(ev1).css('transform', 'translateX(-200%)')
-        $(ev2).css('transform', 'translateX(-200%)')
-        $(ev3).next().css('opacity', '1')
-        $('.backgroundImg').css('transform', 'translateX(50%)')
-      }
+      $($(fatherDom).children().get(0)).css('transform', 'translateX(-200%)')
+      $($(fatherDom).children().get(1)).css('transform', 'translateX(-200%)')
+      $($(fatherDom)).next().css('opacity', '1')
+      $('.backgroundImg').css('transform', 'translateX(50%)')
+      technologyStackListShow()
 
-      $(e.target).attr('class') == "groupLogo" ?
-        bounce($(e.target)) :
-        $(e.target).attr('class') == "groupComic" ?
-        bounce($(e.target).prev()) : '';
+      function technologyStackListShow() {
 
-      function bounce(ev1) {
-        $('.teamLeftBox').empty().append(`
-          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
-          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
-          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
-          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
-          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
-          <img src=${$(ev1).attr('src')}  class="teamLeftLogo" >
-        `)
+        switch ($($(fatherDom).next().children().get(0)).text()) {
+          case '前端组:':
+            arr = technologyStackList.fontEnd;
+            break;
+          case '后端组:':
+            arr = technologyStackList.backEnd;
+            break;
+          case '游戏组:':
+            arr = technologyStackList.game;
+            break;
+          case '安全组:':
+            arr = technologyStackList.security;
+            break;
+          case '算法组:':
+            arr = technologyStackList.algorithm;
+            break;
+          case 'python组:':
+            arr = technologyStackList.python;
+            break;
+        }
+
+        $('.teamLeftBox').empty()
+        arr.map(item => {
+          $('.teamLeftBox').append(`<img src=${item} class="teamLeftLogo">`)
+        })
+
         setTimeout(() => {
-          $($('.teamLeftBox').children()[1]).css('transform', 'translate(-14vw,-14vh)').css('width', '105px')
-          $($('.teamLeftBox').children()[2]).css('transform', 'translate(3vw,15vh)').css('width', '140px')
-          $($('.teamLeftBox').children()[3]).css('transform', 'translate(9vw,-6vh)').css('width', '120px')
-          $($('.teamLeftBox').children()[4]).css('transform', 'translate(-12vw,8vh)').css('width', '130px')
-          $($('.teamLeftBox').children()[5]).css('transform', 'translate(1vw,-25vh)').css('width', '100px')
+          Array.from($('.teamLeftBox').children()).map((item, index) => {
+            if (item)
+              $(item).css('transform', `translate(${transformPoint[index - 1]})`)
+          })
         }, 200)
       }
 
     }
+
   }
 
   function slideOut() {
     curTime = new Date()
-    if(curTime - time >= 200){
-      $('.groupLogo').css('transform', 'translateX(0)')
-      $('.groupComic').css('transform', 'translateX(0)')
+    if (curTime - time >= 300) {
+      $('.GroupLogo').css('transform', 'translateX(0)')
+      $('.GroupComic').css('transform', 'translateX(0)')
       $('.groupText').css('opacity', '0')
     }
   }
+
 }
 
 const projectSlideShow = () => {
@@ -95,13 +113,14 @@ const departmentHoverShow = () => {
   let list = document.querySelector('.department');
   list.addEventListener('mouseover', slideIn);
   list.addEventListener('mouseout', slideOut);
-  let time = null,curTime = null
+  let time = null,
+    curTime = null
 
   function slideIn(e) {
     time = new Date()
     e.target.className == 'departmentContent' ? slide($(e.target).children().get(2)) :
-    e.target.className == 'departmentContentimg' ? slide($(e.target).parent().next().next()):
-    e.target.className == 'departmentContentText' ? slide($(e.target).next()):''
+      e.target.className == 'departmentContentimg' ? slide($(e.target).parent().next().next()) :
+      e.target.className == 'departmentContentText' ? slide($(e.target).next()) : ''
 
     function slide(ev) {
       $(ev).css('display', 'block').css('animation', 'hiddenImgJump .3s 1 forwards')
@@ -110,8 +129,8 @@ const departmentHoverShow = () => {
 
   function slideOut() {
     curTime = new Date()
-    if(curTime - time >= 200){
-        $('.hiddenImg').css('display', 'none')
+    if (curTime - time >= 200) {
+      $('.hiddenImg').css('display', 'none')
     }
   }
 }
@@ -237,7 +256,7 @@ const presidiumShow = () => {
   }
 }
 
-function generateStars(n) {
+const generateStars = (n) => {
   for (let i = 0; i < n; i++) {
     let className = i % 20 == 0 ? 'star starBig' : i % 9 == 0 ? 'star starMedium' : 'star';
     let top = Math.round(Math.random() * window.innerHeight,
@@ -471,11 +490,12 @@ const addGroupContent = (arr) => {
   arr.map(item => {
     $('.teamRight').append(`
     <div class="group">
-    <div class="groupImgBox">
-      <img src=${item.groupImgSrc} alt="" class="groupLogo">
-      <img src=${item.groupComicImgSrc} alt="" class="groupComic">
+    <div class="GroupImgBox">
+      <img src=${item.groupImgSrc} alt="" class="GroupLogo">
+      <img src=${item.GroupComicImgSrc} alt="" class="GroupComic">
     </div>
     <div class="groupText">
+      <p>${item.tag}:</p>
       <p>${item.des}</p>
       <div class="borderTopLeft"></div>
       <div class="borderBottomRight"></div>

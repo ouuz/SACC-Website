@@ -57,7 +57,7 @@
     display: none;
   }
 
-  .groupImgBox img:nth-child(1),
+  .GroupImgBox img:nth-child(1),
   .teamLeft,
   .project,
   .cloudBox,
