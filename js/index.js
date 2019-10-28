@@ -1,9 +1,11 @@
 const teamImgToText = () => {
   let list = document.querySelector('.teamRight');
+  let time = null,curTime = null
   list.addEventListener('mouseover', slideIn);
   list.addEventListener('mouseout', slideOut);
 
   function slideIn(e) {
+    time = new Date()
     $(e.target).attr('class') == 'groupImgBox' ||
       $(e.target).attr('class') == "groupLogo" ||
       $(e.target).attr('class') == "groupComic" ? slide() : '';
@@ -49,15 +51,12 @@ const teamImgToText = () => {
     }
   }
 
-  function slideOut(e) {
-    $(e.target).attr('class') == 'groupText' ? slide() : '';
-
-    function slide() {
-      setTimeout(() => {
-        $($(e.target).prev().children().get(0)).css('transform', 'translateX(0)')
-        $($(e.target).prev().children().get(1)).css('transform', 'translateX(0)')
-        $(e.target).css('opacity', '0')
-      }, 50)
+  function slideOut() {
+    curTime = new Date()
+    if(curTime - time >= 200){
+      $('.groupLogo').css('transform', 'translateX(0)')
+      $('.groupComic').css('transform', 'translateX(0)')
+      $('.groupText').css('opacity', '0')
     }
   }
 }
@@ -100,16 +99,18 @@ const departmentHoverShow = () => {
 
   function slideIn(e) {
     time = new Date()
-    e.target.className == 'departmentContent' ? slide() : ''
+    e.target.className == 'departmentContent' ? slide($(e.target).children().get(2)) :
+    e.target.className == 'departmentContentimg' ? slide($(e.target).parent().next().next()):
+    e.target.className == 'departmentContentText' ? slide($(e.target).next()):''
 
-    function slide() {
-      $($(e.target).children().get(2)).css('display', 'block').css('animation', 'hiddenImgJump .3s 1 forwards')
+    function slide(ev) {
+      $(ev).css('display', 'block').css('animation', 'hiddenImgJump .3s 1 forwards')
     }
   }
 
-  function slideOut(e) {
+  function slideOut() {
     curTime = new Date()
-    if(curTime - time >= 50){
+    if(curTime - time >= 200){
         $('.hiddenImg').css('display', 'none')
     }
   }
@@ -505,9 +506,9 @@ const addDepartmentContent = (arr) => {
     $('.department').append(`
     <div class="departmentContent">
       <div class="departmentContentImg">
-        <img src=${item.departmentImgSrc} alt="">
+        <img src=${item.departmentImgSrc} alt="" class="departmentContentimg">
       </div>
-      <p>${item.departmentText}</p>
+      <p class="departmentContentText">${item.departmentText}</p>
       <div class="hiddenImg">
           <img src=${item.hiddenImgSrc} alt="">
         </div>
