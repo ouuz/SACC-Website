@@ -2,19 +2,19 @@ var presidium = [{
     'name': '王润庆',
     'position': '主席',
     'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
+    'signature': '这个人很懒，什么都没有留下。',
     'portraitSrc': './img/portrait/wrq.jpg'
   }, {
     'name': '王文钦',
     'position': '副主席',
     'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
+    'signature': '这个人不懒，但他什么都没有留下。',
     'portraitSrc': './img/portrait/wwq.jpg'
   }, {
     'name': '余锦标',
     'position': '副主席',
     'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
+    'signature': '立flag小能手，虽然被迫用各种语言，但Java是我的本命',
     'portraitSrc': './img/portrait/yjb.jpg'
   }, {
     'name': '黄远宁',
@@ -23,10 +23,10 @@ var presidium = [{
     'signature': '拖延症晚期患者，精通各种摸鱼事宜。语言成绩准备中，杜绝躺尸从我做起qaq',
     'portraitSrc': './img/portrait/hyn.jpg'
   }, {
-    'name': '徐淑敏',
+    'name': '徐舒敏',
     'position': '副主席',
     'year': 2019,
-    'signature': '前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端',
+    'signature': '发现程序员经常熬夜有三个弊端：第一，记忆力越来越差；第二，数数经常会数错；第四，记忆力越来越差。',
     'portraitSrc': './img/portrait/xhm.jpg'
   }, {
     'name': '张嘉',

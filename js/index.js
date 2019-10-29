@@ -5,7 +5,7 @@ const findFather = (dom, fatherName) => {
     return findFather($(dom).parent(), fatherName)
 }
 
-const teamImgToText = () => {
+const groupAnimation = () => {
   let list = document.querySelector('.teamRight'),
     time = null,
     curTime = null,
@@ -424,7 +424,15 @@ const addPresidiumContent = (arr) => {
   <li class="musicpaper eq1"></li>
   <li class="musicpaper eq2"></li>
   <li class="musicpaper eq3"></li>
-  <li class="musicpaper eq4"><div class="end"></div></li>`)
+  <li class="musicpaper eq4"><div class="end"></div></li>
+  <li class="presidiumCloud">
+    <div class="presidiumContentCloud">
+      <img src="./img/material/clouds.png" alt="">
+      <img src="./img/material/clouds.png" alt="">
+      <img src="./img/material/clouds.png" alt="">
+    </div> 
+  </li>
+  `)
 }
 
 const addPresidiumMobileContent = (arr) => {
@@ -615,7 +623,7 @@ const Load = () => {
 }
 
 if (window.innerWidth >= 768) {
-  teamImgToText()
+  groupAnimation()
   projectSlideShow()
   Load()
   dataImport()

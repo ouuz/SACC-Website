@@ -38,7 +38,7 @@ function drawCurve() { //画轨迹
   drawPartCurve(35, '#8dc6e1', [140, 50], [1430, -10], [1300, 650], 0.15)
   drawPartCurve(35, '#febc7f', [140, 50], [1300, 649], [550, 1250], 0.15)
   drawPartCurve(35, '#ff9281', [140, 50], [550, 1249], [-100, 1400], 0.1)
-  
+
   // drawFourthCurve
   drawPartCurve(30, '#cd5dbf', [160, 60], [1880, 550], [1620, 1211], 0.06)
   drawPartCurve(30, '#82fef6', [160, 60], [1621, 1210], [620, 2300], 0.14)
@@ -301,6 +301,11 @@ function drawTeamEye() {
       setTimeout(() => {
         drawPlanet(context, 380, 465, 75, 1, 3, "#f3c6b7", 'transparent', 10)
       }, 3000)
+      setTimeout(() => {
+        $('#Group').mousemove((e) => {
+          $('.teamLeft').css('top', `${e.pageY / 120 - 50}px`).css('left', `${e.pageX / 120}px`)
+        })
+      }, 4000)
     }
 
   }, 10)
