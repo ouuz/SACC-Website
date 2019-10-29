@@ -44,7 +44,7 @@ html {
   position: absolute;
   right: 0;
   bottom: 0;
-  background: #282c5b;
+  background: #372f4c;
   animation: logoText 3s forwards;
   width: 50vw;
   height: 30vh;
@@ -871,7 +871,7 @@ html {
   margin-top: 100vh;
 }
 
-.departmentContent {
+.DepartmentContent {
   width: 40%;
   background: rgba(255, 255, 255, .1);
   display: flex;
@@ -886,7 +886,7 @@ html {
   position: relative;
 }
 
-.departmentContent:hover {
+.DepartmentContent:hover {
   box-shadow: 8px 7px 11px 4px #e8e7da
 }
 
@@ -902,21 +902,21 @@ html {
   width: 100%;
 }
 
-.departmentContentImg {
+.DepartmentContentImg {
   width: 60%;
   margin: 1rem;
 }
 
-.departmentContentImg img {
+.DepartmentContentImg img {
   width: 100%
 }
 
-.departmentContent p {
+.DepartmentContent p {
   font-size: 1rem;
   line-height: 2
 }
 
-.departmentContent:nth-child(2) {
+.DepartmentContent:nth-child(2) {
   position: absolute;
   right: 0
 }
@@ -1029,4 +1029,55 @@ html {
 .competion,
 .projectContent {
   opacity: 0
+}
+
+.illustrations {
+  position: relative;
+  height: 200vh;
+  z-index: 2;
+}
+
+.blueBgBox {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30vh;
+  background: #5350a4;
+  background: radial-gradient(150% 50%, #5350a4 0%, rgba(253, 214, 189, 0) 100%);
+  z-index: 3;
+  top: 75%;
+  height: 45%;
+}
+
+.purpleBgBox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  background: linear-gradient(#fff 50%, #9264ae 98%);
+  z-index: 1;
+}
+
+.illustrationsHouse {
+  position: sticky;
+  width: 100%;
+  z-index: 4;
+  height: 100vh;
+  top: 0;
+}
+
+.illustrationsHouse>img {
+  width: 100%;
+}
+
+#illustrationsTree {
+  position: absolute;
+  left: 0%;
+  transition: all .3s;
+  transform: scale(5);
+  display: none;
+  top: 0;
 }

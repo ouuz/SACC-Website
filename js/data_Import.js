@@ -1,3 +1,164 @@
+const addPresidiumContent = (arr) => {
+  arr.map(item => {
+    $('.presidiumContent ul').append(`
+    <li class="Presidium">
+      <div class="PresidiumPortrait">
+        <img src=${item.portraitSrc} alt="">
+      </div>
+      <h3>
+        <div class="PresidiumTag">${item.position}</div>
+        <p class="PresidiumName">${item.name}</p>
+        <div class="PresidiumYear">${item.year}</div>
+        <div class="PresidiumSaying">
+          <p>${item.signature}</p>
+          <span class="u-tri"></span>
+        </div>
+      </h3>
+    </li>
+    `)
+  })
+
+  $('.presidiumContent ul').append(`          
+  <li class="musicpaper eq0"><div class="end"></div></li>
+  <li class="musicpaper eq1"></li>
+  <li class="musicpaper eq2"></li>
+  <li class="musicpaper eq3"></li>
+  <li class="musicpaper eq4"><div class="end"></div></li>
+  <li class="presidiumCloud">
+    <div class="presidiumContentCloud">
+      <img src="./img/material/clouds.png" alt="">
+      <img src="./img/material/clouds.png" alt="">
+      <img src="./img/material/clouds.png" alt="">
+    </div> 
+  </li>
+  `)
+}
+
+const addPresidiumMobileContent = (arr) => {
+  arr.map((item, index) => {
+    if (index <= 4)
+      $('.presidiumMobile_2019 ul').append(`
+        <li>
+          <div class="presidiumMobileDes">
+            <div class="presidiumMobilePortrait">
+              <img src=${item.portraitSrc} alt="">
+            </div>
+            <h3>
+              <div class="presidiumMobileTag">${item.position}</div>
+              <p class="presidiumMobileName">${item.name}</p>
+              <div class="presidiumMobileYear">${item.year}</div>
+            </h3>
+          </div>
+          <div class="presidiumMobileSaying">
+            <p>${item.signature}</p>
+          </div>
+        </li>
+      `)
+    else if (index > 4 && index <= 9)
+      $('.presidiumMobile_2018 ul').append(`
+        <li>
+          <div class="presidiumMobileDes">
+            <div class="presidiumMobilePortrait">
+              <img src=${item.portraitSrc} alt="">
+            </div>
+            <h3>
+              <div class="presidiumMobileTag">${item.position}</div>
+              <p class="presidiumMobileName">${item.name}</p>
+              <div class="presidiumMobileYear">${item.year}</div>
+            </h3>
+          </div>
+          <div class="presidiumMobileSaying">
+            <p>${item.signature}</p>
+          </div>
+        </li>
+      `)
+    else
+      $('.presidiumMobile_2017 ul').append(`
+        <li>
+          <div class="presidiumMobileDes">
+            <div class="presidiumMobilePortrait">
+              <img src=${item.portraitSrc} alt="">
+            </div>
+            <h3>
+              <div class="presidiumMobileTag">${item.position}</div>
+              <p class="presidiumMobileName">${item.name}</p>
+              <div class="presidiumMobileYear">${item.year}</div>
+            </h3>
+          </div>
+          <div class="presidiumMobileSaying">
+            <p>${item.signature}</p>
+          </div>
+        </li>
+      `)
+  })
+}
+
+const addGroupContent = (arr) => {
+  arr.map(item => {
+    $('.teamRight').append(`
+    <div class="group">
+    <div class="GroupImgBox">
+      <img src=${item.groupImgSrc} alt="" class="GroupLogo">
+      <img src=${item.GroupComicImgSrc} alt="" class="GroupComic">
+    </div>
+    <div class="groupText">
+      <p>${item.tag}:</p>
+      <p>${item.des}</p>
+      <div class="borderTopLeft"></div>
+      <div class="borderBottomRight"></div>
+    </div>
+  </div>
+    `)
+  })
+}
+
+const addClouds = () => {
+  let A = [1, 2, 3, 1, 2, 3, 1, 1],
+    B = [1, 1, 2, 2, 3],
+    C = [1, 1, 2, 3]
+
+  createClouds(A, '.cloudBoxA')
+  createClouds(B, '.cloudBoxB')
+  createClouds(C, '.cloudBoxC')
+
+  function createClouds(arr, addDom) {
+    arr.map(item => {
+      $(addDom).append(Clouds.create(item))
+    })
+  }
+}
+
+const addDepartmentContent = (arr) => {
+  arr.map(item => {
+    $('.department').append(`
+    <div class="DepartmentContent">
+      <div class="DepartmentContentImg">
+        <img src=${item.departmentImgSrc} alt="" class="DepartmentContentimg">
+      </div>
+      <p class="DepartmentContentText">${item.departmentText}</p>
+      <div class="hiddenImg">
+          <img src=${item.hiddenImgSrc} alt="">
+        </div>
+    </div>
+  `)
+  })
+}
+
+const addProjectContent = (arr) => {
+  arr.map(item => {
+    $('.project').append(`
+    <div class="projectContent">
+      <div class="light"></div>
+      <div class="projectImgBox">
+        <a href=${item.projectLink}target="_blank"><img src=${item.projectImgSrc}
+            alt="" class="projectImg"></a>
+      </div>
+      <div class="blackScreen"></div>
+    </div>
+  `)
+  })
+}
+
 var presidium = [{
     'name': '王润庆',
     'position': '主席',

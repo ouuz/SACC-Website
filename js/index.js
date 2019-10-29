@@ -118,12 +118,12 @@ const departmentHoverShow = () => {
 
   function slideIn(e) {
     time = new Date()
-    e.target.className == 'departmentContent' ? slide($(e.target).children().get(2)) :
-      e.target.className == 'departmentContentimg' ? slide($(e.target).parent().next().next()) :
-      e.target.className == 'departmentContentText' ? slide($(e.target).next()) : ''
+    if ($(e.target).attr('class'))
+      $(e.target).attr('class').match('Department') ? slide() : '';
 
-    function slide(ev) {
-      $(ev).css('display', 'block').css('animation', 'hiddenImgJump .3s 1 forwards')
+    function slide() {
+      let fatherDom = findFather(e.target, 'DepartmentContent')
+      $($(fatherDom).children().last()).css('display', 'block').css('animation', 'hiddenImgJump .3s 1 forwards')
     }
   }
 
@@ -133,87 +133,6 @@ const departmentHoverShow = () => {
       $('.hiddenImg').css('display', 'none')
     }
   }
-}
-
-const presidiumScroll = () => {
-  const selfHeight = $(".presidium").height();
-  let beforeOffsetTop = $(".presidium").offset().top;
-  let percent = 0;
-  let left = $('.presidiumContent ul').offset().left - 100;
-  let children = $('.presidiumContent ul').children()
-  let Y = 0
-  let index = 1
-
-  function translateY() {
-    index == 1 || index == 6 || index == 11 ?
-      Y = -15 :
-      index == 2 || index == 7 || index == 12 ?
-      Y = -8 :
-      index == 3 || index == 8 || index == 13 ?
-      Y = -5 :
-      index == 4 || index == 9 || index == 14 ?
-      Y = -12 :
-      index == 5 || index == 10 ?
-      Y = -10 : ''
-  }
-
-  function NumAutoPlusAnimation(targetEle, options) {
-    let time = options.time,
-      finalNum = options.num,
-      regulator = options.regulator
-    step = finalNum / (time / regulator),
-      count = 0,
-      initial = 0;
-
-    let timer = setInterval(function () {
-      count = count + step;
-      if (count >= finalNum) {
-        clearInterval(timer);
-        count = finalNum;
-      }
-      let t = Math.floor(count);
-      initial = t;
-      $(targetEle).html(`${initial}`)
-      if (isNaN(t)) $(targetEle).html(`${finalNum}`)
-      if (t == initial) return;
-    }, 30);
-  }
-
-  $(window).scroll(() => {
-    const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    window.onwheel = function (e) {
-      e = e || window.event;
-      if (e.wheelDelta) {
-        if (elementScrollTop > beforeOffsetTop && elementScrollTop < (beforeOffsetTop + selfHeight - window.innerHeight)) {
-          if (e.wheelDelta < 0) {
-            percent += 8;
-
-            if ($('.presidiumContent ul').offset().left - left <= 270 && index <= 14) {
-              left = $('.presidiumContent ul').offset().left;
-              translateY()
-              $($(children).get(index)).css('transform', `translate3d(0,${Y}vh,0)`)
-              let a = $($(children).get(index)).children().last().children().get(2)
-              setTimeout(() => {
-                NumAutoPlusAnimation(a, {
-                  time: 1800,
-                  num: `${$(a).html()}`,
-                  regulator: 50
-                })
-              }, 50);
-              $($($(children).get(index)).children().last().children().get(2)).css('opacity', '1')
-              index++;
-            }
-          } else
-            percent -= 8;
-        } else if (elementScrollTop > (beforeOffsetTop + selfHeight - window.innerHeight))
-          percent = 136
-        else if (elementScrollTop < beforeOffsetTop)
-          percent = 0
-        $('.presidiumContent ul').css('transform', `translate3d(-${percent}vw,0,0)`)
-      }
-    };
-  })
-
 }
 
 const presidiumShow = () => {
@@ -267,80 +186,6 @@ const generateStars = (n) => {
     $('.starBox').append($(`<div class="${className}"style ="top:${top}px;left:${left}px;animation-duration:${animationDuration}ms;animation-delay:${animationDelay}ms"></div>`));
   }
 };
-
-const activityScroll = () => {
-  let beforeOffsetTop = $(".activity").offset().top,
-    elementScrollTop = document.documentElement.scrollTop,
-    el = $('.activityImgBox').children(),
-    top = elementScrollTop - beforeOffsetTop,
-    left = 0,
-    x0 = 0,
-    r = 0,
-    y0 = 0,
-    rorate = 0,
-    ImgTop = [
-      $($('.competion')[0]).offset().top,
-      $($('.competion')[1]).offset().top,
-      $($('.competion')[2]).offset().top,
-      $($('.competion')[3]).offset().top
-    ];
-
-  $(window).scroll(() => {
-    elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    if (elementScrollTop - beforeOffsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 2.3) <= 0) {
-      if (elementScrollTop - document.documentElement.scrollTop < 180) {
-        window.onwheel = function (e) {
-          e.wheelDelta < 0 ?
-            activityImgShow(activityImgShowDown) :
-            activityImgShow(activityImgShowUp)
-        }
-
-        if (elementScrollTop - beforeOffsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5) <= 0) {
-          r = window.innerHeight * 1.5;
-          y0 = elementScrollTop - beforeOffsetTop;
-          left = Math.abs(Math.sqrt(Math.pow(r, 2) - Math.pow(y0, 2)) + x0)
-        } else {
-          r = window.innerHeight * 1.5;
-          y0 = elementScrollTop - (beforeOffsetTop + window.innerHeight * 1.5)
-          left = Math.abs(Math.sqrt(Math.pow(r, 2) + Math.pow(y0, 2)) + x0)
-        }
-
-        top = elementScrollTop - beforeOffsetTop + window.innerHeight * 0.35
-        $('.activitySlideBox').css('top', `${top}px`).css('left', `${left}px`).css('transform', `rorate(${rorate}deg)`)
-      }
-    }
-  })
-
-  function activityImgShow(func) {
-    elementScrollTop - ImgTop[0] <= 0 ?
-      $(el.get(0)).find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards') :
-      (elementScrollTop - ImgTop[0] > 0 && elementScrollTop - ImgTop[1] <= 0) ?
-      func($(el.get(0))) :
-      (elementScrollTop - ImgTop[1] > 0 && elementScrollTop - ImgTop[2] <= 0) ?
-      func($(el.get(1))) :
-      (elementScrollTop - ImgTop[2] > 0 && elementScrollTop - ImgTop[3] <= 0) ?
-      func($(el.get(2))) :
-      $(el.get(3)).find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards')
-  }
-
-  function activityImgShowDown(ev) {
-    $(ev).find('h1').css('transform', 'skew(-20deg)')
-    $(ev).find('h1').find('span').css('animation', 'wordShake .8s infinite').css('opacity', '0.5')
-    $(ev).next().find('h1').css('transform', 'skew(0deg)')
-    $(ev).next().find('h1').find('span').css('animation', 'wordShake .8s 1').css('opacity', '1')
-    $(ev).find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards')
-    $(ev).next().find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards')
-  }
-
-  function activityImgShowUp(ev) {
-    $(ev).find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards')
-    $(ev).next().find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards')
-    $(ev).next().find('h1').css('transform', 'skew(-20deg)')
-    $(ev).next().find('h1').find('span').css('animation', 'wordShake .8s infinite').css('opacity', '0.5')
-    $(ev).find('h1').css('transform', 'skew(0deg)')
-    $(ev).find('h1').find('span').css('animation', 'wordShake .8s 1').css('opacity', '1')
-  }
-}
 
 const nav = () => {
   let list = document.querySelector('.nav ul')
@@ -399,167 +244,6 @@ const nav = () => {
   })
 }
 
-const addPresidiumContent = (arr) => {
-  arr.map(item => {
-    $('.presidiumContent ul').append(`
-    <li class="Presidium">
-      <div class="PresidiumPortrait">
-        <img src=${item.portraitSrc} alt="">
-      </div>
-      <h3>
-        <div class="PresidiumTag">${item.position}</div>
-        <p class="PresidiumName">${item.name}</p>
-        <div class="PresidiumYear">${item.year}</div>
-        <div class="PresidiumSaying">
-          <p>${item.signature}</p>
-          <span class="u-tri"></span>
-        </div>
-      </h3>
-    </li>
-    `)
-  })
-
-  $('.presidiumContent ul').append(`          
-  <li class="musicpaper eq0"><div class="end"></div></li>
-  <li class="musicpaper eq1"></li>
-  <li class="musicpaper eq2"></li>
-  <li class="musicpaper eq3"></li>
-  <li class="musicpaper eq4"><div class="end"></div></li>
-  <li class="presidiumCloud">
-    <div class="presidiumContentCloud">
-      <img src="./img/material/clouds.png" alt="">
-      <img src="./img/material/clouds.png" alt="">
-      <img src="./img/material/clouds.png" alt="">
-    </div> 
-  </li>
-  `)
-}
-
-const addPresidiumMobileContent = (arr) => {
-  arr.map((item, index) => {
-    if (index <= 4)
-      $('.presidiumMobile_2019 ul').append(`
-        <li>
-          <div class="presidiumMobileDes">
-            <div class="presidiumMobilePortrait">
-              <img src=${item.portraitSrc} alt="">
-            </div>
-            <h3>
-              <div class="presidiumMobileTag">${item.position}</div>
-              <p class="presidiumMobileName">${item.name}</p>
-              <div class="presidiumMobileYear">${item.year}</div>
-            </h3>
-          </div>
-          <div class="presidiumMobileSaying">
-            <p>${item.signature}</p>
-          </div>
-        </li>
-      `)
-    else if (index > 4 && index <= 9)
-      $('.presidiumMobile_2018 ul').append(`
-        <li>
-          <div class="presidiumMobileDes">
-            <div class="presidiumMobilePortrait">
-              <img src=${item.portraitSrc} alt="">
-            </div>
-            <h3>
-              <div class="presidiumMobileTag">${item.position}</div>
-              <p class="presidiumMobileName">${item.name}</p>
-              <div class="presidiumMobileYear">${item.year}</div>
-            </h3>
-          </div>
-          <div class="presidiumMobileSaying">
-            <p>${item.signature}</p>
-          </div>
-        </li>
-      `)
-    else
-      $('.presidiumMobile_2017 ul').append(`
-        <li>
-          <div class="presidiumMobileDes">
-            <div class="presidiumMobilePortrait">
-              <img src=${item.portraitSrc} alt="">
-            </div>
-            <h3>
-              <div class="presidiumMobileTag">${item.position}</div>
-              <p class="presidiumMobileName">${item.name}</p>
-              <div class="presidiumMobileYear">${item.year}</div>
-            </h3>
-          </div>
-          <div class="presidiumMobileSaying">
-            <p>${item.signature}</p>
-          </div>
-        </li>
-      `)
-  })
-}
-
-const addGroupContent = (arr) => {
-  arr.map(item => {
-    $('.teamRight').append(`
-    <div class="group">
-    <div class="GroupImgBox">
-      <img src=${item.groupImgSrc} alt="" class="GroupLogo">
-      <img src=${item.GroupComicImgSrc} alt="" class="GroupComic">
-    </div>
-    <div class="groupText">
-      <p>${item.tag}:</p>
-      <p>${item.des}</p>
-      <div class="borderTopLeft"></div>
-      <div class="borderBottomRight"></div>
-    </div>
-  </div>
-    `)
-  })
-}
-
-const addClouds = () => {
-  let A = [1, 2, 3, 1, 2, 3, 1, 1],
-    B = [1, 1, 2, 2, 3],
-    C = [1, 1, 2, 3]
-
-  createClouds(A, '.cloudBoxA')
-  createClouds(B, '.cloudBoxB')
-  createClouds(C, '.cloudBoxC')
-
-  function createClouds(arr, addDom) {
-    arr.map(item => {
-      $(addDom).append(Clouds.create(item))
-    })
-  }
-}
-
-const addDepartmentContent = (arr) => {
-  arr.map(item => {
-    $('.department').append(`
-    <div class="departmentContent">
-      <div class="departmentContentImg">
-        <img src=${item.departmentImgSrc} alt="" class="departmentContentimg">
-      </div>
-      <p class="departmentContentText">${item.departmentText}</p>
-      <div class="hiddenImg">
-          <img src=${item.hiddenImgSrc} alt="">
-        </div>
-    </div>
-  `)
-  })
-}
-
-const addProjectContent = (arr) => {
-  arr.map(item => {
-    $('.project').append(`
-    <div class="projectContent">
-      <div class="light"></div>
-      <div class="projectImgBox">
-        <a href=${item.projectLink}target="_blank"><img src=${item.projectImgSrc}
-            alt="" class="projectImg"></a>
-      </div>
-      <div class="blackScreen"></div>
-    </div>
-  `)
-  })
-}
-
 const dataImport = () => {
   addPresidiumContent(presidium)
   addGroupContent(group)
@@ -576,7 +260,7 @@ const Load = () => {
     switch (pageIndex) {
       case 3:
         index = 0;
-        domClass = '.departmentContent';
+        domClass = '.DepartmentContent';
         break;
       case 4:
       case 5:
@@ -616,19 +300,239 @@ const Load = () => {
     let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     if (document.documentElement.scrollTop - clientH * 0.7 * pageIndex >= 0) {
       pageIndex++;
-      if (pageIndex >= 3)
+      if (pageIndex >= 3 && pageIndex <= 14)
         loadAnimation()
     }
   };
+}
+
+const allScroll = () => {
+  const presidium = {
+    'height': $(".presidium").height(),
+    'offsetTop': $(".presidium").offset().top,
+    'percent': 0,
+    'left': $('.presidiumContent ul').offset().left - 100,
+    'Y': 0,
+    'index': 1,
+    wholeHeight: function () {
+      return this.offsetTop + this.height - window.innerHeight
+    }
+  }
+
+  const illustrations = {
+    'height': $(".illustrations").height(),
+    'offsetTop': $(".illustrations").offset().top,
+    'percent': 5,
+    wholeHeight: function () {
+      return this.offsetTop + this.height - window.innerHeight
+    }
+  }
+
+  const activity = {
+    'offsetTop': $(".activity").offset().top,
+    'el': $('.activityImgBox').children(),
+    'top': 0,
+    'left': 0,
+    'x0': 0,
+    'y0': 0,
+    'rorate': 0,
+    'ImgTop': [
+      $($('.competion')[0]).offset().top,
+      $($('.competion')[1]).offset().top,
+      $($('.competion')[2]).offset().top,
+      $($('.competion')[3]).offset().top
+    ]
+  }
+
+  const showObj = {
+    'hiddenDom': [
+      ['transform', 'skew(-20deg)'],
+      ['animation', 'wordShake .8s infinite'],
+      ['opacity', '0.5'],
+      ['animation', 'competionOut .8s 1 forwards'],
+      ['opacity', '0']
+
+    ],
+    'showDom': [
+      ['transform', 'skew(0deg)'],
+      ['animation', 'wordShake .8s 1'],
+      ['opacity', '1'],
+      ['animation', 'competionIn .8s 1 forwards'],
+      ['opacity', '1']
+    ]
+  }
+
+  function translateY(index, child, childYear) {
+    index == 1 || index == 6 || index == 11 ?
+      Y = -15 :
+      index == 2 || index == 7 || index == 12 ?
+      Y = -8 :
+      index == 3 || index == 8 || index == 13 ?
+      Y = -5 :
+      index == 4 || index == 9 || index == 14 ?
+      Y = -12 :
+      index == 5 || index == 10 ?
+      Y = -10 : ''
+
+    $(child).css('transform', `translate3d(0,${Y}vh,0)`)
+    $(childYear).css('opacity', '1')
+  }
+
+  function NumAutoPlusAnimation(targetEle, options) {
+    let time = options.time,
+      finalNum = options.num,
+      regulator = options.regulator
+    step = finalNum / (time / regulator),
+      count = 0,
+      initial = 0;
+
+    let timer = setInterval(function () {
+      count = count + step;
+      if (count >= finalNum) {
+        clearInterval(timer);
+        count = finalNum;
+      }
+      let t = Math.floor(count);
+      initial = t;
+      $(targetEle).html(`${initial}`)
+      if (isNaN(t)) $(targetEle).html(`${finalNum}`)
+      if (t == initial) return;
+    }, 30);
+  }
+
+  function presidiumScroll(e) {
+    if (e.wheelDelta < 0) {
+      presidium.percent += 8;
+
+      if ($('.presidiumContent ul').offset().left - presidium.left <= 270 && presidium.index <= 14) {
+        presidium.left = $('.presidiumContent ul').offset().left;
+
+        let child = $('.presidiumContent ul').children().get(presidium.index),
+          childYear = $(child).children().last().children().get(2)
+
+        translateY(presidium.index, child, childYear)
+        NumAutoPlusAnimation(childYear, {
+          time: 1800,
+          num: `${$(childYear).html()}`,
+          regulator: 50
+        })
+
+        presidium.index++;
+      }
+    } else
+      presidium.percent -= 8;
+
+  }
+
+  function activityImgScroll(e) {
+    e.wheelDelta < 0 ?
+      activityImgShow(activityImgShowDown) :
+      activityImgShow(activityImgShowUp)
+
+    function activityImgShowDown(ev) {
+      let curDom = showDom(ev),
+        nextDom = showDom($(ev).next())
+      addAnimation(showObj.showDom, nextDom)
+      addAnimation(showObj.hiddenDom, curDom)
+    }
+
+    function activityImgShowUp(ev) {
+      let curDom = showDom(ev),
+        nextDom = showDom($(ev).next())
+
+      addAnimation(showObj.showDom, curDom)
+      addAnimation(showObj.hiddenDom, nextDom)
+    }
+
+    function activityImgShow(func) {
+      document.documentElement.scrollTop - activity.ImgTop[0] <= 0 ?
+        $(activity.el.get(0)).find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards') :
+        document.documentElement.scrollTop - activity.ImgTop[3] <= 0 ?
+        $(activity.el.get(3)).find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards') : ''
+
+      for (let i of [0, 1, 2])
+        (document.documentElement.scrollTop - activity.ImgTop[i] > 0 && document.documentElement.scrollTop - activity.ImgTop[i + 1] <= 0) ?
+        func($(activity.el.get(i))) : ''
+    }
+
+    function showDom(ev) {
+      let arr = [
+        $(ev).find('h1'),
+        $(ev).find('h1').find('span'),
+        $(ev).find('h1').find('span'),
+        $(ev).find('img'),
+        $(ev).find('img')
+      ]
+      return arr
+    }
+
+    function addAnimation(arr, dom) {
+      arr.map((item, index) => {
+        $(dom[index]).css(`${item[0]}`, `${item[1]}`)
+      })
+    }
+
+  }
+
+  function activityFlyGirlScroll(elementScrollTop) {
+    activity.r = window.innerHeight * 1.5;
+    if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 1.5) <= 0) {
+      activity.y0 = elementScrollTop - activity.offsetTop;
+      activity.left = Math.abs(Math.sqrt(Math.pow(activity.r, 2) - Math.pow(activity.y0, 2)) + activity.x0)
+    } else {
+      activity.y0 = elementScrollTop - (activity.offsetTop + window.innerHeight * 1.5)
+      activity.left = Math.abs(Math.sqrt(Math.pow(activity.r, 2) + Math.pow(activity.y0, 2)) + activity.x0)
+    }
+    activity.top = elementScrollTop - activity.offsetTop + window.innerHeight * 0.40
+    $('.activitySlideBox').css('top', `${activity.top}px`).css('left', `${activity.left}px`).css('transform', `rorate(${activity.rorate}deg)`)
+  }
+
+  function illustrationsScroll(e) {
+    if (e.wheelDelta < 0) {
+      if (illustrations.percent <= 5 && illustrations.percent > 1)
+        illustrations.percent--
+    } else {
+      if (illustrations.percent < 5 && illustrations.percent >= 1)
+        illustrations.percent++
+    }
+    if ($('#illustrationsTree').css('display') == 'none')
+      $('#illustrationsTree').css('display', 'block')
+    $('#illustrationsTree').css('transform', `scale(${illustrations.percent})`)
+
+  }
+
+  $(window).scroll(() => {
+    window.onwheel = function (e) {
+      e = e || window.event;
+      if (e.wheelDelta) {
+        const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight())
+          presidiumScroll(e)
+        else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
+          percent = 136
+        else if (elementScrollTop < presidium.offsetTop)
+          percent = 0
+        if (elementScrollTop > illustrations.offsetTop && elementScrollTop < illustrations.wholeHeight())
+          illustrationsScroll(e)
+        if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 2.3) <= 0) {
+          if (elementScrollTop - document.documentElement.scrollTop < 180) {
+            activityImgScroll(e, elementScrollTop)
+            activityFlyGirlScroll(elementScrollTop)
+          }
+        }
+        $('.presidiumContent ul').css('transform', `translate3d(-${presidium.percent}vw,0,0)`)
+      }
+    };
+  })
+
 }
 
 if (window.innerWidth >= 768) {
   groupAnimation()
   projectSlideShow()
   Load()
+  allScroll()
   dataImport()
-  presidiumScroll()
-  activityScroll()
   presidiumShow()
   departmentHoverShow()
 } else {

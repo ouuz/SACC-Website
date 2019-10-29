@@ -36,19 +36,19 @@
     height: 180vh;
   }
 
-  .departmentContent {
+  .DepartmentContent {
     width: auto;
     height: auto;
     margin: 0 2%;
   }
 
-  .departmentContentImg {
+  .DepartmentContentImg {
     width: 200%;
   }
 
-  .departmentContent:nth-child(2) {}
+  .DepartmentContent:nth-child(2) {}
 
-  .departmentContent p {
+  .DepartmentContent p {
     font-size: 1rem;
     padding: 0 1vw;
   }

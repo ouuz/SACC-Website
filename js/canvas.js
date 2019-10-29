@@ -303,7 +303,7 @@ function drawTeamEye() {
       }, 3000)
       setTimeout(() => {
         $('#Group').mousemove((e) => {
-          $('.teamLeft').css('top', `${e.pageY / 120 - 50}px`).css('left', `${e.pageX / 120}px`)
+          $('.teamLeft').css('top', `${e.pageY / 120 - 40}px`).css('left', `${e.pageX / 120}px`)
         })
       }, 4000)
     }
