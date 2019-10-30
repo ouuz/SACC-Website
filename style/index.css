@@ -1069,8 +1069,10 @@ html {
   top: 0;
 }
 
-.illustrationsHouse>img {
+.illustrationsHouse img {
+  position: absolute;
   width: 100%;
+  bottom: 0;
 }
 
 #illustrationsTree {
@@ -1079,5 +1081,41 @@ html {
   transition: all .3s;
   transform: scale(5);
   display: none;
-  top: 0;
+  top: 2%;
+}
+
+/* contactUs */
+.contactUs{
+  background: #180d1b;
+  height: 40vh;
+  position: relative;
+  z-index: 5;
+}
+
+.contactWay{
+  position: absolute;
+  height: 40vh;
+  width: 100vw;
+}
+
+.contactWay h3{
+  font-size: 1.5rem;
+  line-height: 3;
+  position: absolute;
+  left: 80%;
+  top: 50%;
+  transform: translate(-80%,-50%);
+}
+.contactWay h3::before {
+  position: absolute;
+  left: -490%;
+  top: 50%;
+  width: 400%;
+  height: 1px;
+  content: " ";
+  margin-right: 20px;
+  background-color: rgba(255,255,255,0.2);
+}
+.contactWay h3>a{
+  color: #978a9b;
 }
