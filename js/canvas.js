@@ -52,7 +52,7 @@ function drawCurvePath(ctx, start, end, curveness, percent) { //贝塞尔曲线
     (start[1] + end[1]) / 2 - (end[0] - start[0]) * curveness
   ];
   ctx.moveTo(start[0], start[1]);
-  for (let t = 0; t <= percent / 50; t += 0.01) {
+  for (let t = 0; t <= percent / 30; t += 0.01) {
     let x = quadraticBezier(start[0], cp[0], end[0], t);
     let y = quadraticBezier(start[1], cp[1], end[1], t);
     ctx.lineTo(x, y);
@@ -67,7 +67,7 @@ function quadraticBezier(p0, p1, p2, t) { //贝塞尔曲线方程
 function drawPlanet(ctx, X, Y, r, start, end, strokeColor, fillColor, lineWidth) { // 画星球
   let arr = []
 
-  for (let i = start * Math.PI; i <= end * Math.PI; i += 4 * (Math.PI / 180)) {
+  for (let i = start * Math.PI; i <= end * Math.PI; i += 10 * (Math.PI / 180)) {
     let x = X + r * Math.cos(i);
     let y = Y + r * Math.sin(i);
     arr.push([x, y]);
@@ -96,7 +96,7 @@ function drawPlanet(ctx, X, Y, r, start, end, strokeColor, fillColor, lineWidth)
 
   let a = setInterval(() => {
     rander();
-  }, 5);
+  }, 10);
 }
 
 function drawCircle() { //画多层色星球
@@ -144,7 +144,7 @@ function drawCircle() { //画多层色星球
   };
   let a = setInterval(() => {
     rander();
-  }, 50)
+  }, 60)
 }
 
 function drawRedPlanet() { //画红色星球
@@ -198,11 +198,12 @@ function drawRedPlanet() { //画红色星球
 }
 
 function Ellipse(ctx, x, y, a, b, rotation) { //画椭圆
-  ctx.beginPath()
   ctx.lineWidth = 5;
+  ctx.beginPath()
   ctx.ellipse(x, y, a, b, rotation * Math.PI / 180, 0, 2 * Math.PI)
   ctx.fill()
   ctx.stroke()
+ 
 }
 
 function drawMeteorites() { // 画陨石
@@ -217,60 +218,72 @@ function drawMeteorites() { // 画陨石
   ctx.closePath()
   ctx.fill()
   ctx.stroke()
-  //黄色星球
-  ctx.strokeStyle = "#dba36a";
-  ctx.fillStyle = "#dba36a"
-  Ellipse(ctx, 150, 780, 50, 30, 40)
-  Ellipse(ctx, 260, 840, 30, 20, 45)
-  Ellipse(ctx, 410, 1000, 40, 15, 70)
-  Ellipse(ctx, 280, 1030, 80, 30, 80)
-  Ellipse(ctx, 150, 1080, 40, 15, 80)
-  Ellipse(ctx, 400, 1200, 70, 25, 100)
-  Ellipse(ctx, 280, 1400, 60, 20, 130)
-  Ellipse(ctx, 180, 1280, 40, 20, 130)
-  Ellipse(ctx, 0, 850, 50, 30, 45)
-  Ellipse(ctx, 60, 640, 30, 10, 25)
-  Ellipse(ctx, 200, 700, 20, 10, 25)
-  Ellipse(ctx, 0, 655, 40, 10, 90)
-  Ellipse(ctx, 450, 1100, 15, 5, 110)
-  Ellipse(ctx, 250, 880, 8, 3, 50)
-  Ellipse(ctx, 40, 980, 8, 3, 90)
-  ctx.strokeStyle = "#e0ce84";
-  ctx.fillStyle = "#e0ce84"
-  Ellipse(ctx, 180, 1500, 30, 15, 150)
-  Ellipse(ctx, 30, 1120, 40, 18, 120)
-  //红色星球
-  ctx.strokeStyle = "#d73e5a";
-  ctx.fillStyle = "#d73e5a"
-  Ellipse(ctx, 1700, 30, 45, 25, 45)
-  Ellipse(ctx, 1850, 0, 50, 25, 0)
-  Ellipse(ctx, 1850, 50, 50, 30, 45)
-  Ellipse(ctx, 1830, 110, 8, 3, 45)
-  Ellipse(ctx, 1800, 210, 40, 25, 50)
-  Ellipse(ctx, 1700, 180, 30, 20, 50)
-  Ellipse(ctx, 1670, 200, 7, 3, 50)
-  Ellipse(ctx, 1620, 90, 7, 3, 50)
-  Ellipse(ctx, 1540, -25, 45, 25, 90)
-  Ellipse(ctx, 1600, 10, 20, 10, 70)
-  Ellipse(ctx, 1780, 300, 8, 5, 50)
-  Ellipse(ctx, 1840, 335, 30, 10, 0)
-  Ellipse(ctx, 1690, 280, 15, 5, 130)
-  ctx.stroke()
+
+  let points = [
+    [1700, 30, 45, 25, 45,"#d73e5a"],
+    [1850, 0, 50, 25, 0,"#d73e5a"],
+    [1830, 110, 8, 3, 45,"#d73e5a"],
+    [1800, 210, 40, 25, 50,"#d73e5a"],
+    [1700, 180, 30, 20, 50,"#d73e5a"],
+    [1670, 200, 7, 3, 50,"#d73e5a"],
+    [1620, 90, 7, 3, 50,"#d73e5a"],
+    [1540, -25, 45, 25, 90,"#d73e5a"],
+    [1600, 10, 20, 10, 70,"#d73e5a"],
+    [1780, 300, 8, 5, 50,"#d73e5a"],
+    [1840, 335, 30, 10, 0,"#d73e5a"],
+    [1690, 280, 15, 5, 130,"#d73e5a"],
+    [150, 780, 50, 30, 40,"#dba36a"],
+    [260, 840, 30, 20, 45,"#dba36a"],
+    [410, 1000, 40, 15, 70,"#dba36a"],
+    [280, 1030, 80, 30, 80,"#dba36a"],
+    [150, 1080, 40, 15, 80,"#dba36a"],
+    [400, 1200, 70, 25, 100,"#dba36a"],
+    [280, 1400, 60, 20, 130,"#dba36a"],
+    [180, 1280, 40, 20, 130,"#dba36a"],
+    [0, 850, 50, 30, 45,"#dba36a"],
+    [60, 640, 30, 10, 25,"#dba36a"],
+    [200, 700, 20, 10, 25,"#dba36a"],
+    [0, 655, 40, 10, 90,"#dba36a"],
+    [450, 1100, 15, 5, 110,"#dba36a"],
+    [250, 880, 8, 3, 50,"#dba36a"],
+    [40, 980, 8, 3, 90,"#dba36a"],
+    [180, 1500, 30, 15, 150,"#e0ce84"],
+    [30, 1120, 40, 18, 120,"#e0ce84"]
+  ]
+
+  function rander() {
+  
+    if (points.length) {
+      let tmpPoint = points.shift();
+      ctx.fillStyle = tmpPoint[5];
+      ctx.strokeStyle = tmpPoint[5];
+      Ellipse(ctx, tmpPoint[0], tmpPoint[1], tmpPoint[2], tmpPoint[3], tmpPoint[4])
+    } else {
+      points = [];
+      clearInterval(a)
+      return;
+    }
+  };
+
+  let a = setInterval(() => {
+    rander();
+  }, 30);
+
 }
 
 function Interval() {
   var curve = window.setInterval(() => {
     percent++;
     drawCurve()
-    if (percent > 50) {
+    if (percent > 30) {
       window.clearInterval(curve)
       drawRedPlanet()
       setTimeout(() => {
         drawPlanet(ctx, 0, 1100, 500, 1.5, 3.5, '#f8f9ad', '#e1cf85', 20)
-      }, 300)
+      }, 500)
       setTimeout(() => {
         drawMeteorites()
-      }, 1800)
+      }, 1500)
       setTimeout(() => {
         drawCircle()
       }, 2500);
@@ -290,22 +303,22 @@ function drawTeamEye() {
   curve = window.setInterval(() => {
     Percent++;
     Curve()
-    if (Percent > 100) {
+    if (Percent > 50) {
       window.clearInterval(curve)
       context.setLineDash([80, 20])
       drawPlanet(context, 380, 465, 200, 0, 2, "#f3c6b7", 'transparent', 10)
       setTimeout(() => {
         context.setLineDash([60, 0])
         drawPlanet(context, 380, 465, 150, 0, 2, "#f3c6b7", 'transparent', 10)
-      }, 1500)
+      }, 600)
       setTimeout(() => {
         drawPlanet(context, 380, 465, 75, 1, 3, "#f3c6b7", 'transparent', 10)
-      }, 3000)
+      }, 1200)
       setTimeout(() => {
         $('#Group').mousemove((e) => {
           $('.teamLeft').css('top', `${e.pageY / 120 - 40}px`).css('left', `${e.pageX / 120}px`)
         })
-      }, 4000)
+      }, 2000)
     }
 
   }, 10)

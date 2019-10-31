@@ -29,35 +29,36 @@ html {
 
 #logoText {
   color: #f8f9ad;
-  font-size: 20em;
   position: absolute;
   right: 14%;
-  top: 17%;
-  letter-spacing: 0.15em;
+  top: 15%;
   /* font-family: 'Pacifico', cursive; */
   /* font-family: 'Indie Flower', cursive; */
   font-family: 'Dancing Script', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 8;
+  outline: none;
 }
 
-#shadow {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: #372f4c;
-  animation: logoText 3s forwards;
-  width: 50vw;
-  height: 30vh;
+#logoText>p {
+  letter-spacing: 0.15em;
+  font-size: 16rem;
+  animation: logoText 1.5s 1 forwards;
 }
 
 #contactBtn {
-  padding: 0 2rem;
+  padding: 0 4rem;
   line-height: 3;
   border: 1px solid #ffffff;
   font-size: 1.3rem;
-  border-radius: 40%;
+  border-radius: 35px;
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   cursor: pointer;
+  animation: logoText 3s 1 forwards;
 }
 
 .littleThings {
@@ -186,17 +187,18 @@ html {
   }
 
   100% {
-    transform: translate(0, 0) rotate(-3deg);
+    transform: translate(0, 0) rotate(-15deg);
     z-index: 1;
   }
 }
-
-@keyframes logoText {
-  to {
-    width: 0;
+@keyframes logoText{
+  0%{
+    transform: translate(0,60vh);
+  }
+  100%{
+    transform: translate(0,0);
   }
 }
-
 @keyframes logoPurplePlant {
   from {
     opacity: 0;
@@ -1010,7 +1012,7 @@ html {
 #nav {
   position: fixed;
   top: 5px;
-  left:  5px;
+  left: 5px;
   z-index: 9999999;
   border: none;
   font-size: 2rem;
