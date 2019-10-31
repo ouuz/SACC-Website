@@ -191,6 +191,7 @@ const nav = () => {
   let list = document.querySelector('.nav ul')
   list.addEventListener('mouseover', slideIn);
   list.addEventListener('mouseout', slideOut);
+  list.addEventListener('click', scrollTo)
 
   function slideIn(e) {
     e.target.className == 'navigation' || e.target.className == 'stick' ? slide() : ''
@@ -205,7 +206,6 @@ const nav = () => {
         $(ev).find('.stick').css('opacity', '1')
       }
     }
-    console.log(e.target.className)
   }
 
   function slideOut(e) {
@@ -221,26 +221,65 @@ const nav = () => {
         $(ev).find('.stick').css('opacity', '0')
       }
     }
-    console.log(e.target.className)
   }
+
+  function navShow() {
+    $('.nav').css('display', 'block')
+    setTimeout(() => {
+      $('.nav li').css('opacity', '1')
+      $('.nav').css('opacity', '1').css('animation', 'navShow .5s 1 forwards')
+    }, 100)
+  }
+
+  function navHidden() {
+    $('.nav').css('animation', 'navHidden .5s 1 forwards')
+    $('.nav li').css('opacity', '0')
+    setTimeout(() => {
+      $('.nav').css('opacity', '0').css('displey', 'none')
+    }, 400)
+  }
+
   $('#nav').click(() => {
     $('.nav').css('opacity') == '0' ? navShow() : navHidden()
+  })
 
-    function navShow() {
-      $('.nav').css('display', 'block')
-      setTimeout(() => {
-        $('.nav li').css('opacity', '1')
-        $('.nav').css('opacity', '1').css('animation', 'navShow .5s 1 forwards')
-      }, 100)
+  function scrollTo(e) {
+    let scrollToClass = e.target.innerText.trim(),
+    domClass = ''
+
+    switch (scrollToClass) {
+      case '首页':
+        domClass = '.logo';
+        break;
+      case '技术分组':
+        domClass = '.team';
+        break;
+      case '主席团':
+          domClass = '.presidium';
+          break;
+      case '部门介绍':
+          domClass = '.department';
+          break;
+      case '活动展示':
+        domClass = '.activity';
+        break;
+      case '项目展示':
+        domClass = '.project';
+        break;
+      case '联系我们':
+        domClass = '.contactUs';
+        break;
     }
 
-    function navHidden() {
-      $('.nav').css('animation', 'navHidden .5s 1 forwards')
-      $('.nav li').css('opacity', '0')
-      setTimeout(() => {
-        $('.nav').css('opacity', '0').css('displey', 'none')
-      }, 400)
-    }
+    navHidden()
+    setTimeout(()=>{
+      $('html, body').animate({scrollTop: $(`${domClass}`).offset().top}, 1000)
+    },50)
+
+  }
+
+  $('#contactBtn').click(()=>{
+    $('html, body').animate({scrollTop: $('.contactUs').offset().top}, 1000)
   })
 }
 
