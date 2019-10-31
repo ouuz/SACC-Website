@@ -178,7 +178,7 @@ const presidiumShow = () => {
 const generateStars = (n) => {
   for (let i = 0; i < n; i++) {
     let className = i % 20 == 0 ? 'star starBig' : i % 9 == 0 ? 'star starMedium' : 'star';
-    let top = Math.round(Math.random() * window.innerHeight,
+    let top = Math.round(Math.random() * window.innerHeight * 2,
         left = Math.round(Math.random() * window.innerWidth),
         animationDuration = Math.round(Math.random() * 3000) + 3000),
       animationDelay = Math.round(Math.random() * 3000)
@@ -335,7 +335,8 @@ const allScroll = () => {
     'left': 0,
     'x0': 0,
     'y0': 0,
-    'rorate': 0,
+    'rotate': 0,
+    'scale': 0,
     'ImgTop': [
       $($('.competion')[0]).offset().top,
       $($('.competion')[1]).offset().top,
@@ -479,12 +480,15 @@ const allScroll = () => {
     if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 1.5) <= 0) {
       activity.y0 = elementScrollTop - activity.offsetTop;
       activity.left = Math.abs(Math.sqrt(Math.pow(activity.r, 2) - Math.pow(activity.y0, 2)) + activity.x0)
+      activity.rotate = Math.cos(activity.y0) + elementScrollTop * 0.002
     } else {
       activity.y0 = elementScrollTop - (activity.offsetTop + window.innerHeight * 1.5)
       activity.left = Math.abs(Math.sqrt(Math.pow(activity.r, 2) + Math.pow(activity.y0, 2)) + activity.x0)
+      activity.rotate = Math.cos(activity.y0) - elementScrollTop * 0.002
     }
+    activity.scale = Math.sin((elementScrollTop - activity.offsetTop) * 0.001) + window.innerWidth * 0.0008
     activity.top = elementScrollTop - activity.offsetTop + window.innerHeight * 0.40
-    $('.activitySlideBox').css('top', `${activity.top}px`).css('left', `${activity.left}px`).css('transform', `rorate(${activity.rorate}deg)`)
+    $('.activitySlideBox').css('top', `${activity.top}px`).css('left', `${activity.left}px`).css('transform', `rotate(${activity.rotate}deg) scale(${activity.scale})`)
   }
 
   function illustrationsScroll(e) {
@@ -509,9 +513,9 @@ const allScroll = () => {
         if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight())
           presidiumScroll(e)
         else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
-          percent = 136
+          presidium.percent = 144
         else if (elementScrollTop < presidium.offsetTop)
-          percent = 0
+          presidium.percent = 0
         if (elementScrollTop > illustrations.offsetTop && elementScrollTop < illustrations.wholeHeight())
           illustrationsScroll(e)
         if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 2.3) <= 0) {
@@ -540,5 +544,5 @@ if (window.innerWidth >= 768) {
 }
 
 
-generateStars(150);
+generateStars(300);
 nav()

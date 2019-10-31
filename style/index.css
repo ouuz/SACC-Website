@@ -23,9 +23,8 @@ html {
 
 /* logo */
 .logo {
-  height: 100vh;
+  height: 300vh;
   position: relative;
-  overflow: hidden;
 }
 
 #logoText {
@@ -33,7 +32,7 @@ html {
   font-size: 20em;
   position: absolute;
   right: 14%;
-  bottom: 17%;
+  top: 17%;
   letter-spacing: 0.15em;
   /* font-family: 'Pacifico', cursive; */
   /* font-family: 'Indie Flower', cursive; */
@@ -50,6 +49,7 @@ html {
   height: 30vh;
 }
 
+/* 
 .logoRocket {
   width: 35vw;
 }
@@ -58,19 +58,44 @@ html {
   width: 100%;
   transform: translate(-20vw, 100vh) rotate(-3deg);
   animation: flyRocket 3s forwards;
-}
-
-.logoPurplePlant {
-  width: 35vw;
+} */
+.littleThings {
   position: absolute;
-  top: -14%;
-  left: -4%;
-  opacity: 1;
-  animation: logoPurplePlant 2s forwards;
+  height: 200vh;
+  width: 100vw;
 }
 
-.logoPurplePlant>img {
-  width: 100%;
+.littleThings>img{
+  position: absolute;
+}
+
+.littleThings img:nth-child(1) {
+  top: 0;
+  left: 3%;
+  animation: logoPurplePlant 3s;
+}
+
+.littleThings img:nth-child(2) {
+  left:21%;
+  animation: flyRocket 3s forwards;
+  top: 18%;
+}
+
+.littleThings img:nth-child(3) {
+  top: 65%;
+  right: 13%;
+}
+
+.littleThings img:nth-child(4) {
+  top: 89%;
+  right: 4%;
+  transform: rotate(20deg);
+}
+
+.littleThings img:nth-child(5) {
+  top: 79%;
+  left: 20%;
+  transform: rotate(99deg);
 }
 
 .star {
@@ -154,8 +179,13 @@ html {
 }
 
 @keyframes flyRocket {
+  0%{
+    transform: translate(-16vw, 78vh);
+    z-index: -2;
+  }
   100% {
-    transform: translate(10vw, 0) rotate(-3deg);
+    transform: translate(0, 0) rotate(-3deg);
+    z-index: 1;
   }
 }
 
@@ -868,7 +898,7 @@ html {
   flex-direction: column;
   justify-content: space-around;
   position: relative;
-  margin-top: 100vh;
+  margin-top: -100vh;
 }
 
 .DepartmentContent {
@@ -1024,7 +1054,7 @@ html {
   }
 }
 
-.departmentContent,
+.DepartmentContent,
 .moonBox,
 .competion,
 .projectContent {
@@ -1085,27 +1115,28 @@ html {
 }
 
 /* contactUs */
-.contactUs{
+.contactUs {
   background: #180d1b;
   height: 40vh;
   position: relative;
   z-index: 5;
 }
 
-.contactWay{
+.contactWay {
   position: absolute;
   height: 40vh;
   width: 100vw;
 }
 
-.contactWay h3{
+.contactWay h3 {
   font-size: 1.5rem;
   line-height: 3;
   position: absolute;
   left: 80%;
   top: 50%;
-  transform: translate(-80%,-50%);
+  transform: translate(-80%, -50%);
 }
+
 .contactWay h3::before {
   position: absolute;
   left: -490%;
@@ -1114,8 +1145,9 @@ html {
   height: 1px;
   content: " ";
   margin-right: 20px;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255, 255, 255, 0.2);
 }
-.contactWay h3>a{
+
+.contactWay h3>a {
   color: #978a9b;
 }
