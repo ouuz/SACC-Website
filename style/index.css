@@ -191,14 +191,17 @@ html {
     z-index: 1;
   }
 }
-@keyframes logoText{
-  0%{
-    transform: translate(0,60vh);
+
+@keyframes logoText {
+  0% {
+    transform: translate(0, 60vh);
   }
-  100%{
-    transform: translate(0,0);
+
+  100% {
+    transform: translate(0, 0);
   }
 }
+
 @keyframes logoPurplePlant {
   from {
     opacity: 0;
@@ -1005,7 +1008,6 @@ html {
 }
 
 .nav>ul li {
-  cursor: pointer;
   position: relative;
 }
 
@@ -1044,11 +1046,17 @@ html {
   position: absolute;
   width: 10px;
   height: 100px;
-  transform: rotate(-75deg);
+  transform: translate(-50%,-50%) rotate(-75deg);
   left: 50%;
   background-color: rgba(220, 160, 40, 0.7);
-  top: -50%;
+  top: 50%;
   opacity: 0;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.stick:hover {
+  opacity: 1;
 }
 
 @keyframes load {

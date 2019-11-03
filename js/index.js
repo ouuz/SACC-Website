@@ -189,39 +189,8 @@ const generateStars = (n) => {
 
 const nav = () => {
   let list = document.querySelector('.nav ul')
-  list.addEventListener('mouseover', slideIn);
-  list.addEventListener('mouseout', slideOut);
+
   list.addEventListener('click', scrollTo)
-
-  function slideIn(e) {
-    e.target.className == 'navigation' || e.target.className == 'stick' ? slide() : ''
-
-    function slide() {
-      $(e.target).find('.stick').css('opacity', '1')
-      e.target.className == 'navigation' ?
-        Slide($(e.target).find('.stick')) :
-        e.target.className == 'stick' ? Slide($(e.target)) : ''
-
-      function Slide(ev) {
-        $(ev).find('.stick').css('opacity', '1')
-      }
-    }
-  }
-
-  function slideOut(e) {
-    e.target.className == 'navigation' || e.target.className == 'stick' ? slide() : ''
-
-    function slide() {
-      $(e.target).find('.stick').css('opacity', '0')
-      e.target.className == 'navigation' ?
-        Slide($(e.target).find('.stick')) :
-        e.target.className == 'stick' ? Slide($(e.target)) : ''
-
-      function Slide(ev) {
-        $(ev).find('.stick').css('opacity', '0')
-      }
-    }
-  }
 
   function navShow() {
     $('.nav').css('display', 'block')
@@ -244,7 +213,8 @@ const nav = () => {
   })
 
   function scrollTo(e) {
-    let scrollToClass = e.target.innerText.trim(),
+    let scrollToClassFather = findFather(e.target,'navigation').find('span')
+    let scrollToClass = $(scrollToClassFather).text().trim(),
     domClass = ''
 
     switch (scrollToClass) {
