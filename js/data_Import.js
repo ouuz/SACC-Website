@@ -35,61 +35,34 @@ const addPresidiumContent = (arr) => {
 }
 
 const addPresidiumMobileContent = (arr) => {
+
+  function templateFunc (item){
+    return  `
+    <li>
+      <div class="presidiumMobileDes">
+        <div class="presidiumMobilePortrait">
+          <img src=${item.portraitSrc} alt="">
+        </div>
+        <h3>
+          <div class="presidiumMobileTag">${item.position}</div>
+          <p class="presidiumMobileName">${item.name}</p>
+          <div class="presidiumMobileYear">${item.year}</div>
+        </h3>
+      </div>
+      <div class="presidiumMobileSaying">
+        <p>${item.signature}</p>
+      </div>
+    </li>
+  `
+  }
+  
   arr.map((item, index) => {
     if (index <= 4)
-      $('.presidiumMobile_2019 ul').append(`
-        <li>
-          <div class="presidiumMobileDes">
-            <div class="presidiumMobilePortrait">
-              <img src=${item.portraitSrc} alt="">
-            </div>
-            <h3>
-              <div class="presidiumMobileTag">${item.position}</div>
-              <p class="presidiumMobileName">${item.name}</p>
-              <div class="presidiumMobileYear">${item.year}</div>
-            </h3>
-          </div>
-          <div class="presidiumMobileSaying">
-            <p>${item.signature}</p>
-          </div>
-        </li>
-      `)
+      $('.presidiumMobile_2019 ul').append(templateFunc (item))
     else if (index > 4 && index <= 9)
-      $('.presidiumMobile_2018 ul').append(`
-        <li>
-          <div class="presidiumMobileDes">
-            <div class="presidiumMobilePortrait">
-              <img src=${item.portraitSrc} alt="">
-            </div>
-            <h3>
-              <div class="presidiumMobileTag">${item.position}</div>
-              <p class="presidiumMobileName">${item.name}</p>
-              <div class="presidiumMobileYear">${item.year}</div>
-            </h3>
-          </div>
-          <div class="presidiumMobileSaying">
-            <p>${item.signature}</p>
-          </div>
-        </li>
-      `)
+      $('.presidiumMobile_2018 ul').append(templateFunc (item))
     else
-      $('.presidiumMobile_2017 ul').append(`
-        <li>
-          <div class="presidiumMobileDes">
-            <div class="presidiumMobilePortrait">
-              <img src=${item.portraitSrc} alt="">
-            </div>
-            <h3>
-              <div class="presidiumMobileTag">${item.position}</div>
-              <p class="presidiumMobileName">${item.name}</p>
-              <div class="presidiumMobileYear">${item.year}</div>
-            </h3>
-          </div>
-          <div class="presidiumMobileSaying">
-            <p>${item.signature}</p>
-          </div>
-        </li>
-      `)
+      $('.presidiumMobile_2017 ul').append(templateFunc (item))
   })
 }
 
@@ -244,6 +217,13 @@ var presidium = [{
     'year': 2017,
     'signature': '精通各种bug编写，嘤嘤嘤能力满级。機械學習海外在逃，21世纪的学科入坑中。长期高价收购防脱发秘籍+vx:budazhu97',
     'portraitSrc': './img/portrait/cwq.jpg'
+  },
+  {
+    'name': 'SACC',
+    'position': '吉祥物',
+    'year': 2017,
+    'signature': '今年我33岁啦~！',
+    'portraitSrc': 'https://sacc.oss-cn-beijing.aliyuncs.com/logo_%E5%89%AF%E6%9C%AC.png'
   }
 ]
 
@@ -318,31 +298,29 @@ var group = [{
 ]
 
 var department = [{
-    'departmentImgSrc': './img/TIM图片20190921133506.jpg',
-    'departmentText': '作为科协的推广部门，新媒体的小伙伴们主要负责的是关于科协的信息的发布与分享，以及院科协公众号的运营，同时还会教授剪辑学院视频的内容，一起见证科协的各项活动，为院科协的蓬勃发展添上有力的一笔。',
-    'hiddenImgSrc': './img/department/xmt.png'
-  }, {
-    'departmentImgSrc': './img/TIM图片20190921133506.jpg',
-    'departmentText': '技术部现有算法、程序设计、前端设计和网络安全等技术方向，这些技术相辅相成。技术部的骨干成员实力雄厚，经历丰富。多人在程序设计大赛、网络攻防大赛、网页设计大赛等中获得奖项。',
-    'hiddenImgSrc': './img/department/jsb.png'
-  }, {
-    'departmentImgSrc': './img/TIM图片20190921133506.jpg',
-    'departmentText': '办公室是科协的重要组成部分！它负责科协的整个统筹规划，承担活动策划宣传，组织运行，等工作。其下设有内务部，策划部宣传部。在办公室成员的合作下，科协才能顺利地举办各种比赛。另外，它也是科协交流放松地方和科协女生的集中营！',
-    'hiddenImgSrc': './img/department/bgs.png'
-  }
-]
+  'departmentImgSrc': './img/TIM图片20190921133506.jpg',
+  'departmentText': '作为科协的推广部门，新媒体的小伙伴们主要负责的是关于科协的信息的发布与分享，以及院科协公众号的运营，同时还会教授剪辑学院视频的内容，一起见证科协的各项活动，为院科协的蓬勃发展添上有力的一笔。',
+  'hiddenImgSrc': './img/department/xmt.png'
+}, {
+  'departmentImgSrc': './img/TIM图片20190921133506.jpg',
+  'departmentText': '技术部现有算法、程序设计、前端设计和网络安全等技术方向，这些技术相辅相成。技术部的骨干成员实力雄厚，经历丰富。多人在程序设计大赛、网络攻防大赛、网页设计大赛等中获得奖项。',
+  'hiddenImgSrc': './img/department/jsb.png'
+}, {
+  'departmentImgSrc': './img/TIM图片20190921133506.jpg',
+  'departmentText': '办公室是科协的重要组成部分！它负责科协的整个统筹规划，承担活动策划宣传，组织运行，等工作。其下设有内务部，策划部宣传部。在办公室成员的合作下，科协才能顺利地举办各种比赛。另外，它也是科协交流放松地方和科协女生的集中营！',
+  'hiddenImgSrc': './img/department/bgs.png'
+}]
 
 var project = [{
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
   'projectImgSrc': './img/project/onePlusOne.png'
-  }, {
+}, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
   'projectImgSrc': './img/project/onePlusOne.png'
-  }, {
+}, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
   'projectImgSrc': './img/project/onePlusOne.png'
-  }
-]
+}]
 
 var Clouds = {
   'pathA': `M35,50,c20,-10,30,0,45,-5,c4,-5,25,-25,54,-11,s33,3,65,0,c22,-3,33,11,54,23,s33,3,42,15c8,11,2,24,-7,28,s2,7,-60,17,c-16,10,-46,11,-70,1,c-24,-10,-4,-20,-57,-9,c-19,1,-25,5,-40,-10,C-5,70,25,60,35,50`,

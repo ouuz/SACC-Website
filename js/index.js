@@ -175,10 +175,10 @@ const presidiumShow = () => {
   }
 }
 
-const generateStars = (n) => {
+const generateStars = (n, pages) => {
   for (let i = 0; i < n; i++) {
     let className = i % 20 == 0 ? 'star starBig' : i % 9 == 0 ? 'star starMedium' : 'star';
-    let top = Math.round(Math.random() * window.innerHeight * 2,
+    let top = Math.round(Math.random() * window.innerHeight * pages,
         left = Math.round(Math.random() * window.innerWidth),
         animationDuration = Math.round(Math.random() * 3000) + 3000),
       animationDelay = Math.round(Math.random() * 3000)
@@ -196,16 +196,16 @@ const nav = () => {
     $('.nav').css('display', 'block')
     setTimeout(() => {
       $('.nav li').css('opacity', '1')
-      $('.nav').css('opacity', '1').css('animation', 'navShow .5s 1 forwards')
+      $('.nav').css('opacity', '1').css('animation', 'navShow .3s 1 forwards')
     }, 100)
   }
 
   function navHidden() {
-    $('.nav').css('animation', 'navHidden .5s 1 forwards')
+    $('.nav').css('animation', 'navHidden .3s 1 forwards')
     $('.nav li').css('opacity', '0')
     setTimeout(() => {
       $('.nav').css('opacity', '0').css('displey', 'none')
-    }, 400)
+    }, 200)
   }
 
   $('#nav').click(() => {
@@ -213,9 +213,9 @@ const nav = () => {
   })
 
   function scrollTo(e) {
-    let scrollToClassFather = findFather(e.target,'navigation').find('span')
+    let scrollToClassFather = findFather(e.target, 'navigation').find('span')
     let scrollToClass = $(scrollToClassFather).text().trim(),
-    domClass = ''
+      domClass = ''
 
     switch (scrollToClass) {
       case '首页':
@@ -225,11 +225,11 @@ const nav = () => {
         domClass = '.team';
         break;
       case '主席团':
-          domClass = '.presidium';
-          break;
+        domClass = '.presidium';
+        break;
       case '部门介绍':
-          domClass = '.department';
-          break;
+        domClass = '.department';
+        break;
       case '活动展示':
         domClass = '.activity';
         break;
@@ -238,20 +238,27 @@ const nav = () => {
         break;
       case '联系我们':
         domClass = '.contactUs';
-        $('#illustrationsTree').css('transform', 'scale(1)').css('display','block')
+        $('#illustrationsTree').css('transform', 'scale(1)').css('display', 'block');
+        break;
+      case 'Team':
+        domClass = '.presidiumMobile';
         break;
     }
 
     navHidden()
-    setTimeout(()=>{
-      $('html, body').animate({scrollTop: $(`${domClass}`).offset().top}, 1000)
-    },50)
+    setTimeout(() => {
+      $('html, body').animate({
+        scrollTop: $(`${domClass}`).offset().top
+      }, 1000)
+    }, 50)
 
   }
 
-  $('#contactBtn').click(()=>{
-    $('html, body').animate({scrollTop: $('.contactUs').offset().top}, 1000)
-    $('#illustrationsTree').css('transform', 'scale(1)').css('display','block')
+  $('#contactBtn').click(() => {
+    $('html, body').animate({
+      scrollTop: $('.contactUs').offset().top
+    }, 1000)
+    $('#illustrationsTree').css('transform', 'scale(1)').css('display', 'block')
   })
 }
 
@@ -545,15 +552,21 @@ const allScroll = () => {
 if (window.innerWidth >= 768) {
   groupAnimation()
   projectSlideShow()
-  Load()
+  // Load()
   allScroll()
   dataImport()
   presidiumShow()
+  generateStars(150, 2)
   departmentHoverShow()
 } else {
   addPresidiumMobileContent(presidium)
+  addGroupContent(group)
+  addDepartmentContent(department)
+  addProjectContent(project)
+  generateStars(150, 1);
+
 }
 
 
-generateStars(300);
+
 nav()

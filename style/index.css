@@ -195,10 +195,12 @@ html {
 @keyframes logoText {
   0% {
     transform: translate(0, 60vh);
+    opacity: 0;
   }
 
   100% {
     transform: translate(0, 0);
+    opacity: 1;
   }
 }
 
@@ -213,7 +215,6 @@ html {
   height: 100vh;
   display: flex;
   overflow: hidden;
-  background: linear-gradient(#f2c2b3, 20%, #ffffee);
   position: relative;
 }
 
@@ -253,7 +254,6 @@ html {
 .group {
   width: 35%;
   height: 25%;
-  opacity: 0;
 }
 
 .GroupImgBox {
@@ -574,7 +574,6 @@ html {
 .activity {
   height: 300vh;
   position: relative;
-  background: linear-gradient(180deg, #ffedd678, transparent);
 }
 
 .activitySlideBox {
@@ -1022,25 +1021,7 @@ html {
   color: #90a8cb;
 }
 
-@keyframes navShow {
-  0% {
-    width: 0%;
-  }
 
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes navHidden {
-  0% {
-    width: 100%;
-  }
-
-  100% {
-    width: 0%;
-  }
-}
 
 .stick {
   position: absolute;
@@ -1069,13 +1050,6 @@ html {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
-}
-
-.DepartmentContent,
-.moonBox,
-.competion,
-.projectContent {
-  opacity: 0
 }
 
 .illustrations {
@@ -1133,7 +1107,6 @@ html {
 
 /* contactUs */
 .contactUs {
-  background: #180d1b;
   height: 40vh;
   position: relative;
   z-index: 5;

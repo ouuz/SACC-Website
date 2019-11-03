@@ -27,7 +27,9 @@ const activityMobileDrag = (moveClass) => {
 
 const presidiumMobileDrag = (moveClass) => {
   let list = document.querySelector(moveClass),
-    then, now, index = 0,time = 0,curTime = 0,
+    then, now, index = 0,
+    time = 0,
+    curTime = 0,
     length = $(moveClass).children().length;
   list.addEventListener('touchmove', dragDown);
   list.addEventListener('touchend', dragUp);
@@ -40,32 +42,56 @@ const presidiumMobileDrag = (moveClass) => {
   function dragUp(touchItem) {
     now = touchItem.changedTouches[0].pageX;
     curTime = new Date()
-    if(curTime - time <= 300){
+    if (curTime - time <= 300) {
       if (now - then <= 0) {
         index = (index + 1) % length
-      } else{
+      } else {
         index = (index - 1) % length
       }
-      $(moveClass).css('transform', `translateX(${index * (-20)}%)`)
+      if (index != -1) {
+        $(moveClass).css('transform', `translateX(-${index * (100 / length)}%)`)
+        let prev = $($(moveClass).children().get(index -1))
+
+        setTimeout(()=>{
+          $(prev).find('.presidiumMobileDes').css('animation', 'mobileBottomScale .5s forwards')
+          $(prev).find('.presidiumMobileSaying').css('animation', 'mobileTopHiddenScale .5s forwards')
+        },200)
+       
+      } else
+        return
     }
   }
 }
 
-const presidiumMobileShow = () => {
-  let list = document.querySelector('.presidiumMobile_2019 ul');
+const presidiumMobileShow = (targetClass) => {
+  let list = document.querySelector(targetClass);
   list.addEventListener('click', show);
 
   function show(e) {
-    e.target.className == 'presidiumMobileName' ? Show() : ''
-    function Show() {
-      $($(e.target).parent().parent()).css('animation', 'mobileImgScale .5s forwards')
-      $($(e.target).parent().parent().next()).css('display', 'block').css('opacity', '1').css('animation','mobileTextScale .5s forwards')
+    e.target.className == 'presidiumMobileName' ?
+      commonAnimation('presidiumMobileDes') :
+      e.target.className == 'presidiumMobileSaying' ?
+      commonAnimation('presidiumMobileSaying') :
+      ''
+
+    function commonAnimation(fatherClass) {
+      let father = findFather(e.target, fatherClass)
+      $(father).css('animation', 'mobileTopScale .5s forwards')
+      fatherClass == 'presidiumMobileDes' ?
+        $(father).next().css('display', 'block').css('animation', 'mobileBottomScale .5s forwards') :
+        $(father).prev().css('animation', 'mobileBottomScale .5s forwards')
     }
   }
 }
 
-// activityMobileDrag('.activityImgBox')
-presidiumMobileDrag('.presidiumMobile_2019 ul')
-presidiumMobileDrag('.presidiumMobile_2018 ul')
-presidiumMobileDrag('.presidiumMobile_2017 ul')
-presidiumMobileShow()
+activityMobileDrag('.activityImgBox')
+
+const presidiumMobileArr = [
+  '.presidiumMobile_2019 ul',
+  '.presidiumMobile_2018 ul',
+  '.presidiumMobile_2017 ul'
+]
+presidiumMobileArr.map(item => {
+  presidiumMobileDrag(item)
+  presidiumMobileShow(item)
+})
