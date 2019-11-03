@@ -238,6 +238,7 @@ const nav = () => {
         break;
       case '联系我们':
         domClass = '.contactUs';
+        $('#illustrationsTree').css('transform', 'scale(1)').css('display','block')
         break;
     }
 
@@ -250,6 +251,7 @@ const nav = () => {
 
   $('#contactBtn').click(()=>{
     $('html, body').animate({scrollTop: $('.contactUs').offset().top}, 1000)
+    $('#illustrationsTree').css('transform', 'scale(1)').css('display','block')
   })
 }
 
@@ -496,7 +498,7 @@ const allScroll = () => {
       activity.rotate = Math.cos(activity.y0) - elementScrollTop * 0.002
     }
     activity.scale = Math.sin((elementScrollTop - activity.offsetTop) * 0.001) + window.innerWidth * 0.0008
-    activity.top = elementScrollTop - activity.offsetTop + window.innerHeight * 0.40
+    activity.top = elementScrollTop - activity.offsetTop + window.innerHeight * 0.60
     $('.activitySlideBox').css('top', `${activity.top}px`).css('left', `${activity.left}px`).css('transform', `rotate(${activity.rotate}deg) scale(${activity.scale})`)
   }
 
