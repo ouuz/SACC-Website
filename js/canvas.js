@@ -27,15 +27,15 @@ function drawPartCurve(lineWidth, strokeColor, lineDash, startPonit, endPoint, r
 
 function drawCurve() { //画轨迹
   // drawFirstCurve
-  drawPartCurve(35, '#cf91d4', [80, 30], [280, -10], [150, 230], 0.1)
-  drawPartCurve(35, '#9c91d5', [80, 30], [150, 230], [0, 350], 0.1)
+  drawPartCurve(35, '#e4b0a0', [80, 30], [280, -10], [150, 230], 0.1)
+  drawPartCurve(35, '#de8479', [80, 30], [150, 230], [0, 350], 0.1)
 
   // drawSecondCurve
   drawPartCurve(40, '#8692fe', [110, 50], [580, -10], [405, 400], 0.1)
   drawPartCurve(40, '#96d493', [110, 50], [416, 384], [-100, 900], 0.07)
 
   // drawThirdCurve
-  drawPartCurve(35, '#8dc6e1', [140, 50], [1430, -10], [1300, 650], 0.15)
+  drawPartCurve(35, '#5f8faa', [140, 50], [1430, -10], [1300, 650], 0.15)
   drawPartCurve(35, '#febc7f', [140, 50], [1300, 649], [550, 1250], 0.15)
   drawPartCurve(35, '#ff9281', [140, 50], [550, 1249], [-100, 1400], 0.1)
 

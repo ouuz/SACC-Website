@@ -298,15 +298,15 @@ var group = [{
 ]
 
 var department = [{
-  'departmentImgSrc': './img/TIM图片20190921133506.jpg',
+  'departmentImgSrc': './img/department/xmtS.png',
   'departmentText': '作为科协的推广部门，新媒体的小伙伴们主要负责的是关于科协的信息的发布与分享，以及院科协公众号的运营，同时还会教授剪辑学院视频的内容，一起见证科协的各项活动，为院科协的蓬勃发展添上有力的一笔。',
   'hiddenImgSrc': './img/department/xmt.png'
 }, {
-  'departmentImgSrc': './img/TIM图片20190921133506.jpg',
+  'departmentImgSrc': './img/department/jsbS.png',
   'departmentText': '技术部现有算法、程序设计、前端设计和网络安全等技术方向，这些技术相辅相成。技术部的骨干成员实力雄厚，经历丰富。多人在程序设计大赛、网络攻防大赛、网页设计大赛等中获得奖项。',
   'hiddenImgSrc': './img/department/jsb.png'
 }, {
-  'departmentImgSrc': './img/TIM图片20190921133506.jpg',
+  'departmentImgSrc': './img/department/bgsS.png',
   'departmentText': '办公室是科协的重要组成部分！它负责科协的整个统筹规划，承担活动策划宣传，组织运行，等工作。其下设有内务部，策划部宣传部。在办公室成员的合作下，科协才能顺利地举办各种比赛。另外，它也是科协交流放松地方和科协女生的集中营！',
   'hiddenImgSrc': './img/department/bgs.png'
 }]

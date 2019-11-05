@@ -480,6 +480,7 @@ const allScroll = () => {
         $(ev).find('h1').find('span'),
         $(ev).find('h1').find('span'),
         $(ev).find('img'),
+        $(ev).find('img'),
         $(ev).find('img')
       ]
       return arr
@@ -523,26 +524,33 @@ const allScroll = () => {
 
   }
 
+  function scroll(e, beforeElementScrollTop, elementScrollTop) {
+    if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight())
+      presidiumScroll(e)
+    else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
+      presidium.percent = 144
+    else if (elementScrollTop < presidium.offsetTop)
+      presidium.percent = 0
+    if (elementScrollTop > illustrations.offsetTop && elementScrollTop < illustrations.wholeHeight())
+      illustrationsScroll(e)
+    if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 2.3) <= 0) {
+      if (Math.abs(elementScrollTop - beforeElementScrollTop) > 50) {
+        activityImgScroll(e, elementScrollTop)
+        activityFlyGirlScroll(elementScrollTop)
+      }
+    }
+    $('.presidiumContent ul').css('transform', `translate3d(-${presidium.percent}vw,0,0)`)
+  }
+
   $(window).scroll(() => {
     window.onwheel = function (e) {
       e = e || window.event;
+      var elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if (e.wheelDelta) {
-        const elementScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight())
-          presidiumScroll(e)
-        else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
-          presidium.percent = 144
-        else if (elementScrollTop < presidium.offsetTop)
-          presidium.percent = 0
-        if (elementScrollTop > illustrations.offsetTop && elementScrollTop < illustrations.wholeHeight())
-          illustrationsScroll(e)
-        if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 2.3) <= 0) {
-          if (elementScrollTop - document.documentElement.scrollTop < 180) {
-            activityImgScroll(e, elementScrollTop)
-            activityFlyGirlScroll(elementScrollTop)
-          }
-        }
-        $('.presidiumContent ul').css('transform', `translate3d(-${presidium.percent}vw,0,0)`)
+        scroll(e, elementScrollTop, document.documentElement.scrollTop)
+        setTimeout(() => {
+          scroll(e, elementScrollTop, document.documentElement.scrollTop)
+        },50)
       }
     };
   })
@@ -552,11 +560,11 @@ const allScroll = () => {
 if (window.innerWidth >= 768) {
   groupAnimation()
   projectSlideShow()
-  // Load()
+  Load()
   allScroll()
   dataImport()
   presidiumShow()
-  generateStars(150, 2)
+  generateStars(300, 2)
   departmentHoverShow()
 } else {
   addPresidiumMobileContent(presidium)
@@ -564,7 +572,7 @@ if (window.innerWidth >= 768) {
   addDepartmentContent(department)
   addProjectContent(project)
   generateStars(150, 1);
-
+  activityMobileDrag()
 }
 
 

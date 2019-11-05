@@ -1,7 +1,7 @@
-const activityMobileDrag = (moveClass) => {
-  let list = document.querySelector(moveClass),
+const activityMobileDrag = () => {
+  let list = document.querySelector('.activityImgBox'),
     then, now, index = 0,
-    length = $(moveClass).children().length;
+    length = $('.activityImgBox').children().length;
   list.addEventListener('touchmove', dragDown);
   list.addEventListener('touchend', dragUp);
 
@@ -16,12 +16,12 @@ const activityMobileDrag = (moveClass) => {
     } else if (now - then >= 0) {
       index = (index - 1) % length
     }
-    $(moveClass).css('transform', `translateX(${index * (-25)}%)`)
+    $('.activityImgBox').css('transform', `translateX(${index * (-25)}%)`)
   }
-
+console.log(111111111)
   var activityInterval = setInterval(() => {
     index = (index + 1) % length;
-    $(moveClass).css('transform', `translateX(${index * (-25)}%)`)
+    $('.activityImgBox').css('transform', `translateX(${index * (-25)}%)`)
   }, 3000)
 }
 
@@ -50,13 +50,13 @@ const presidiumMobileDrag = (moveClass) => {
       }
       if (index != -1) {
         $(moveClass).css('transform', `translateX(-${index * (100 / length)}%)`)
-        let prev = $($(moveClass).children().get(index -1))
+        let prev = $($(moveClass).children().get(index - 1))
 
-        setTimeout(()=>{
+        setTimeout(() => {
           $(prev).find('.presidiumMobileDes').css('animation', 'mobileBottomScale .5s forwards')
           $(prev).find('.presidiumMobileSaying').css('animation', 'mobileTopHiddenScale .5s forwards')
-        },200)
-       
+        }, 200)
+
       } else
         return
     }
@@ -83,8 +83,6 @@ const presidiumMobileShow = (targetClass) => {
     }
   }
 }
-
-activityMobileDrag('.activityImgBox')
 
 const presidiumMobileArr = [
   '.presidiumMobile_2019 ul',
