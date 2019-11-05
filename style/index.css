@@ -863,9 +863,9 @@ html {
   height: 50vh;
   display: flex;
   justify-content: space-around;
-  position: absolute;
+  /* position: absolute;
   bottom: 15%;
-  z-index: 5;
+  z-index: 5; */
 }
 
 .projectContent {

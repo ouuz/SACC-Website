@@ -316,10 +316,17 @@ const Load = () => {
 
   window.onscroll = function () {
     let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let showTop = $('.project').offset().top
     if (document.documentElement.scrollTop - clientH * 0.7 * pageIndex >= 0) {
       pageIndex++;
       if (pageIndex >= 3 && pageIndex <= 14)
         loadAnimation()
+    }
+    
+    if(document.documentElement.scrollTop - showTop >=0 && document.documentElement.scrollTop - showTop - $('.project').height()>=0){
+      $('#illustrationsTree').css('display','block')
+    }else{
+      $('#illustrationsTree').css('display','none')
     }
   };
 }
@@ -550,7 +557,7 @@ const allScroll = () => {
         scroll(e, elementScrollTop, document.documentElement.scrollTop)
         setTimeout(() => {
           scroll(e, elementScrollTop, document.documentElement.scrollTop)
-        },50)
+        }, 50)
       }
     };
   })
