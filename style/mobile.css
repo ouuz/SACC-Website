@@ -1,4 +1,4 @@
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
 
   .DepartmentContent,
   .moonBox,
@@ -42,11 +42,49 @@
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .littleThings>img {
+    width: 20%;
+  }
 
-@media (min-width: 768px) and (max-width: 991px) {}
+  #logoText {
+    right: 5%;
+    top: 19%;
+  }
 
-@media (max-width: 767px) {
+  #logoText>p {
+    font-size: 10rem;
+  }
+
+  .department {
+    width: 90%;
+  }
+
+  .DepartmentContent {
+    width: 45%;
+    height: 35%;
+  }
+
+  .DepartmentContentImg {
+    width: 100%;
+    margin: 0;
+  }
+
+  .DepartmentContent p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+  }
+
+  .presidiumContent ul li:nth-child(1) {
+    font-size: 1.7rem;
+  }
+
+  .presidiumContent>ul {
+    width: 200vw;
+}
+}
+
+@media (max-width: 991px) {
 
   canvas,
   .GroupImgBox img:nth-child(1),
@@ -56,10 +94,10 @@
   .cloudBoxB,
   .cloudBoxC,
   .activitySlideBox,
-  .logoRocket,
   #shadow,
   .illustrations,
-  .stick {
+  .stick,
+  .littleThings {
     display: none;
   }
 
@@ -74,10 +112,6 @@
   .DepartmentContent:nth-child(2) {
     position: inherit;
     right: 0;
-  }
-
-  .littleThings {
-    display: none;
   }
 
   #logoText {
@@ -163,9 +197,9 @@
   }
 
   .activity {
-    height: auto;
+    height: 75vh;
     width: 100vw;
-    overflow: hidden;
+    overflow-x: hidden;
     position: absolute;
     top: 100vh;
   }
@@ -204,15 +238,18 @@
   }
 
   .presidiumMobile {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 130vh;
+    overflow-x: hidden;
+    margin-top: 10vh;
   }
 
   .presidiumMobile_2019,
   .presidiumMobile_2018,
   .presidiumMobile_2017 {
     width: 100vw;
-    height: 25vh;
-    overflow: hidden;
   }
 
   .presidiumMobile_2019>ul,
@@ -264,6 +301,8 @@
     padding: 0.5rem;
     width: 100%;
     word-break: break-all;
+    justify-content: center;
+    align-items: center;
   }
 
   .contactWay {
@@ -331,4 +370,95 @@
       height: 0%;
     }
   }
+}
+
+@media(max-width:767px) {
+  .department {
+    height: 150vh;
+    margin-top: 55vh;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+  canvas,
+  .littleThings {
+    display: block;
+  }
+
+  .container {
+    background: rgba(255, 255, 255, 0);
+  }
+
+  .department {
+    height: 150vh;
+    margin-top: 100vh;
+    background: linear-gradient(#4e3e64, #292236);
+  }
+
+  .DepartmentContent {
+    width: 80%;
+  }
+
+  .DepartmentContentImg {
+    width: 100%;
+  }
+
+  .presidiumMobile {
+    justify-content: space-around;
+    height: 150vh;
+    overflow: hidden;
+  }
+
+  .competion img {
+    height: 65vh;
+  }
+
+  .team {
+    background: linear-gradient(#f1c5b6, 20%, #ffedd678);
+  }
+
+  .presidiumMobile {
+    background: linear-gradient(#433655, #f3c6b7);
+    margin-top: 75vh;
+  }
+
+  .groupText {
+    color: #675959;
+    font-size: 1.3rem;
+  }
+
+  .littleThings img {
+    width: 20%;
+  }
+
+  #logoText {
+    left: 71%;
+    top: 68%;
+    line-height: 1.5;
+  }
+
+  #logoText>p {
+    font-size: 8rem;
+  }
+
+  .littleThings img:nth-child(2) {
+    left: 28%;
+    top: 18%;
+  }
+
+  .activity {
+    top: 350vh;
+    background: linear-gradient(#292236, #443656);
+  }
+
+  .contactUs {
+    background: linear-gradient(#fff6eb, 80%, #615e8b);
+  }
+
+  .presidiumMobileSaying {
+    font-size: 1.8rem;
+  }
+
 }

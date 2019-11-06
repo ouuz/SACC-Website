@@ -19,6 +19,8 @@ html {
   background: linear-gradient(#1d1d2c, 30%, #675284, 70%, #282135);
   z-index: -1;
   position: absolute;
+  width: 100vw;
+  height: 300vh;
 }
 
 /* logo */
@@ -574,6 +576,7 @@ html {
 .activity {
   height: 300vh;
   position: relative;
+  overflow: hidden;
 }
 
 .activitySlideBox {
@@ -863,24 +866,21 @@ html {
   height: 50vh;
   display: flex;
   justify-content: space-around;
-  /* position: absolute;
-  bottom: 15%;
-  z-index: 5; */
 }
 
 .projectContent {
   flex-basis: 25%;
-  background: url('../img/material/xsq.png') no-repeat;
+  /* background: url('../img/material/xsq.png') no-repeat; */
   overflow-x: hidden;
   position: relative;
 }
 
 .projectImgBox {
-  width: 78%;
-  margin-left: 9%;
-  margin-top: 19%;
-  max-height: 45%;
+  width: 85%;
+  max-height: 50%;
   overflow: hidden;
+  border: 20px solid #000000;
+  margin: 0 auto;
 }
 
 .projectImgBox img {
@@ -894,20 +894,39 @@ html {
   border-radius: 50%;
   background: red;
   height: 1.5vh;
-  bottom: 30%;
-  right: 14%;
-  transition: all .5s ease-in-out
+  bottom: 46%;
+  right: 11%;
+  transition: all .5s ease-in-out;
+  z-index: 3;
+}
+
+.base {
+  position: absolute;
+  height: 6%;
+  width: 85%;
+  background: #c5c2bf;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0px 0px 15px 15px;
+}
+
+.tray {
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-48%, 0%);
 }
 
 .blackScreen {
-  width: 80%;
+  width: 82%;
   background: black;
-  height: 46%;
+  height: 47%;
   position: absolute;
-  top: 19%;
-  left: 7%;
+  top: 0%;
+  left: 9%;
   transition: all .5s ease-in-out;
   cursor: pointer;
+  margin: 0 auto;
 }
 
 /* department */
@@ -964,7 +983,8 @@ html {
 
 .DepartmentContent p {
   font-size: 1.2rem;
-  line-height: 2
+  line-height: 2;
+  padding: 0 .3rem;
 }
 
 .DepartmentContent:nth-child(2) {

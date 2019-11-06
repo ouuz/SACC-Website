@@ -126,6 +126,10 @@ const addProjectContent = (arr) => {
         <a href=${item.projectLink}target="_blank"><img src=${item.projectImgSrc}
             alt="" class="projectImg"></a>
       </div>
+      <div class="base"></div>
+      <div class="tray">
+      <img src="./img/material/tray.png" alt="">
+      </div>
       <div class="blackScreen"></div>
     </div>
   `)
@@ -217,13 +221,6 @@ var presidium = [{
     'year': 2017,
     'signature': '精通各种bug编写，嘤嘤嘤能力满级。機械學習海外在逃，21世纪的学科入坑中。长期高价收购防脱发秘籍+vx:budazhu97',
     'portraitSrc': './img/portrait/cwq.jpg'
-  },
-  {
-    'name': 'SACC',
-    'position': '吉祥物',
-    'year': 2017,
-    'signature': '今年我33岁啦~！',
-    'portraitSrc': 'https://sacc.oss-cn-beijing.aliyuncs.com/logo_%E5%89%AF%E6%9C%AC.png'
   }
 ]
 

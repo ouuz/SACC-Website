@@ -18,7 +18,6 @@ const activityMobileDrag = () => {
     }
     $('.activityImgBox').css('transform', `translateX(${index * (-25)}%)`)
   }
-console.log(111111111)
   var activityInterval = setInterval(() => {
     index = (index + 1) % length;
     $('.activityImgBox').css('transform', `translateX(${index * (-25)}%)`)
@@ -78,18 +77,27 @@ const presidiumMobileShow = (targetClass) => {
       let father = findFather(e.target, fatherClass)
       $(father).css('animation', 'mobileTopScale .5s forwards')
       fatherClass == 'presidiumMobileDes' ?
-        $(father).next().css('display', 'block').css('animation', 'mobileBottomScale .5s forwards') :
+        $(father).next().css('display', 'flex').css('animation', 'mobileBottomScale .5s forwards') :
         $(father).prev().css('animation', 'mobileBottomScale .5s forwards')
     }
   }
 }
 
-const presidiumMobileArr = [
-  '.presidiumMobile_2019 ul',
-  '.presidiumMobile_2018 ul',
-  '.presidiumMobile_2017 ul'
-]
-presidiumMobileArr.map(item => {
-  presidiumMobileDrag(item)
-  presidiumMobileShow(item)
-})
+const mobileDataImport = () =>{
+  const presidiumMobileArr = [
+    '.presidiumMobile_2019 ul',
+    '.presidiumMobile_2018 ul',
+    '.presidiumMobile_2017 ul'
+  ]
+  
+  presidiumMobileArr.map(item => {
+    presidiumMobileDrag(item)
+    presidiumMobileShow(item)
+  })
+
+  activityMobileDrag()
+  addPresidiumMobileContent(presidium)
+  addGroupContent(group)
+  addDepartmentContent(department)
+  addProjectContent(project)
+}

@@ -89,9 +89,9 @@ const projectSlideShow = () => {
 
     function up() {
       $(e.target).css('opacity', '0')
-      $(e.target).prev().prev().css('background', 'green')
+      $(e.target).prev().prev().prev().prev().css('background', 'green')
       setTimeout(() => {
-        let img = $(e.target).prev().children().children();
+        let img = $(e.target).prev().prev().prev().children().children();
         $(img).css('transform', `translateY(${$(img).parent().parent().height() - $(img).height()}px)`)
       }, 500)
     }
@@ -102,9 +102,9 @@ const projectSlideShow = () => {
     $(e.target).attr('class') == 'blackScreen' ? down() : '';
 
     function down() {
-      $(e.target).prev().children().children().css('transform', 'translateY(0)')
+      $(e.target).prev().prev().prev().children().children().css('transform', 'translateY(0)')
       $(e.target).css('opacity', '1')
-      $(e.target).prev().prev().css('background', 'red')
+      $(e.target).prev().prev().prev().prev().css('background', 'red')
     }
   }
 }
@@ -322,11 +322,11 @@ const Load = () => {
       if (pageIndex >= 3 && pageIndex <= 14)
         loadAnimation()
     }
-    
-    if(document.documentElement.scrollTop - showTop >=0 && document.documentElement.scrollTop - showTop - $('.project').height()>=0){
-      $('#illustrationsTree').css('display','block')
-    }else{
-      $('#illustrationsTree').css('display','none')
+
+    if (document.documentElement.scrollTop - showTop >= 0 && document.documentElement.scrollTop - showTop - $('.project').height() >= 0) {
+      $('#illustrationsTree').css('display', 'block')
+    } else {
+      $('#illustrationsTree').css('display', 'none')
     }
   };
 }
@@ -336,7 +336,6 @@ const allScroll = () => {
     'height': $(".presidium").height(),
     'offsetTop': $(".presidium").offset().top,
     'percent': 0,
-    'left': $('.presidiumContent ul').offset().left - 100,
     'Y': 0,
     'index': 1,
     wholeHeight: function () {
@@ -429,10 +428,7 @@ const allScroll = () => {
   function presidiumScroll(e) {
     if (e.wheelDelta < 0) {
       presidium.percent += 8;
-
-      if ($('.presidiumContent ul').offset().left - presidium.left <= 270 && presidium.index <= 14) {
-        presidium.left = $('.presidiumContent ul').offset().left;
-
+      if (presidium.index <= 14) {
         let child = $('.presidiumContent ul').children().get(presidium.index),
           childYear = $(child).children().last().children().get(2)
 
@@ -440,14 +436,12 @@ const allScroll = () => {
         NumAutoPlusAnimation(childYear, {
           time: 1800,
           num: `${$(childYear).html()}`,
-          regulator: 50
+          regulator: 20
         })
-
         presidium.index++;
       }
     } else
       presidium.percent -= 8;
-
   }
 
   function activityImgScroll(e) {
@@ -532,9 +526,10 @@ const allScroll = () => {
   }
 
   function scroll(e, beforeElementScrollTop, elementScrollTop) {
-    if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight())
-      presidiumScroll(e)
-    else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
+    if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight()) {
+      if (Math.abs(elementScrollTop - beforeElementScrollTop) > 5)
+        presidiumScroll(e)
+    } else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
       presidium.percent = 144
     else if (elementScrollTop < presidium.offsetTop)
       presidium.percent = 0
@@ -564,7 +559,7 @@ const allScroll = () => {
 
 }
 
-if (window.innerWidth >= 768) {
+if (window.innerWidth >= 992) {
   groupAnimation()
   projectSlideShow()
   Load()
@@ -573,15 +568,14 @@ if (window.innerWidth >= 768) {
   presidiumShow()
   generateStars(300, 2)
   departmentHoverShow()
-} else {
-  addPresidiumMobileContent(presidium)
-  addGroupContent(group)
-  addDepartmentContent(department)
-  addProjectContent(project)
-  generateStars(150, 1);
-  activityMobileDrag()
+}else if(window.innerWidth>= 768 && window.innerWidth <= 991){
+  generateStars(150, 2);
+  mobileDataImport()
 }
-
+else if(window.innerWidth <= 767){
+  mobileDataImport()
+  generateStars(150, 1);
+}
 
 
 nav()
