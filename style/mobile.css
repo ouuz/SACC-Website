@@ -4,8 +4,13 @@
   .moonBox,
   .competion,
   .projectContent,
-  .group {
+  .group,
+  .secondScreen {
     opacity: 0
+  }
+
+  .teamRight {
+    display: none;
   }
 
   .team {
@@ -17,7 +22,7 @@
   }
 
   .activity {
-    background: linear-gradient(180deg, #ffedd678, #f6e2c821);
+    background: linear-gradient(#ffedd678, #f6e2c821, #fafafa 90%);
   }
 
 
@@ -173,6 +178,7 @@
   .teamRight {
     width: 100%;
     height: 100%;
+    display: flex;
   }
 
   .group {

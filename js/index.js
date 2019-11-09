@@ -148,7 +148,7 @@ const presidiumShow = () => {
         Slide($(e.target).next().next()) : ''
 
       function Slide(ev) {
-        $(ev).css('opacity', '1').css('border', '3px solid #838ecccf').css('transition', 'border-top-color 0.1s linear 0.3s, border-right-color 0.1s linear 0.1s, border-bottom-color 0.1s linear 0s, border-left-color 0.1s linear 0.11s')
+        $(ev).css('opacity', '1').css('border', '3px solid #a180b47d').css('transition', 'border-top-color 0.1s linear 0.3s, border-right-color 0.1s linear 0.1s, border-bottom-color 0.1s linear 0s, border-left-color 0.1s linear 0.11s')
         setTimeout(() => {
           $(ev).find('p').css('opacity', '1')
         }, 200)
@@ -260,6 +260,12 @@ const nav = () => {
     }, 1000)
     $('#illustrationsTree').css('transform', 'scale(1)').css('display', 'block')
   })
+
+  $('#arraw').click(() => {
+    $('html, body').animate({
+      scrollTop: window.innerHeight
+    }, 1000)
+  })
 }
 
 const dataImport = () => {
@@ -276,8 +282,10 @@ const Load = () => {
   function loadAnimation() {
     let domClass = '';
     switch (pageIndex) {
+      case 2:
+        domClass = '.secondScreen';
+        break;
       case 3:
-        index = 0;
         domClass = '.DepartmentContent';
         break;
       case 4:
@@ -285,23 +293,20 @@ const Load = () => {
       case 6:
       case 7:
       case 8:
-        index = 1;
         domClass = '.moonBox';
         break;
       case 9:
-        index = 2;
         domClass = '.group';
         drawTeamEye()
         break;
       case 10:
+        $('.backgroundImg').css('transform', 'translateX(0%)')
       case 11:
       case 12:
       case 13:
-        index = 3;
         domClass = '.competion';
         break;
       case 14:
-        index = 4;
         domClass = '.projectContent';
         break;
     }
@@ -319,7 +324,7 @@ const Load = () => {
     let showTop = $('.project').offset().top
     if (document.documentElement.scrollTop - clientH * 0.7 * pageIndex >= 0) {
       pageIndex++;
-      if (pageIndex >= 3 && pageIndex <= 14)
+      if (pageIndex >= 2 && pageIndex <= 14)
         loadAnimation()
     }
 
@@ -471,6 +476,11 @@ const allScroll = () => {
       for (let i of [0, 1, 2])
         (document.documentElement.scrollTop - activity.ImgTop[i] > 0 && document.documentElement.scrollTop - activity.ImgTop[i + 1] <= 0) ?
         func($(activity.el.get(i))) : ''
+
+      $($($('.competion')[3]).children()[0]).children().css('opacity') == '1' ?
+        $('.slowpoke').css('left', '50%') :
+        $('.slowpoke').css('left', '0%')
+
     }
 
     function showDom(ev) {
@@ -533,12 +543,12 @@ const allScroll = () => {
     if (elementScrollTop > illustrations.offsetTop && elementScrollTop < illustrations.wholeHeight())
       illustrationsScroll(e)
     if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 2.3) <= 0) {
-      console.log(Math.abs(elementScrollTop - beforeElementScrollTop))
       if (Math.abs(elementScrollTop - beforeElementScrollTop) > 10) {
         activityImgScroll(e, elementScrollTop)
         activityFlyGirlScroll(elementScrollTop)
       }
-    }
+    } else if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 <= 0)
+      $('.activitySlideBox').css('top', '-5%').css('left', '70%')
     $('.presidiumContent ul').css('transform', `translate3d(-${presidium.percent}vw,0,0)`)
   }
 
@@ -566,11 +576,10 @@ if (window.innerWidth >= 992) {
   presidiumShow()
   generateStars(300, 2)
   departmentHoverShow()
-}else if(window.innerWidth>= 768 && window.innerWidth <= 991){
+} else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
   generateStars(150, 2);
   mobileDataImport()
-}
-else if(window.innerWidth <= 767){
+} else if (window.innerWidth <= 767) {
   mobileDataImport()
   generateStars(150, 1);
 }

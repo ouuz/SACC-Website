@@ -95,8 +95,9 @@ html {
 }
 
 .littleThings img:nth-child(3) {
-  top: 65%;
-  right: 13%;
+  top: 60%;
+  right: 11%;
+  width: 20%;
 }
 
 .littleThings img:nth-child(4) {
@@ -109,6 +110,13 @@ html {
   top: 79%;
   left: 20%;
   transform: rotate(99deg);
+}
+
+.littleThings img:nth-child(6) {
+  top: 42%;
+  left: 80%;
+  animation: arrow 3s infinite;
+  cursor: pointer;
 }
 
 .star {
@@ -221,6 +229,13 @@ html {
   }
 }
 
+@keyframes arrow {
+  100% {
+    top: 43%;
+    left: 78%;
+  }
+}
+
 /* team */
 .team {
   height: 100vh;
@@ -245,16 +260,14 @@ html {
 
 #Group {
   position: absolute;
+  left: 75%;
+  transition: all .3s;
 }
 
 .teamRight {
   width: 60%;
   cursor: pointer;
-  z-index: 2
-}
-
-.teamRight {
-  display: flex;
+  z-index: 2;
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
@@ -556,7 +569,7 @@ html {
 
 .u-tri {
   display: inline-block;
-  border-top: 20px solid #838ecccf;
+  border-top: 20px solid #a180b47d;
   border-bottom: 20px solid transparent;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
@@ -597,9 +610,23 @@ html {
 .activitySlideBox {
   width: 10vw;
   position: absolute;
-  top: 0;
+  top: -5%;
   transition: all 0.5s ease-in-out;
   z-index: -2;
+  left: 70%;
+}
+
+.activityIntroductionText {
+  font-size: 1.2rem;
+  letter-spacing: .3rem;
+  padding: .5rem;
+  position: absolute;
+  top: 108%;
+  z-index: -1;
+  height: 272%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .activity img {
@@ -750,28 +777,34 @@ html {
   border-radius: 50%;
 }
 
-.competion img:hover {
-  box-shadow: 15px 6px 8px 1px #ddd;
+.activityimg {
+  transition: all .3s;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.activityIntroduction:hover div {
+  transform: rotate3d(0, 1, 0, 90deg);
 }
 
 .competion:nth-child(1) {
-  top: 2%;
+  top: 0%;
   left: 35%;
 }
 
 .competion:nth-child(2) {
-  top: 30%;
+  top: 18%;
   left: 10%;
 }
 
 .competion:nth-child(3) {
-  top: 50%;
-  left: 65%;
+  top: 43%;
+  left: 28%;
 }
 
 .competion:nth-child(4) {
-  top: 70%;
-  left: 10%;
+  top: 60%;
+  left: 60%;
 }
 
 .competionName {
@@ -788,6 +821,15 @@ html {
   transition: all .1s ease-in-out;
   animation: wordShake 1s infinite;
   display: inline-block;
+}
+
+.slowpoke {
+  position: absolute;
+  bottom: 4%;
+  left: 0;
+  transition: all 3s;
+  width: 50%;
+  z-index: -1;
 }
 
 @keyframes competionIn {
@@ -881,7 +923,7 @@ html {
   height: 50vh;
   display: flex;
   justify-content: space-around;
-  background: linear-gradient(#fdfbf7, #fff2f200);
+  background: linear-gradient(#fff6f66e, #fff6f603);
 }
 
 .projectContent {
