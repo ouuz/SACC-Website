@@ -17,7 +17,7 @@
   }
 
   .activity {
-    background: linear-gradient(180deg, #ffedd678, transparent);
+    background: linear-gradient(180deg, #ffedd678, #f6e2c821);
   }
 
 
@@ -81,7 +81,20 @@
 
   .presidiumContent>ul {
     width: 200vw;
-}
+  }
+
+  .groupText {
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+  }
+
+  .PresidiumSaying {
+    width: 20vw;
+  }
+
+  .presidiumContent ul li:nth-child(11) div.PresidiumSaying {
+    top: -50vh;
+  }
 }
 
 @media (max-width: 991px) {
@@ -124,10 +137,6 @@
 
   #logoText>p {
     font-size: 5rem;
-  }
-
-  #contactBtn {
-    padding: 0 15%;
   }
 
   .logoPurplePlant>img {
@@ -258,6 +267,10 @@
     display: flex;
     width: 500%;
     transition: all 0.2s ease-in-out;
+  }
+
+  .presidiumMobile_2017>ul {
+    width: 400%;
   }
 
   .presidiumMobile_2019>ul li,

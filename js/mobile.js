@@ -29,7 +29,7 @@ const presidiumMobileDrag = (moveClass) => {
     then, now, index = 0,
     time = 0,
     curTime = 0,
-    length = $(moveClass).children().length;
+    length = moveClass == '.presidiumMobile_2017 ul' ? 4:5;
   list.addEventListener('touchmove', dragDown);
   list.addEventListener('touchend', dragUp);
 

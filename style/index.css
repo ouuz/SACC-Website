@@ -52,7 +52,7 @@ html {
 }
 
 #contactBtn {
-  padding: 0 4rem;
+  padding: 0 2rem;
   line-height: 3;
   border: 1px solid #ffffff;
   font-size: 1.3rem;
@@ -63,6 +63,14 @@ html {
   animation: logoText 3s 1 forwards;
 }
 
+.contactBtnBox {
+  transition: all .3s;
+}
+
+.contactBtnBox:hover {
+  transform: scale(1.3);
+}
+
 .littleThings {
   position: absolute;
   height: 200vh;
@@ -71,6 +79,7 @@ html {
 
 .littleThings>img {
   position: absolute;
+  width: 13%;
 }
 
 .littleThings img:nth-child(1) {
@@ -304,7 +313,7 @@ html {
 }
 
 .teamLeftLogo {
-  width: 200px;
+  width: 30%;
   background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
   position: absolute;
   top: 50%;
@@ -344,23 +353,23 @@ html {
 }
 
 .teamLeftBox img:nth-child(2) {
-  width: 105px;
+  width: 17%;
 }
 
 .teamLeftBox img:nth-child(3) {
-  width: 100px;
+  width: 15%;
 }
 
 .teamLeftBox img:nth-child(4) {
-  width: 120px;
+  width: 14%;
 }
 
 .teamLeftBox img:nth-child(5) {
-  width: 130px;
+  width: 15%;
 }
 
 .teamLeftBox img:nth-child(6) {
-  width: 140px;
+  width: 16%;
 }
 
 @keyframes borderAnimation {
@@ -417,8 +426,12 @@ html {
   letter-spacing: 1px;
   line-height: 1.5;
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 1.8rem;
   padding-right: 9vw;
+}
+
+.presidiumContent ul li:nth-child(11) div.PresidiumSaying {
+  top: -41vh;
 }
 
 .presidiumContent ul li:not(:first-child) {
@@ -469,7 +482,6 @@ html {
 
 .presidiumContent li.musicpaper.eq4 {
   top: 80%;
-  height: 60%;
 }
 
 .presidiumContent li.musicpaper.eq4 .end {
@@ -482,7 +494,7 @@ html {
 
 .presidiumContent li.presidiumCloud {
   position: absolute;
-  bottom: -50%;
+  bottom: -52%;
 }
 
 .presidiumContentCloud {
@@ -523,7 +535,7 @@ html {
   position: absolute;
   top: -35vh;
   width: 15vw;
-  height: 30vh;
+  min-height: 30vh;
   left: -3vw;
   color: #ffffff;
   font-size: 1.3rem;
@@ -531,6 +543,9 @@ html {
   padding: 0.5rem;
   border-color: transparent;
   background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .PresidiumSaying p {
@@ -546,7 +561,7 @@ html {
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   position: absolute;
-  bottom: -15%;
+  bottom: -40px;
   left: 40%;
 }
 
@@ -606,6 +621,7 @@ html {
   opacity: 0.6;
   animation: cloudMoveA 5s infinite;
   position: absolute;
+  width: 30%;
 }
 
 .cloudBoxB svg {
@@ -613,12 +629,14 @@ html {
   opacity: 0.8;
   position: absolute;
   animation: cloudMoveB 5s infinite;
+  width: 30%;
 }
 
 .cloudBoxC svg {
   fill: #e7c9d2;
   position: absolute;
   animation: cloudMoveC 5s infinite;
+  width: 30%;
 }
 
 .cloudBoxA svg:nth-child(1) {
@@ -776,9 +794,6 @@ html {
   0% {
     transform: translate3d(0px, -40vh, 0px) scaleY(2);
     opacity: 0;
-  }
-
-  50% {
     border-radius: 50%;
   }
 
@@ -866,6 +881,7 @@ html {
   height: 50vh;
   display: flex;
   justify-content: space-around;
+  background: linear-gradient(#fdfbf7, #fff2f200);
 }
 
 .projectContent {
@@ -877,9 +893,9 @@ html {
 
 .projectImgBox {
   width: 85%;
-  max-height: 50%;
+  max-height: 45%;
   overflow: hidden;
-  border: 20px solid #000000;
+  border: 0.7vw solid #000000;
   margin: 0 auto;
 }
 
@@ -894,7 +910,7 @@ html {
   border-radius: 50%;
   background: red;
   height: 1.5vh;
-  bottom: 46%;
+  bottom: 50%;
   right: 11%;
   transition: all .5s ease-in-out;
   z-index: 3;
@@ -912,7 +928,7 @@ html {
 
 .tray {
   position: absolute;
-  top: 56%;
+  top: 51%;
   left: 50%;
   transform: translate(-48%, 0%);
 }
@@ -920,7 +936,7 @@ html {
 .blackScreen {
   width: 82%;
   background: black;
-  height: 47%;
+  height: 43%;
   position: absolute;
   top: 0%;
   left: 9%;
@@ -982,7 +998,7 @@ html {
 }
 
 .DepartmentContent p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 2;
   padding: 0 .3rem;
 }
