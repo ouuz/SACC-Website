@@ -7,11 +7,8 @@ const findFather = (dom, fatherName) => {
 
 const groupAnimation = () => {
   let list = document.querySelector('.teamRight'),
-    time = null,
-    curTime = null,
     transformPoint = ['-14vw,-14vh', '3vw,15vh', '9vw,-6vh', '-12vw,8vh', '1vw,-25vh']
   list.addEventListener('mouseover', slideIn);
-  list.addEventListener('mouseout', slideOut);
 
   function slideIn(e) {
     time = new Date()
@@ -22,9 +19,6 @@ const groupAnimation = () => {
       let fatherDom = findFather(e.target, 'GroupImgBox'),
         arr = []
 
-      $($(fatherDom).children().get(0)).css('transform', 'translateX(-200%)')
-      $($(fatherDom).children().get(1)).css('transform', 'translateX(-200%)')
-      $($(fatherDom)).next().css('opacity', '1')
       $('.backgroundImg').css('transform', 'translateX(50%)')
       technologyStackListShow()
 
@@ -63,20 +57,8 @@ const groupAnimation = () => {
           })
         }, 200)
       }
-
-    }
-
-  }
-
-  function slideOut() {
-    curTime = new Date()
-    if (curTime - time >= 300) {
-      $('.GroupLogo').css('transform', 'translateX(0)')
-      $('.GroupComic').css('transform', 'translateX(0)')
-      $('.groupText').css('opacity', '0')
     }
   }
-
 }
 
 const projectSlideShow = () => {
@@ -88,8 +70,6 @@ const projectSlideShow = () => {
     $(e.target).attr('class') == 'blackScreen' ? up() : '';
 
     function up() {
-      $(e.target).css('opacity', '0')
-      $(e.target).prev().prev().prev().prev().css('background', 'green')
       setTimeout(() => {
         let img = $(e.target).prev().prev().prev().children().children();
         $(img).css('transform', `translateY(${$(img).parent().parent().height() - $(img).height()}px)`)
@@ -103,74 +83,6 @@ const projectSlideShow = () => {
 
     function down() {
       $(e.target).prev().prev().prev().children().children().css('transform', 'translateY(0)')
-      $(e.target).css('opacity', '1')
-      $(e.target).prev().prev().prev().prev().css('background', 'red')
-    }
-  }
-}
-
-const departmentHoverShow = () => {
-  let list = document.querySelector('.department');
-  list.addEventListener('mouseover', slideIn);
-  list.addEventListener('mouseout', slideOut);
-  let time = null,
-    curTime = null
-
-  function slideIn(e) {
-    time = new Date()
-    if ($(e.target).attr('class'))
-      $(e.target).attr('class').match('Department') ? slide() : '';
-
-    function slide() {
-      let fatherDom = findFather(e.target, 'DepartmentContent')
-      $($(fatherDom).children().last()).css('display', 'block').css('animation', 'hiddenImgJump .3s 1 forwards')
-    }
-  }
-
-  function slideOut() {
-    curTime = new Date()
-    if (curTime - time >= 200) {
-      $('.hiddenImg').css('display', 'none')
-    }
-  }
-}
-
-const presidiumShow = () => {
-  let list = document.querySelector('.presidiumContent ul');
-  list.addEventListener('mouseover', slideIn);
-  list.addEventListener('mouseout', slideOut);
-
-  function slideIn(e) {
-    e.target.className == 'PresidiumName' ? slide() : ''
-
-    function slide() {
-      e.target.className == 'PresidiumName' ?
-        Slide($(e.target).next().next()) : ''
-
-      function Slide(ev) {
-        $(ev).css('opacity', '1').css('border', '3px solid #a180b47d').css('transition', 'border-top-color 0.1s linear 0.3s, border-right-color 0.1s linear 0.1s, border-bottom-color 0.1s linear 0s, border-left-color 0.1s linear 0.11s')
-        setTimeout(() => {
-          $(ev).find('p').css('opacity', '1')
-        }, 200)
-      }
-
-    }
-  }
-
-  function slideOut(e) {
-    e.target.className == 'PresidiumName' ? slide() : ''
-
-    function slide() {
-      e.target.className == 'PresidiumName' ?
-        Slide($(e.target).next().next()) : ''
-
-      function Slide(ev) {
-        $(ev).css('border', '3px solid transparent').css('transition', 'border-top-color 0.2s linear 0s, border-right-color 0.2s linear 0.21s, border-bottom-color 0.2s linear 0.3s, border-left-color 0.2s linear 0.21s')
-        $(ev).find('p').css('opacity', '0')
-        setTimeout(() => {
-          $(ev).css('opacity', '0')
-        }, 400)
-      }
     }
   }
 }
@@ -187,34 +99,70 @@ const generateStars = (n, pages) => {
   }
 };
 
-const nav = () => {
-  let list = document.querySelector('.nav ul')
+const nav = (listClass) => {
+  let list = document.querySelector(`.${listClass} ul`)
+
+  let colorIndex = 0,
+    color = ['rgba(50, 44, 69, 0.35)', 'rgba(250, 229, 217,0.35)', 'rgba(60, 50, 55, 0.35)', 'rgba(70, 56, 90,0.35)', 'rgba(255, 248, 240,0.35)', 'rgba(229, 186, 181,0.35)']
 
   list.addEventListener('click', scrollTo)
 
+  function navMobileShow() {
+    $('.navMobile').css('display', 'block')
+    console.log($('#nav').attr('src'))
+    $('#nav').attr('src', './img/material/close.png')
+    setTimeout(() => {
+      $('.navMobile li').css('opacity', '1')
+      $('.navMobile').css('opacity', '1').css('animation', 'navShow .3s 1 forwards')
+    }, 100)
+  }
+
+  function navMobileHidden() {
+    $('.navMobile').css('animation', 'navHidden .3s 1 forwards')
+    $('.navMobile li').css('opacity', '0')
+    $('#nav').attr('src', './img/material/menu.png')
+    setTimeout(() => {
+      $('.navMobile').css('opacity', '0').css('display', 'none')
+    }, 200)
+  }
+
   function navShow() {
+    $('.navBgLeft').css('background', `${color[colorIndex]}`)
+    $('.navBgRight').css('background', `${color[colorIndex]}`)
+    $('#nav').attr('src', './img/material/close.png')
     $('.nav').css('display', 'block')
     setTimeout(() => {
-      $('.nav li').css('opacity', '1')
-      $('.nav').css('opacity', '1').css('animation', 'navShow .3s 1 forwards')
+      $('.nav ul li').css('opacity', '1')
+      $('.navBg').css('transform', 'rotate3d(0, 1, 0, 0deg)')
+      $('.navBgRight').css('borderBottomRightRadius', '80%')
+      $('.navigationLogo').css('transform', 'translateX(0)')
     }, 100)
   }
 
   function navHidden() {
-    $('.nav').css('animation', 'navHidden .3s 1 forwards')
-    $('.nav li').css('opacity', '0')
+    $('.navBgRight').css('borderBottomRightRadius', '0')
+    $('.navigationLogo').css('transform', 'translateX(50vw)')
     setTimeout(() => {
-      $('.nav').css('opacity', '0').css('displey', 'none')
-    }, 200)
+      $('#nav').attr('src', './img/material/menu.png')
+      $('.nav ul li').css('opacity', '0')
+      $('.navBg').css('transform', 'rotate3d(0, 1, 0, 90deg)')
+    }, 400)
+    setTimeout(() => {
+      $('.nav').css('display', 'none')
+    }, 800)
   }
 
   $('#nav').click(() => {
-    $('.nav').css('opacity') == '0' ? navShow() : navHidden()
+    listClass == 'nav' ?
+      $(`.${listClass}`).css('display') == 'none' ? navShow() : navHidden() :
+      $(`.${listClass}`).css('display') == 'none' ? navMobileShow() : navMobileHidden()
   })
 
   function scrollTo(e) {
-    let scrollToClassFather = findFather(e.target, 'navigation').find('span')
-    let scrollToClass = $(scrollToClassFather).text().trim(),
+    let scrollToClassFather = findFather(e.target, 'navigation'),
+      scrollToClassSpan = $(scrollToClassFather).find('span'),
+      scrollToClassStick = $(scrollToClassFather).find('.stick'),
+      scrollToClass = $(scrollToClassSpan).text().trim(),
       domClass = ''
 
     switch (scrollToClass) {
@@ -245,7 +193,13 @@ const nav = () => {
         break;
     }
 
-    navHidden()
+    if (listClass == 'nav') {
+      navHidden()
+      $('.stick').css('opacity', '0')
+      $(scrollToClassStick).css('opacity', '1')
+    } else
+      navMobileHidden()
+
     setTimeout(() => {
       $('html, body').animate({
         scrollTop: $(`${domClass}`).offset().top
@@ -259,6 +213,7 @@ const nav = () => {
       scrollTop: $('.contactUs').offset().top
     }, 1000)
     $('#illustrationsTree').css('transform', 'scale(1)').css('display', 'block')
+    $('.home').css('opacity', '0')
   })
 
   $('#arraw').click(() => {
@@ -352,6 +307,8 @@ const allScroll = () => {
     'height': $(".illustrations").height(),
     'offsetTop': $(".illustrations").offset().top,
     'percent': 5,
+    'maxPercent': 5,
+    'minPercent': 1,
     wholeHeight: function () {
       return this.offsetTop + this.height - window.innerHeight
     }
@@ -371,22 +328,6 @@ const allScroll = () => {
       $($('.competion')[1]).offset().top,
       $($('.competion')[2]).offset().top,
       $($('.competion')[3]).offset().top
-    ]
-  }
-
-  const showObj = {
-    'hiddenDom': [
-      ['transform', 'skew(-20deg)'],
-      ['animation', 'wordShake .8s infinite'],
-      ['opacity', '0.5'],
-      ['animation', 'competionOut .8s 1 forwards']
-
-    ],
-    'showDom': [
-      ['transform', 'skew(0deg)'],
-      ['animation', 'wordShake .8s 1'],
-      ['opacity', '1'],
-      ['animation', 'competionIn .8s 1 forwards']
     ]
   }
 
@@ -453,51 +394,27 @@ const allScroll = () => {
       activityImgShow(activityImgShowUp)
 
     function activityImgShowDown(ev) {
-      let curDom = showDom(ev),
-        nextDom = showDom($(ev).next())
-      addAnimation(showObj.showDom, nextDom)
-      addAnimation(showObj.hiddenDom, curDom)
+      $(ev).addClass('show').removeClass('hidden')
+      $($(ev).prev()).addClass('hidden').removeClass('show')
     }
 
     function activityImgShowUp(ev) {
-      let curDom = showDom(ev),
-        nextDom = showDom($(ev).next())
-
-      addAnimation(showObj.showDom, curDom)
-      addAnimation(showObj.hiddenDom, nextDom)
+      $(ev).addClass('show').removeClass('hidden')
+      $($(ev).next()).addClass('hidden').removeClass('show')
     }
 
     function activityImgShow(func) {
       document.documentElement.scrollTop - activity.ImgTop[0] <= 0 ?
-        $(activity.el.get(0)).find('img').css('opacity', '1').css('animation', 'competionIn .8s 1 forwards') :
-        document.documentElement.scrollTop - activity.ImgTop[3] <= 0 ?
-        $(activity.el.get(3)).find('img').css('opacity', '0').css('animation', 'competionOut .8s 1 forwards') : ''
+        activityImgShowDown($(activity.el.get(0))) : ''
 
-      for (let i of [0, 1, 2])
-        (document.documentElement.scrollTop - activity.ImgTop[i] > 0 && document.documentElement.scrollTop - activity.ImgTop[i + 1] <= 0) ?
+      for (let i of [1, 2, 3])
+        (document.documentElement.scrollTop - activity.ImgTop[i - 1] > 0 && document.documentElement.scrollTop - activity.ImgTop[i] <= 0) ?
         func($(activity.el.get(i))) : ''
 
-      $($($('.competion')[3]).children()[0]).children().css('opacity') == '1' ?
+      $($('.competion')[3]).attr('class') == 'competion show' ?
         $('.slowpoke').css('left', '50%') :
         $('.slowpoke').css('left', '0%')
 
-    }
-
-    function showDom(ev) {
-      let arr = [
-        $(ev).find('h1'),
-        $(ev).find('h1').find('span'),
-        $(ev).find('h1').find('span'),
-        $(ev).find('img'),
-        $(ev).find('img')
-      ]
-      return arr
-    }
-
-    function addAnimation(arr, dom) {
-      arr.map((item, index) => {
-        $(dom[index]).css(`${item[0]}`, `${item[1]}`)
-      })
     }
 
   }
@@ -520,10 +437,10 @@ const allScroll = () => {
 
   function illustrationsScroll(e) {
     if (e.wheelDelta < 0) {
-      if (illustrations.percent <= 5 && illustrations.percent > 1)
+      if (illustrations.percent <= illustrations.maxPercent && illustrations.percent > illustrations.minPercent)
         illustrations.percent--
     } else {
-      if (illustrations.percent < 5 && illustrations.percent >= 1)
+      if (illustrations.percent < illustrations.maxPercent && illustrations.percent >= illustrations.minPercent)
         illustrations.percent++
     }
     if ($('#illustrationsTree').css('display') == 'none')
@@ -573,16 +490,14 @@ if (window.innerWidth >= 992) {
   Load()
   allScroll()
   dataImport()
-  presidiumShow()
+  nav('nav')
   generateStars(300, 2)
-  departmentHoverShow()
 } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
   generateStars(150, 2);
   mobileDataImport()
+  nav('navMobile')
 } else if (window.innerWidth <= 767) {
   mobileDataImport()
+  nav('navMobile')
   generateStars(150, 1);
 }
-
-
-nav()
