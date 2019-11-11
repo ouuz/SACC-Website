@@ -3,8 +3,8 @@ var canvasLOGO = document.getElementById('Logo');
 var ctx = canvasLOGO.getContext('2d');
 var percent = 0;
 
-canvasLOGO.style.width = document.documentElement.clientWidth + 'px';
-canvasLOGO.style.height = document.documentElement.clientHeight * 3 + 'px';
+// canvasLOGO.style.width = document.documentElement.clientWidth + 'px';
+// canvasLOGO.style.height = document.documentElement.clientHeight * 3 + 'px';
 
 Interval()
 

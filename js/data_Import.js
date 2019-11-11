@@ -36,8 +36,8 @@ const addPresidiumContent = (arr) => {
 
 const addPresidiumMobileContent = (arr) => {
 
-  function templateFunc (item){
-    return  `
+  function templateFunc(item) {
+    return `
     <li>
       <div class="presidiumMobileDes">
         <div class="presidiumMobilePortrait">
@@ -55,14 +55,14 @@ const addPresidiumMobileContent = (arr) => {
     </li>
   `
   }
-  
+
   arr.map((item, index) => {
     if (index <= 4)
-      $('.presidiumMobile_2019 ul').append(templateFunc (item))
+      $('.presidiumMobile_2019 ul').append(templateFunc(item))
     else if (index > 4 && index <= 9)
-      $('.presidiumMobile_2018 ul').append(templateFunc (item))
+      $('.presidiumMobile_2018 ul').append(templateFunc(item))
     else
-      $('.presidiumMobile_2017 ul').append(templateFunc (item))
+      $('.presidiumMobile_2017 ul').append(templateFunc(item))
   })
 }
 
@@ -131,6 +131,7 @@ const addProjectContent = (arr) => {
       <img src="./img/material/tray.png" alt="">
       </div>
       <div class="blackScreen"></div>
+      <div class="projectDes">${item.projectDes}</div>
     </div>
   `)
   })
@@ -310,13 +311,16 @@ var department = [{
 
 var project = [{
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
-  'projectImgSrc': './img/project/onePlusOne.png'
+  'projectImgSrc': './img/project/onePlusOne.png',
+  'projectDes': '每日 1 + 1'
 }, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
-  'projectImgSrc': './img/project/onePlusOne.png'
+  'projectImgSrc': './img/project/Sacc-Comprehensive-System.png',
+  'projectDes': ' SACC比赛系统'
 }, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
-  'projectImgSrc': './img/project/onePlusOne.png'
+  'projectImgSrc': './img/project/SACC-Website.png',
+  'projectDes': 'SACC-Website'
 }]
 
 var Clouds = {

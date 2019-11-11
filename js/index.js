@@ -110,7 +110,6 @@ const nav = (listClass) => {
   function navMobileShow() {
     $('.navMobile').css('display', 'block')
     console.log($('#nav').attr('src'))
-    $('#nav').attr('src', './img/material/close.png')
     setTimeout(() => {
       $('.navMobile li').css('opacity', '1')
       $('.navMobile').css('opacity', '1').css('animation', 'navShow .3s 1 forwards')
@@ -120,7 +119,6 @@ const nav = (listClass) => {
   function navMobileHidden() {
     $('.navMobile').css('animation', 'navHidden .3s 1 forwards')
     $('.navMobile li').css('opacity', '0')
-    $('#nav').attr('src', './img/material/menu.png')
     setTimeout(() => {
       $('.navMobile').css('opacity', '0').css('display', 'none')
     }, 200)
@@ -129,7 +127,6 @@ const nav = (listClass) => {
   function navShow() {
     $('.navBgLeft').css('background', `${color[colorIndex]}`)
     $('.navBgRight').css('background', `${color[colorIndex]}`)
-    $('#nav').attr('src', './img/material/close.png')
     $('.nav').css('display', 'block')
     setTimeout(() => {
       $('.nav ul li').css('opacity', '1')
@@ -143,7 +140,6 @@ const nav = (listClass) => {
     $('.navBgRight').css('borderBottomRightRadius', '0')
     $('.navigationLogo').css('transform', 'translateX(50vw)')
     setTimeout(() => {
-      $('#nav').attr('src', './img/material/menu.png')
       $('.nav ul li').css('opacity', '0')
       $('.navBg').css('transform', 'rotate3d(0, 1, 0, 90deg)')
     }, 400)
@@ -168,21 +164,27 @@ const nav = (listClass) => {
     switch (scrollToClass) {
       case '首页':
         domClass = '.logo';
+        colorIndex =  0;
         break;
       case '技术分组':
         domClass = '.team';
+        colorIndex =  1;
         break;
       case '主席团':
         domClass = '.presidium';
+        colorIndex =  2;
         break;
       case '部门介绍':
         domClass = '.department';
+        colorIndex =  3;
         break;
       case '活动展示':
         domClass = '.activity';
+        colorIndex =  4;
         break;
       case '项目展示':
         domClass = '.project';
+        colorIndex =  5;
         break;
       case '联系我们':
         domClass = '.contactUs';
@@ -483,6 +485,10 @@ const allScroll = () => {
   })
 
 }
+
+$(window).resize(function(){
+  window.location.reload()
+});
 
 if (window.innerWidth >= 992) {
   groupAnimation()
