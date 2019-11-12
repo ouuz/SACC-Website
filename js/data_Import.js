@@ -29,6 +29,7 @@ const addPresidiumContent = (arr) => {
       <img src="./img/material/clouds.png" alt="">
       <img src="./img/material/clouds.png" alt="">
       <img src="./img/material/clouds.png" alt="">
+      <img src="./img/material/clouds.png" alt="">
     </div> 
   </li>
   `)
@@ -231,33 +232,48 @@ var technologyStackList = {
     './img/technologyStack/css.png',
     './img/technologyStack/javascript-original.png',
     './img/technologyStack/Vue.png',
-    './img/technologyStack/React.png'
+    './img/technologyStack/React.png',
+    './img/technologyStack/jq.png'
   ],
   'backEnd': [
     './img/technologyStack/Java.png',
     './img/technologyStack/php.png',
     './img/technologyStack/go.png',
     './img/technologyStack/Csharp.png',
-    './img/technologyStack/python.png'
+    './img/technologyStack/python.png',
+    './img/technologyStack/springboot.png'
   ],
   'game': [
     './img/group/yx.png',
     './img/technologyStack/C.png',
     './img/technologyStack/C++.png',
     './img/technologyStack/Java.png',
-    './img/technologyStack/python.png'
+    './img/technologyStack/python.png',
+    './img/technologyStack/unity.png'
   ],
   'python': [
-    './img/technologyStack/python.png'
+    './img/technologyStack/python.png',
+    './img/technologyStack/Tornado.png',
+    './img/technologyStack/sdxx.png',
+    './img/technologyStack/rgzn.png',
+    './img/technologyStack/flask.png',
+    './img/technologyStack/django.png'
   ],
   'security': [
-    'http://sacc.oss-cn-beijing.aliyuncs.com/sacc-static/%E5%AE%89%E5%85%A8.png'
+    'http://sacc.oss-cn-beijing.aliyuncs.com/sacc-static/%E5%AE%89%E5%85%A8.png',
+    './img/technologyStack/web.png',
+    './img/technologyStack/ejz.jpg',
+    './img/technologyStack/pwn.png',
+    './img/technologyStack/mmx.png',
+    './img/technologyStack/php.png'
   ],
   'algorithm': [
     './img/group/sf.png',
     './img/technologyStack/C.png',
     './img/technologyStack/C++.png',
-    './img/technologyStack/Java.png'
+    './img/technologyStack/Java.png',
+    './img/technologyStack/pascal.png',
+    './img/technologyStack/acm.png'
   ]
 }
 
@@ -295,33 +311,36 @@ var group = [{
   }
 ]
 
-var department = [{
+var department = [
+  {
   'departmentImgSrc': './img/department/xmtS.png',
   'departmentText': '作为科协的推广部门，新媒体的小伙伴们主要负责的是关于科协的信息的发布与分享，以及院科协公众号的运营，同时还会教授剪辑学院视频的内容，一起见证科协的各项活动，为院科协的蓬勃发展添上有力的一笔。',
   'hiddenImgSrc': './img/department/xmt.png'
-}, {
+  }, {
   'departmentImgSrc': './img/department/jsbS.png',
   'departmentText': '技术部现有算法、程序设计、前端设计和网络安全等技术方向，这些技术相辅相成。技术部的骨干成员实力雄厚，经历丰富。多人在程序设计大赛、网络攻防大赛、网页设计大赛等中获得奖项。',
   'hiddenImgSrc': './img/department/jsb.png'
-}, {
+  }, {
   'departmentImgSrc': './img/department/bgsS.png',
   'departmentText': '办公室是科协的重要组成部分！它负责科协的整个统筹规划，承担活动策划宣传，组织运行，等工作。其下设有内务部，策划部宣传部。在办公室成员的合作下，科协才能顺利地举办各种比赛。另外，它也是科协交流放松地方和科协女生的集中营！',
   'hiddenImgSrc': './img/department/bgs.png'
-}]
+  }
+]
 
 var project = [{
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
   'projectImgSrc': './img/project/onePlusOne.png',
   'projectDes': '每日 1 + 1'
-}, {
+  }, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
   'projectImgSrc': './img/project/Sacc-Comprehensive-System.png',
   'projectDes': ' SACC比赛系统'
-}, {
+  }, {
   'projectLink': 'https://github.com/NJUPT-SACC/One-Plus-One-Question',
   'projectImgSrc': './img/project/SACC-Website.png',
   'projectDes': 'SACC-Website'
-}]
+  }
+]
 
 var Clouds = {
   'pathA': `M35,50,c20,-10,30,0,45,-5,c4,-5,25,-25,54,-11,s33,3,65,0,c22,-3,33,11,54,23,s33,3,42,15c8,11,2,24,-7,28,s2,7,-60,17,c-16,10,-46,11,-70,1,c-24,-10,-4,-20,-57,-9,c-19,1,-25,5,-40,-10,C-5,70,25,60,35,50`,

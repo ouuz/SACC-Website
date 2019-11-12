@@ -223,7 +223,7 @@
     display: flex;
     align-items: flex-end;
     width: 150vw;
-    transition: all .05s ease-in-out;
+    transition: all .3s;
   }
 
   .presidiumContent>ul li {
@@ -262,7 +262,7 @@
     left: 0;
     right: -50vw;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
+    width: 120%;
   }
 
   .presidiumContent li.musicpaper .end {
@@ -623,26 +623,6 @@
     }
   }
 
-  @keyframes navShow {
-    0% {
-      width: 0%;
-    }
-
-    100% {
-      width: 100%;
-    }
-  }
-
-  @keyframes navHidden {
-    0% {
-      width: 100%;
-    }
-
-    100% {
-      width: 0%;
-    }
-  }
-
   /* contactUs */
   .contactWay h3::before {
     position: absolute;
@@ -653,6 +633,14 @@
     content: " ";
     margin-right: 20px;
     background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .contactWay p {
+    transition: all .3s;
+  }
+
+  .contactWay p:hover {
+    transform: scale(1.1);
   }
 
   /* team */
@@ -668,6 +656,7 @@
     width: 40%;
     position: relative;
     z-index: 2;
+    transition: all .3s;
   }
 
   #Group {
@@ -770,6 +759,45 @@
   }
 
   /* nav */
+
+  .nav.navigationShow ul li {
+    opacity: 1;
+  }
+
+  .nav.navigationShow .navBg {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+
+  .nav.navigationShow .navBgRight {
+    border-bottom-right-radius: 80%;
+  }
+
+  .nav.navigationShow .navigationLogo {
+    transform: translateX(0);
+  }
+
+
+  .nav.navigationHidden .navBgRight {
+    border-bottom-right-radius: 0;
+  }
+
+  .nav.navigationHidden .navigationLogo {
+    transform: translateX(50vw);
+  }
+
+  .nav.navigationHidden ul li,
+  .nav.navigationHidden .navBg {
+    transition-delay: .4s;
+  }
+
+  .nav.navigationHidden ul li {
+    opacity: 0;
+  }
+
+  .nav.navigationHidden .navBg {
+    transform: rotate3d(0, 1, 0, 90deg);
+  }
+
   .stick {
     position: absolute;
     width: 10px;
@@ -787,7 +815,7 @@
   }
 
   .navigationBox>ul li:hover .stick {
-    opacity: 1;
+    opacity: 1 !important;
   }
 
   .navigationBox>ul li h3 {
@@ -924,6 +952,14 @@
   .contactWay h3 {
     font-size: 1rem;
   }
+
+  #nav {
+    width: 8%;
+  }
+
+  .navShow .navLine:nth-child(1) {
+    transform: rotate(-45deg) translate(-28%, 250%);
+  }
 }
 
 /* 移动端 */
@@ -987,7 +1023,7 @@
 
   .DepartmentContent {
     width: auto;
-    height: auto;
+    min-height: 25%;
     margin: 0 2%;
     padding: 0.5rem;
   }
@@ -1180,6 +1216,40 @@
     align-items: center;
   }
 
+  #nav {
+    width: 15%;
+  }
+
+  .navMobile.navigationShow ul li,
+  .navMobile.navigationShow {
+    transition-delay: .1s;
+  }
+
+  .navMobile.navigationShow ul li {
+    opacity: 1;
+  }
+
+  .navMobile.navigationShow {
+    opacity: 1;
+    animation: navShow .3s 1 forwards;
+  }
+
+  .navMobile.navigationHidden {
+    animation: navHidden .3s 1 forwards;
+  }
+
+  .navMobile.navigationHidden ul li {
+    opacity: 0;
+  }
+
+  .navShow .navLine:nth-child(1) {
+    transform: rotate(-45deg) translate(-17%, 200%);
+  }
+
+  .GroupImgBox img {
+    width: 100%;
+  }
+
   @keyframes mobileTopScale {
     50% {
       transform: scale(1.2);
@@ -1212,21 +1282,22 @@
 
   @keyframes navShow {
     0% {
-      height: 0%;
+      height: 0;
     }
 
     100% {
-      height: 100%;
+      height: 100vh;
     }
   }
 
   @keyframes navHidden {
     0% {
-      height: 100%;
+      height: 100vh;
     }
 
     100% {
-      height: 0%;
+      height: 0;
+      opacity: 0;
     }
   }
 }
@@ -1239,14 +1310,21 @@
   }
 
   #logoText>p {
-    animation: logoText 1s 1 forwards;
+    animation: logoText 1s 3.8s 1 forwards;
   }
 
   #contactBtn {
     padding: 0 1.5rem;
-    animation: logoText 1.1s 1 forwards;
+    animation: logoText 1.1s 3.8s 1 forwards;
   }
 
+  .navShow .navLine:nth-child(1) {
+    transform: rotate(-45deg) translate(-35%, 200%);
+  }
+
+  .welcome {
+    font-size: 2rem;
+  }
 }
 
 /* pad */
@@ -1335,4 +1413,11 @@
     font-size: 1.8rem;
   }
 
+  #nav {
+    width: 10%;
+  }
+
+  .navShow .navLine:nth-child(1) {
+    transform: rotate(-45deg) translate(-27%, 200%);
+  }
 }

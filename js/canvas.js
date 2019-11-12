@@ -2,11 +2,29 @@
 var canvasLOGO = document.getElementById('Logo');
 var ctx = canvasLOGO.getContext('2d');
 var percent = 0;
-
+let scrollTop = 0
 // canvasLOGO.style.width = document.documentElement.clientWidth + 'px';
 // canvasLOGO.style.height = document.documentElement.clientHeight * 3 + 'px';
 
-Interval()
+const stopBodyScroll = (isFixed) => {
+  if (isFixed) {
+    scrollTop = window.scrollY
+    $('body').css('position', 'fixed')
+    $('body').css('top', `-${scrollTop}px`)
+  } else {
+    $('body').css('position', '')
+    $('body').css('top', '')
+    window.scrollTo(0, scrollTop)
+  }
+}
+
+stopBodyScroll(true)
+
+setTimeout(() => {
+  Interval()
+  stopBodyScroll(false)
+}, 3800)
+
 
 function drawPartCurve(lineWidth, strokeColor, lineDash, startPonit, endPoint, radian) {
   ctx.lineWidth = lineWidth;
@@ -334,8 +352,8 @@ function Curve() {
 
   drawCurvePath(
     context,
-    [350, -20],
-    [445, 150],
+    [370, -20],
+    [280, 180],
     0, Percent
   );
 

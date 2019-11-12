@@ -42,7 +42,7 @@ const presidiumMobileDrag = (moveClass) => {
     now = touchItem.changedTouches[0].pageX;
     curTime = new Date()
     if (curTime - time <= 300) {
-      if (now - then <= 0) {
+      if (now - then < 0) {
         index = (index + 1) % length
       } else {
         index = (index - 1) % length

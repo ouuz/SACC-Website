@@ -48,7 +48,8 @@ html {
 #logoText>p {
   letter-spacing: 0.15em;
   font-size: 16rem;
-  animation: logoText 1.5s 1 forwards;
+  transform: translate(0, 60vh);
+  animation: logoText 1.5s 3.8s 1 forwards;
 }
 
 #contactBtn {
@@ -60,7 +61,8 @@ html {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   cursor: pointer;
-  animation: logoText 3s 1 forwards;
+  transform: translate(0, 60vh);
+  animation: logoText 3s  3.8s 1 forwards;
 }
 
 .contactBtnBox {
@@ -85,12 +87,14 @@ html {
 .littleThings img:nth-child(1) {
   top: 0;
   left: 2%;
-  animation: logoPurplePlant 3s;
+  opacity: 0;
+  animation: logoPurplePlant 3s 3.8s forwards;
 }
 
 .littleThings img:nth-child(2) {
   left: 28%;
-  animation: flyRocket 3s forwards;
+  transform: translate(-16vw, 78vh);
+  animation: flyRocket 3s  3.8s forwards;
   top: 18%;
 }
 
@@ -115,7 +119,8 @@ html {
 .littleThings img:nth-child(6) {
   top: 42%;
   left: 80%;
-  animation: arrow 3s infinite;
+  opacity: 0;
+  animation: arrow 5s 5.8s infinite;
   cursor: pointer;
 }
 
@@ -135,12 +140,19 @@ html {
   from {
     opacity: 0;
   }
+  to{
+    opacity: 1;
+  }
 }
 
 @keyframes arrow {
+  0%{
+    opacity: 0;
+  }
   100% {
     top: 43%;
     left: 78%;
+    opacity: 1;
   }
 }
 
@@ -350,7 +362,7 @@ html {
   top: -5%;
   transition: all 0.5s ease-in-out;
   z-index: -2;
-  left: 70%;
+  left: 80%;
 }
 
 .activity img {
@@ -480,7 +492,7 @@ html {
   background: rgba(255, 255, 255, .1);
   display: flex;
   justify-content: center;
-  height: 25%;
+  min-height: 33%;
   align-items: center;
   z-index: 4;
   color: white;
@@ -520,7 +532,7 @@ html {
   font-size: 2rem;
   position: fixed;
   top: 0;
-  z-index: 999999;
+  z-index: 99999;
   width: 100%;
 }
 
@@ -552,13 +564,51 @@ html {
 
 #nav {
   position: fixed;
-  top: 5px;
-  left: 5px;
-  z-index: 9999999;
+  top: 10px;
+  left: 6px;
+  z-index: 999999;
   border: none;
   font-size: 2rem;
   cursor: pointer;
   color: #90a8cb;
+  width: 5%;
+  height: 5%;
+}
+
+#nav .navLine {
+  width: 40%;
+  height: 8%;
+  margin: 1vh;
+  transition: all .4s;
+}
+
+.navHidden .navLine {
+  background: #90a8cb;
+}
+
+.navHidden .navLine:nth-child(1),
+.navHidden .navLine:nth-child(3) {
+  transform: rotate(0);
+}
+
+#nav.navHidden .navLine:nth-child(2) {
+  width: 30%;
+}
+
+.navShow .navLine {
+  background: #d5aa57;
+}
+
+.navShow .navLine:nth-child(1) {
+  transform: rotate(-45deg) translate(-30%, 200%);
+}
+
+.navShow .navLine:nth-child(2) {
+  display: none;
+}
+
+.navShow .navLine:nth-child(3) {
+  transform: rotate(45deg);
 }
 
 /* contactUs */
@@ -575,7 +625,7 @@ html {
 }
 
 .contactWay h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   line-height: 3;
   position: absolute;
   left: 80%;
@@ -586,4 +636,149 @@ html {
 .contactWay h3>a {
   color: #978a9b;
   text-decoration: none;
+}
+
+/* load */
+.load {
+  background: #000;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  animation: loadEnd .8s 3s 1 ease-in-out forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
+  width: 100%;
+  top: 0;
+}
+
+.ballBox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  height: 7vw;
+  width: 7vw;
+}
+
+.ball-triangle-path {
+  position: relative;
+  animation: ballScale .5s 2s 1 forwards;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome {
+  font-size: 6rem;
+  color: #d2cece;
+  transform: translate(0vw, 100vh);
+  font-family: 'Dancing Script', cursive;
+  letter-spacing: .2rem;
+  animation: welcomeText .5s 2.4s 1 forwards;
+}
+
+.welcome>span {
+  color: #dddd28;
+}
+
+@keyframes ballScale {
+  50% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+.ball-triangle-path>div:nth-of-type(1) {
+  top: 50%;
+}
+
+.ball-triangle-path>div:nth-of-type(2) {
+  left: 25%;
+}
+
+.ball-triangle-path>div:nth-of-type(3) {
+  top: 50%;
+  left: 50%;
+}
+
+.ball-triangle-path>div:nth-child(1) {
+  animation: ball-triangle-path-1 2s ease-in-out infinite;
+}
+
+.ball-triangle-path>div:nth-child(2) {
+  animation: ball-triangle-path-2 2s ease-in-out infinite;
+}
+
+.ball-triangle-path>div:nth-child(3) {
+  animation: ball-triangle-path-3 2s ease-in-out infinite;
+}
+
+.ball-triangle-path>div {
+  animation-fill-mode: both;
+  position: absolute;
+  width: 25%;
+  height: 25%;
+  border-radius: 100%;
+  border: 1px solid #fff;
+}
+
+@keyframes ball-triangle-path-1 {
+  33% {
+    transform: translate(25px, -50px);
+  }
+
+  66% {
+    transform: translate(50px, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+
+@keyframes ball-triangle-path-2 {
+  33% {
+    transform: translate(25px, 50px);
+  }
+
+  66% {
+    transform: translate(-25px, 50px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes ball-triangle-path-3 {
+  33% {
+    transform: translate(-50px, 0);
+  }
+
+  66% {
+    transform: translate(-25px, -50px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes loadEnd {
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+@keyframes welcomeText {
+  100% {
+    transform: translate(0vw, 0vh);
+  }
 }

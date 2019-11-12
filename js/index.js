@@ -1,3 +1,4 @@
+
 const findFather = (dom, fatherName) => {
   if ($(dom).attr('class') === fatherName)
     return dom
@@ -99,59 +100,46 @@ const generateStars = (n, pages) => {
   }
 };
 
-const nav = (listClass) => {
+const nav = (selection) => {
+  let listClass = selection == 1 ? 'nav' : 'navMobile'
   let list = document.querySelector(`.${listClass} ul`)
-
   let colorIndex = 0,
     color = ['rgba(50, 44, 69, 0.35)', 'rgba(250, 229, 217,0.35)', 'rgba(60, 50, 55, 0.35)', 'rgba(70, 56, 90,0.35)', 'rgba(255, 248, 240,0.35)', 'rgba(229, 186, 181,0.35)']
 
   list.addEventListener('click', scrollTo)
 
-  function navMobileShow() {
-    $('.navMobile').css('display', 'block')
-    console.log($('#nav').attr('src'))
-    setTimeout(() => {
-      $('.navMobile li').css('opacity', '1')
-      $('.navMobile').css('opacity', '1').css('animation', 'navShow .3s 1 forwards')
-    }, 100)
-  }
+  function navHidden() {
+    let timeOut = selection == 1 ? 700 : 200;
 
-  function navMobileHidden() {
-    $('.navMobile').css('animation', 'navHidden .3s 1 forwards')
-    $('.navMobile li').css('opacity', '0')
+    $(`.${listClass}`).addClass('navigationHidden').removeClass('navigationShow')
+    $('#nav').removeClass('navShow').addClass('navHidden')
+
     setTimeout(() => {
-      $('.navMobile').css('opacity', '0').css('display', 'none')
-    }, 200)
+      $(`.${listClass}`).css('display', 'none')
+    }, timeOut)
+
+    stopBodyScroll(false)
   }
 
   function navShow() {
-    $('.navBgLeft').css('background', `${color[colorIndex]}`)
-    $('.navBgRight').css('background', `${color[colorIndex]}`)
-    $('.nav').css('display', 'block')
-    setTimeout(() => {
-      $('.nav ul li').css('opacity', '1')
-      $('.navBg').css('transform', 'rotate3d(0, 1, 0, 0deg)')
-      $('.navBgRight').css('borderBottomRightRadius', '80%')
-      $('.navigationLogo').css('transform', 'translateX(0)')
-    }, 100)
-  }
+    let timeOut = selection == 1 ? 100 : 0;
+    $(`.${listClass}`).css('display', 'block')
 
-  function navHidden() {
-    $('.navBgRight').css('borderBottomRightRadius', '0')
-    $('.navigationLogo').css('transform', 'translateX(50vw)')
     setTimeout(() => {
-      $('.nav ul li').css('opacity', '0')
-      $('.navBg').css('transform', 'rotate3d(0, 1, 0, 90deg)')
-    }, 400)
-    setTimeout(() => {
-      $('.nav').css('display', 'none')
-    }, 800)
+      $(`.${listClass}`).addClass('navigationShow').removeClass('navigationHidden')
+      $('#nav').removeClass('navHidden').addClass('navShow')
+    }, timeOut)
+
+    if (selection == 1) {
+      $('.navBgLeft').css('background', `${color[colorIndex]}`)
+      $('.navBgRight').css('background', `${color[colorIndex]}`)
+    }
+
+    stopBodyScroll(true)
   }
 
   $('#nav').click(() => {
-    listClass == 'nav' ?
-      $(`.${listClass}`).css('display') == 'none' ? navShow() : navHidden() :
-      $(`.${listClass}`).css('display') == 'none' ? navMobileShow() : navMobileHidden()
+    $(`.${listClass}`).css('display') == 'none' ? navShow() : navHidden()
   })
 
   function scrollTo(e) {
@@ -164,27 +152,27 @@ const nav = (listClass) => {
     switch (scrollToClass) {
       case '首页':
         domClass = '.logo';
-        colorIndex =  0;
+        colorIndex = 0;
         break;
       case '技术分组':
         domClass = '.team';
-        colorIndex =  1;
+        colorIndex = 1;
         break;
       case '主席团':
         domClass = '.presidium';
-        colorIndex =  2;
+        colorIndex = 2;
         break;
       case '部门介绍':
         domClass = '.department';
-        colorIndex =  3;
+        colorIndex = 3;
         break;
       case '活动展示':
         domClass = '.activity';
-        colorIndex =  4;
+        colorIndex = 4;
         break;
       case '项目展示':
         domClass = '.project';
-        colorIndex =  5;
+        colorIndex = 5;
         break;
       case '联系我们':
         domClass = '.contactUs';
@@ -195,16 +183,13 @@ const nav = (listClass) => {
         break;
     }
 
-    if (listClass == 'nav') {
       navHidden()
       $('.stick').css('opacity', '0')
       $(scrollToClassStick).css('opacity', '1')
-    } else
-      navMobileHidden()
 
     setTimeout(() => {
       $('html, body').animate({
-        scrollTop: $(`${domClass}`).offset().top
+        scrollTop: document.querySelector(`${domClass}`).offsetTop
       }, 1000)
     }, 50)
 
@@ -212,7 +197,7 @@ const nav = (listClass) => {
 
   $('#contactBtn').click(() => {
     $('html, body').animate({
-      scrollTop: $('.contactUs').offset().top
+      scrollTop: document.querySelector('.contactUs').offsetTop
     }, 1000)
     $('#illustrationsTree').css('transform', 'scale(1)').css('display', 'block')
     $('.home').css('opacity', '0')
@@ -278,7 +263,7 @@ const Load = () => {
 
   window.onscroll = function () {
     let clientH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    let showTop = $('.project').offset().top
+    let showTop = document.querySelector('.project').offsetTop
     if (document.documentElement.scrollTop - clientH * 0.7 * pageIndex >= 0) {
       pageIndex++;
       if (pageIndex >= 2 && pageIndex <= 14)
@@ -296,18 +281,18 @@ const Load = () => {
 const allScroll = () => {
   const presidium = {
     'height': $(".presidium").height(),
-    'offsetTop': $(".presidium").offset().top,
+    'offsetTop': document.querySelector('.presidium').offsetTop,
     'percent': 0,
     'Y': 0,
-    'index': 1,
+    'index': 0,
     wholeHeight: function () {
-      return this.offsetTop + this.height - window.innerHeight
+      return this.offsetTop + this.height - window.innerHeight * 2
     }
   }
 
   const illustrations = {
     'height': $(".illustrations").height(),
-    'offsetTop': $(".illustrations").offset().top,
+    'offsetTop': document.querySelector('.illustrations').offsetTop,
     'percent': 5,
     'maxPercent': 5,
     'minPercent': 1,
@@ -317,7 +302,7 @@ const allScroll = () => {
   }
 
   const activity = {
-    'offsetTop': $(".activity").offset().top,
+    'offsetTop': document.querySelector('.activity').offsetTop,
     'el': $('.activityImgBox').children(),
     'top': 0,
     'left': 0,
@@ -326,11 +311,31 @@ const allScroll = () => {
     'rotate': 0,
     'scale': 0,
     'ImgTop': [
-      $($('.competion')[0]).offset().top,
-      $($('.competion')[1]).offset().top,
-      $($('.competion')[2]).offset().top,
-      $($('.competion')[3]).offset().top
+
+      document.querySelector('.comeq1').offsetTop,
+      document.querySelector('.comeq2').offsetTop,
+      document.querySelector('.comeq3').offsetTop,
+      document.querySelector('.comeq4').offsetTop
     ]
+  }
+
+  function page_navigation_correspondence(elementScrollTop) {
+    const page = [
+      document.querySelector('.logo').offsetTop,
+      document.querySelector('.department').offsetTop,
+      document.querySelector('.presidium').offsetTop,
+      document.querySelector('.teamBox').offsetTop,
+      document.querySelector('.activity').offsetTop,
+      document.querySelector('.project').offsetTop,
+      document.querySelector('.illustrations').offsetTop
+    ]
+
+    for (let i = 0; i < page.length; i++) {
+      if (elementScrollTop - page[i] * 0.9 >= 0 && elementScrollTop - page[i + 1] * 1.1 <= 0) {
+        $('.stick').css('opacity', '0')
+        $($($('.navigationBox ul').children().get(i)).children()[0]).css('opacity', '1')
+      }
+    }
   }
 
   function translateY(index, child, childYear) {
@@ -372,8 +377,9 @@ const allScroll = () => {
   }
 
   function presidiumScroll(e) {
-    if (e.wheelDelta < 0) {
-      presidium.percent += 8;
+    if (e.wheelDelta < 0 && presidium.percent <= 180) {
+      presidium.percent += 12;
+      presidium.index++;
       if (presidium.index <= 14) {
         let child = $('.presidiumContent ul').children().get(presidium.index),
           childYear = $(child).children().last().children().get(2)
@@ -384,10 +390,9 @@ const allScroll = () => {
           num: `${$(childYear).html()}`,
           regulator: 20
         })
-        presidium.index++;
       }
-    } else
-      presidium.percent -= 8;
+    } else if (e.wheelDelta > 0 && presidium.percent >= 0 )
+      presidium.percent -= 12;
   }
 
   function activityImgScroll(e) {
@@ -406,14 +411,14 @@ const allScroll = () => {
     }
 
     function activityImgShow(func) {
-      document.documentElement.scrollTop - activity.ImgTop[0] <= 0 ?
+      document.documentElement.scrollTop - activity.offsetTop - activity.ImgTop[0] <= 0 ?
         activityImgShowDown($(activity.el.get(0))) : ''
 
       for (let i of [1, 2, 3])
-        (document.documentElement.scrollTop - activity.ImgTop[i - 1] > 0 && document.documentElement.scrollTop - activity.ImgTop[i] <= 0) ?
+        (document.documentElement.scrollTop - activity.offsetTop - activity.ImgTop[i - 1] > 0 && document.documentElement.scrollTop - activity.offsetTop - activity.ImgTop[i] <= 0) ?
         func($(activity.el.get(i))) : ''
 
-      $($('.competion')[3]).attr('class') == 'competion show' ?
+      $($('.competion')[3]).attr('class') == 'competion comeq4 show' ?
         $('.slowpoke').css('left', '50%') :
         $('.slowpoke').css('left', '0%')
 
@@ -422,7 +427,7 @@ const allScroll = () => {
   }
 
   function activityFlyGirlScroll(elementScrollTop) {
-    activity.r = window.innerHeight * 1.5;
+    activity.r = window.innerWidth * 0.8;
     if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 >= 0 && elementScrollTop - (activity.offsetTop + window.innerHeight * 1.5) <= 0) {
       activity.y0 = elementScrollTop - activity.offsetTop;
       activity.left = Math.abs(Math.sqrt(Math.pow(activity.r, 2) - Math.pow(activity.y0, 2)) + activity.x0)
@@ -452,11 +457,14 @@ const allScroll = () => {
   }
 
   function scroll(e, beforeElementScrollTop, elementScrollTop) {
-    if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight()) {
+
+    page_navigation_correspondence(elementScrollTop)
+
+    if (elementScrollTop > presidium.offsetTop  && elementScrollTop < presidium.wholeHeight()) {
       if (Math.abs(elementScrollTop - beforeElementScrollTop) > 5)
         presidiumScroll(e)
     } else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
-      presidium.percent = 144
+      presidium.percent = 192
     else if (elementScrollTop < presidium.offsetTop)
       presidium.percent = 0
     if (elementScrollTop > illustrations.offsetTop && elementScrollTop < illustrations.wholeHeight())
@@ -467,7 +475,7 @@ const allScroll = () => {
         activityFlyGirlScroll(elementScrollTop)
       }
     } else if (elementScrollTop - activity.offsetTop + window.innerHeight * 0.2 <= 0)
-      $('.activitySlideBox').css('top', '-5%').css('left', '70%')
+      $('.activitySlideBox').css('top', '-5%').css('left', '80%')
     $('.presidiumContent ul').css('transform', `translate3d(-${presidium.percent}vw,0,0)`)
   }
 
@@ -486,24 +494,29 @@ const allScroll = () => {
 
 }
 
-$(window).resize(function(){
-  window.location.reload()
-});
+const adaptive = () => {
+  $(window).resize(function () {
+    window.location.reload()
+  });
 
-if (window.innerWidth >= 992) {
-  groupAnimation()
-  projectSlideShow()
-  Load()
-  allScroll()
-  dataImport()
-  nav('nav')
-  generateStars(300, 2)
-} else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
-  generateStars(150, 2);
-  mobileDataImport()
-  nav('navMobile')
-} else if (window.innerWidth <= 767) {
-  mobileDataImport()
-  nav('navMobile')
-  generateStars(150, 1);
+  if (window.innerWidth >= 992) {
+    groupAnimation()
+    projectSlideShow()
+    Load()
+    allScroll()
+    dataImport()
+    nav(1)
+    generateStars(300, 2)
+  } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
+    generateStars(150, 2);
+    mobileDataImport()
+    nav(0)
+  } else if (window.innerWidth <= 767) {
+    mobileDataImport()
+    nav(0)
+    generateStars(150, 1);
+  }
+
 }
+
+adaptive()
