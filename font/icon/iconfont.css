@@ -14,13 +14,6 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Airfool';   /*字体名称*/
-  src:url('../Airfool.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  font-weight: normal;
-  font-style: normal;
-}
-
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 16px;

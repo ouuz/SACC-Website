@@ -23,6 +23,7 @@ stopBodyScroll(true)
 setTimeout(() => {
   Interval()
   stopBodyScroll(false)
+  $('.load').remove()
 }, 3800)
 
 

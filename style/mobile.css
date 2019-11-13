@@ -980,7 +980,8 @@
   .teamBoxCloud,
   .activityIntroductionText,
   .hiddenImg,
-  .slowpoke {
+  .slowpoke,
+  .back {
     display: none;
   }
 
@@ -1310,12 +1311,12 @@
   }
 
   #logoText>p {
-    animation: logoText 1s 3.8s 1 forwards;
+    animation: logoText 1s 3.5s 1 forwards;
   }
 
   #contactBtn {
     padding: 0 1.5rem;
-    animation: logoText 1.1s 3.8s 1 forwards;
+    animation: logoText 1.1s 3.5s 1 forwards;
   }
 
   .navShow .navLine:nth-child(1) {

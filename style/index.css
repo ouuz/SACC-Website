@@ -49,7 +49,7 @@ html {
   letter-spacing: 0.15em;
   font-size: 16rem;
   transform: translate(0, 60vh);
-  animation: logoText 1.5s 3.8s 1 forwards;
+  animation: logoText 1.5s 3.5s 1 forwards;
 }
 
 #contactBtn {
@@ -62,7 +62,7 @@ html {
   color: #ffffff;
   cursor: pointer;
   transform: translate(0, 60vh);
-  animation: logoText 3s  3.8s 1 forwards;
+  animation: logoText 3s 3.5s 1 forwards;
 }
 
 .contactBtnBox {
@@ -88,13 +88,13 @@ html {
   top: 0;
   left: 2%;
   opacity: 0;
-  animation: logoPurplePlant 3s 3.8s forwards;
+  animation: logoPurplePlant 3s 3.5s forwards;
 }
 
 .littleThings img:nth-child(2) {
   left: 28%;
   transform: translate(-16vw, 78vh);
-  animation: flyRocket 3s  3.8s forwards;
+  animation: flyRocket 3s 3.5s forwards;
   top: 18%;
 }
 
@@ -124,6 +124,25 @@ html {
   cursor: pointer;
 }
 
+.back {
+  position: absolute;
+  right: 2%;
+  bottom: 4%;
+  width: 1.3vw;
+  cursor: pointer;
+  animation: back 1s ease-in-out infinite;
+}
+
+.back>img {
+  width: 100%;
+}
+
+@keyframes back {
+  100% {
+    bottom: 6%;
+  }
+}
+
 @keyframes flyRocket {
   0% {
     transform: translate(-16vw, 78vh);
@@ -140,15 +159,17 @@ html {
   from {
     opacity: 0;
   }
-  to{
+
+  to {
     opacity: 1;
   }
 }
 
 @keyframes arrow {
-  0%{
+  0% {
     opacity: 0;
   }
+
   100% {
     top: 43%;
     left: 78%;
@@ -644,7 +665,7 @@ html {
   height: 100vh;
   position: fixed;
   overflow: hidden;
-  animation: loadEnd .8s 3s 1 ease-in-out forwards;
+  animation: loadEnd .5s 3s 1 ease-in-out forwards;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -774,6 +795,7 @@ html {
 @keyframes loadEnd {
   100% {
     transform: translateY(-100vh);
+    opacity: 0;
   }
 }
 
@@ -781,4 +803,29 @@ html {
   100% {
     transform: translate(0vw, 0vh);
   }
+}
+
+/* scrollBar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #8680c0;
+  background-image: -webkit-linear-gradient(45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent);
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+  background: #ededed;
+  border-radius: 8px;
 }

@@ -1,4 +1,3 @@
-
 const findFather = (dom, fatherName) => {
   if ($(dom).attr('class') === fatherName)
     return dom
@@ -155,7 +154,7 @@ const nav = (selection) => {
         colorIndex = 0;
         break;
       case '技术分组':
-        domClass = '.team';
+        domClass = '.teamBox';
         colorIndex = 1;
         break;
       case '主席团':
@@ -178,14 +177,14 @@ const nav = (selection) => {
         domClass = '.contactUs';
         $('#illustrationsTree').css('transform', 'scale(1)').css('display', 'block');
         break;
-      case 'Team':
+      case '历任主席':
         domClass = '.presidiumMobile';
         break;
     }
 
-      navHidden()
-      $('.stick').css('opacity', '0')
-      $(scrollToClassStick).css('opacity', '1')
+    navHidden()
+    $('.stick').css('opacity', '0')
+    $(scrollToClassStick).css('opacity', '1')
 
     setTimeout(() => {
       $('html, body').animate({
@@ -207,6 +206,14 @@ const nav = (selection) => {
     $('html, body').animate({
       scrollTop: window.innerHeight
     }, 1000)
+  })
+
+  $('#back').click(() => {
+    $('html, body').animate({
+      scrollTop: document.querySelector('.logo').offsetTop
+    }, 1000)
+    $('.stick').css('opacity','0')
+    $('.home').css('opacity','1')
   })
 }
 
@@ -336,6 +343,10 @@ const allScroll = () => {
         $($($('.navigationBox ul').children().get(i)).children()[0]).css('opacity', '1')
       }
     }
+    if (elementScrollTop - page[6] >= 0)
+      $('#illustrationsTree').css('transform', 'scale(1)')
+    if (elementScrollTop - page[4] * 0.9 >= 0)
+      $('.backgroundImg').css('transform', 'translateX(0%)')
   }
 
   function translateY(index, child, childYear) {
@@ -351,7 +362,8 @@ const allScroll = () => {
       Y = -10 : ''
 
     $(child).css('transform', `translate3d(0,${Y}vh,0)`)
-    $(childYear).css('opacity', '1')
+    if ($(childYear).css('opacity') == 0)
+      $(childYear).css('opacity', '1')
   }
 
   function NumAutoPlusAnimation(targetEle, options) {
@@ -391,7 +403,7 @@ const allScroll = () => {
           regulator: 20
         })
       }
-    } else if (e.wheelDelta > 0 && presidium.percent >= 0 )
+    } else if (e.wheelDelta > 0 && presidium.percent >= 0)
       presidium.percent -= 12;
   }
 
@@ -460,7 +472,7 @@ const allScroll = () => {
 
     page_navigation_correspondence(elementScrollTop)
 
-    if (elementScrollTop > presidium.offsetTop  && elementScrollTop < presidium.wholeHeight()) {
+    if (elementScrollTop > presidium.offsetTop && elementScrollTop < presidium.wholeHeight()) {
       if (Math.abs(elementScrollTop - beforeElementScrollTop) > 5)
         presidiumScroll(e)
     } else if (elementScrollTop > (presidium.offsetTop + presidium.height - window.innerHeight))
@@ -494,6 +506,23 @@ const allScroll = () => {
 
 }
 
+const stopImg = () => {
+  $(document).bind("contextmenu copy selectstart", function () {
+    return false;
+  });
+
+  var img = $("img");
+
+  img.on("contextmenu", function () {
+    return false;
+  });
+
+  img.on("dragstart", function () {
+    return false;
+  });
+
+}
+
 const adaptive = () => {
   $(window).resize(function () {
     window.location.reload()
@@ -507,6 +536,7 @@ const adaptive = () => {
     dataImport()
     nav(1)
     generateStars(300, 2)
+    stopImg()
   } else if (window.innerWidth >= 768 && window.innerWidth <= 991) {
     generateStars(150, 2);
     mobileDataImport()
