@@ -238,12 +238,12 @@
     letter-spacing: 1px;
     line-height: 1.5;
     color: #ffffff;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     padding-right: 9vw;
   }
 
   .presidiumContent ul li:nth-child(11) div.PresidiumSaying {
-    top: -41vh;
+    top: -55vh;
   }
 
   .presidiumContent ul li:not(:first-child) {

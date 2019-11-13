@@ -507,7 +507,7 @@ const allScroll = () => {
 }
 
 const stopImg = () => {
-  $(document).bind("contextmenu copy selectstart", function () {
+  $(document).bind("copy selectstart", function () {
     return false;
   });
 

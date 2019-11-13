@@ -83,7 +83,7 @@ function quadraticBezier(p0, p1, p2, t) { //贝塞尔曲线方程
   return k * k * p0 + 2 * (1 - t) * t * p1 + t * t * p2;
 }
 
-function drawPlanet(ctx, X, Y, r, start, end, strokeColor, fillColor, lineWidth) { // 画星球
+function drawPlanet(ctx, X, Y, r, start, end, strokeColor, fillColor, lineWidth, index) { // 画星球
   let arr = []
 
   for (let i = start * Math.PI; i <= end * Math.PI; i += 10 * (Math.PI / 180)) {
@@ -108,14 +108,29 @@ function drawPlanet(ctx, X, Y, r, start, end, strokeColor, fillColor, lineWidth)
       ctx.stroke();
     } else {
       arr = [];
-      clearInterval(a)
-      return;
+      window.clearInterval(a)
+
+      switch (index) {
+        case 1:
+          yellowResult = true;
+          break;
+        case 2:
+          maxCircleResult = true;
+          break;
+        case 3:
+          middleCircleResult = true
+          break;
+        case 4:
+          minCircleResult = true;
+          break;
+      }
+
     }
   };
 
-  let a = setInterval(() => {
+  let a = window.setInterval(() => {
     rander();
-  }, 10);
+  }, 16);
 }
 
 function drawCircle() { //画多层色星球
@@ -157,13 +172,13 @@ function drawCircle() { //画多层色星球
       ctx.stroke();
     } else {
       arr = [];
-      clearInterval(a)
-      return;
+      window.clearInterval(a)
+      circleResult = true;
     }
   };
-  let a = setInterval(() => {
+  let a = window.setInterval(() => {
     rander();
-  }, 60)
+  }, 16)
 }
 
 function drawRedPlanet() { //画红色星球
@@ -207,13 +222,13 @@ function drawRedPlanet() { //画红色星球
       ctx.stroke();
     } else {
       arr = [];
-      clearInterval(a)
-      return;
+      window.clearInterval(a)
+      redResult = true
     }
   };
-  let a = setInterval(() => {
+  let a = window.setInterval(() => {
     rander();
-  }, 10)
+  }, 16)
 }
 
 function Ellipse(ctx, x, y, a, b, rotation) { //画椭圆
@@ -279,16 +294,23 @@ function drawMeteorites() { // 画陨石
       Ellipse(ctx, tmpPoint[0], tmpPoint[1], tmpPoint[2], tmpPoint[3], tmpPoint[4])
     } else {
       points = [];
-      clearInterval(a)
-      return;
+      window.clearInterval(a)
+      meteoriteResult = true
     }
   };
 
-  let a = setInterval(() => {
+  let a = window.setInterval(() => {
     rander();
-  }, 30);
+  }, 16);
 
 }
+var redResult = false,
+  yellowResult = false,
+  meteoriteResult = false,
+  circleResult = false,
+  maxCircleResult = false,
+  middleCircleResult = false,
+  minCircleResult = false;
 
 function Interval() {
   var curve = window.setInterval(() => {
@@ -297,17 +319,30 @@ function Interval() {
     if (percent > 30) {
       window.clearInterval(curve)
       drawRedPlanet()
-      setTimeout(() => {
-        drawPlanet(ctx, 0, 1100, 500, 1.5, 3.5, '#f8f9ad', '#e1cf85', 20)
-      }, 500)
-      setTimeout(() => {
-        drawMeteorites()
-      }, 1500)
-      setTimeout(() => {
-        drawCircle()
-      }, 2500);
+
+      let firstYellow = setInterval(() => {
+        if (redResult) {
+          drawPlanet(ctx, 0, 1100, 500, 1.5, 3.5, '#f8f9ad', '#e1cf85', 20, 1)
+          clearInterval(firstYellow)
+        }
+      }, 16)
+
+      let meteorite = setInterval(() => {
+        if (yellowResult) {
+          drawMeteorites()
+          clearInterval(meteorite)
+        }
+      }, 16)
+
+      let Circle = setInterval(() => {
+        if (meteoriteResult) {
+          drawCircle()
+          clearInterval(Circle)
+        }
+      }, 16)
+
     }
-  }, 10)
+  }, 16)
 }
 
 //canvasGroup
@@ -325,21 +360,35 @@ function drawTeamEye() {
     if (Percent > 50) {
       window.clearInterval(curve)
       context.setLineDash([80, 20])
-      drawPlanet(context, 380, 465, 200, 0, 2, "#f3c6b7", 'transparent', 10)
-      setTimeout(() => {
-        context.setLineDash([60, 0])
-        drawPlanet(context, 380, 465, 150, 0, 2, "#f3c6b7", 'transparent', 10)
-      }, 600)
-      setTimeout(() => {
-        drawPlanet(context, 380, 465, 75, 1, 3, "#f3c6b7", 'transparent', 10)
-      }, 1200)
-      setTimeout(() => {
-        $('#Group').css('left', '0')
-        $('.teamRight').css('display', 'flex')
-        $('#Group').mousemove((e) => {
-          $('.teamLeft').css('top', `${e.pageY / 120 - 40}px`).css('left', `${e.pageX / 120}px`)
-        })
-      }, 1800)
+      drawPlanet(context, 380, 465, 200, 0, 2, "#f3c6b7", 'transparent', 10, 2)
+
+
+
+      let Max = setInterval(() => {
+        if (maxCircleResult) {
+          context.setLineDash([60, 0])
+          drawPlanet(context, 380, 465, 150, 0, 2, "#f3c6b7", 'transparent', 10, 3)
+          clearInterval(Max)
+        }
+      }, 16)
+
+      let Middle = setInterval(() => {
+        if (middleCircleResult) {
+          drawPlanet(context, 380, 465, 75, 1, 3, "#f3c6b7", 'transparent', 10, 4)
+          clearInterval(Middle)
+        }
+      }, 16)
+
+      let Min = setInterval(() => {
+        if (minCircleResult) {
+          $('#Group').css('left', '0')
+          $('.teamRight').css('display', 'flex')
+          $('#Group').mousemove((e) => {
+            $('.teamLeft').css('top', `${e.pageY / 120 - 40}px`).css('left', `${e.pageX / 120}px`)
+          })
+          clearInterval(Min)
+        }
+      }, 16)
     }
 
   }, 10)
